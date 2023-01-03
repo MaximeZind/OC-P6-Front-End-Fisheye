@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 body {
@@ -50,9 +51,13 @@ h2 {
 }
 
 .photographer_section article header {
+    height: auto;
+}
+
+.photographer_section article header a {
     display: flex;
     flex-direction: column;
-    height: auto;
+    align-items: center;
 }
 
 .photographer_section article h2 {

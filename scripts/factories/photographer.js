@@ -15,7 +15,8 @@ function photographerFactory(data) {
         const h3 = document.createElement( 'h3' );
         const strong = document.createElement( 'strong');
         const p = document.createElement( 'p');
-
+        const a = document.createElement( 'a');
+        a.setAttribute('href', 'photographer.html');
 
         //Set le contenu de chaque élément à créer
         h2.textContent = name;
@@ -25,8 +26,9 @@ function photographerFactory(data) {
 
         //Crée les éléments de la page d'accueil
         article.appendChild(headerArticle);
-        headerArticle.appendChild(img);
-        headerArticle.appendChild(h2);
+        headerArticle.appendChild(a);
+        a.appendChild(img);
+        a.appendChild(h2);
         article.appendChild(h3);
         article.appendChild(strong);
         article.appendChild(p);
