@@ -7,7 +7,7 @@ async function getPhotographers() {
 
     // et bien retourner le tableau photographers seulement une fois récupéré
     return ({
-        photographers: [...photographers]
+        photographers
     })
 }
 

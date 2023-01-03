@@ -49,6 +49,12 @@ h2 {
     flex-direction: column;
 }
 
+.photographer_section article header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
