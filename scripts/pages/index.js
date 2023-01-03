@@ -1,3 +1,14 @@
+fetch('data/photographers.json').then((response) => {
+    console.log('resolved', response);
+    return response.json();
+}).then((data) => {
+    console.log(data);
+    console.log(data.photographers);
+    photographers = data.photographers;
+}).catch((err) => {
+    console.log('rejected', err);
+});
+    
     async function getPhotographers() {
         // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
         // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
