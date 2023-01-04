@@ -13,11 +13,11 @@ function photographerFactory(data) {
         img.setAttribute("alt", `Portrait de ${name}`)
         const h2 = document.createElement( 'h2' );
         const h3 = document.createElement( 'h3' );
-        const strong = document.createElement( 'strong' );
         const pTagline = document.createElement( 'p' );
         const pPrice = document.createElement( 'p' );
         const a = document.createElement( 'a');
         a.setAttribute('href', 'photographer.html')
+        a.setAttribute('aria-label', `Cliquer pour accéder à la page de ${name}`)
         pTagline.setAttribute('class', 'card__tagline')
         pPrice.setAttribute('class', 'card__price')
 
