@@ -13,16 +13,19 @@ function photographerFactory(data) {
         img.setAttribute("alt", `Portrait de ${name}`)
         const h2 = document.createElement( 'h2' );
         const h3 = document.createElement( 'h3' );
-        const strong = document.createElement( 'strong');
-        const p = document.createElement( 'p');
+        const strong = document.createElement( 'strong' );
+        const pTagline = document.createElement( 'p' );
+        const pPrice = document.createElement( 'p' );
         const a = document.createElement( 'a');
-        a.setAttribute('href', 'photographer.html');
+        a.setAttribute('href', 'photographer.html')
+        pTagline.setAttribute('class', 'card__tagline')
+        pPrice.setAttribute('class', 'card__price')
 
         //Set le contenu de chaque élément à créer
         h2.textContent = name;
         h3.textContent = location;
-        strong.textContent = tagline;
-        p.textContent = priceElement;
+        pTagline.textContent = tagline;
+        pPrice.textContent = priceElement;
 
         //Crée les éléments de la page d'accueil
         article.appendChild(headerArticle);
@@ -30,8 +33,8 @@ function photographerFactory(data) {
         a.appendChild(img);
         a.appendChild(h2);
         article.appendChild(h3);
-        article.appendChild(strong);
-        article.appendChild(p);
+        article.appendChild(pTagline);
+        article.appendChild(pPrice);
         return (article);
     }
     return { name, picture, getUserCardDOM }

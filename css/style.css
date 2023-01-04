@@ -26,13 +26,13 @@ h1 {
     margin-right: 100px;
 }
 
-h2 {
-    margin: 0.83em 0px;
-}
-
 .logo {
     height: 50px;
     margin-left: 100px;
+}
+
+main {
+    margin-bottom: 100px;
 }
 
 .photographer_section {
@@ -63,16 +63,33 @@ h2 {
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin-top: 25px;
 }
 
 .photographer_section article img {
+    object-fit: cover;
     height: 200px;
     width: 200px;
-    object-fit: cover;
     border-radius: 50%;
     transition: .3s;
 }
 
 .photographer_section article img:hover {
     transform: scale(1.1);
+}
+
+.photographer_section article h3 {
+    font-size: 17px;
+    font-weight: 400;
+    color: #901C1C;
+}
+
+.photographer_section article p.card__tagline {
+    font-size: 13px;
+}
+
+.photographer_section article p.card__price {
+    font-size: 10px;
+    color: #757575;
+
 }
