@@ -70,4 +70,9 @@ h2 {
     width: 200px;
     object-fit: cover;
     border-radius: 50%;
+    transition: .3s;
+}
+
+.photographer_section article img:hover {
+    transform: scale(1.1);
 }
