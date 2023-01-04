@@ -16,10 +16,12 @@ function photographerFactory(data) {
         const pTagline = document.createElement( 'p' );
         const pPrice = document.createElement( 'p' );
         const a = document.createElement( 'a');
+        const div = document.createElement ( 'div' );
         a.setAttribute('href', 'photographer.html')
         a.setAttribute('aria-label', `Cliquer pour accéder à la page de ${name}`)
         pTagline.setAttribute('class', 'card__tagline')
         pPrice.setAttribute('class', 'card__price')
+        div.setAttribute('class', 'card__img--wrapper')
 
         //Set le contenu de chaque élément à créer
         h2.textContent = name;
@@ -30,7 +32,8 @@ function photographerFactory(data) {
         //Crée les éléments de la page d'accueil
         article.appendChild(headerArticle);
         headerArticle.appendChild(a);
-        a.appendChild(img);
+        a.appendChild(div);
+        div.appendChild(img);
         a.appendChild(h2);
         article.appendChild(h3);
         article.appendChild(pTagline);
