@@ -28,12 +28,8 @@ async function displayData(photographers, medias) {
     let photographerName = photograph.name; 
     photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
     photographerName = photographerName.replace(/-/g, " ");
-    
-    console.log(photographerName);
-    console.log(photograph);
-    console.log(photographPics);
 
-    const photographerModel = photographerPageFactory(photograph);
+    const photographerModel = photographerFactory(photograph);
     const UserPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
     const UserPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
 

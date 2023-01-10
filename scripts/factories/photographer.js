@@ -40,13 +40,6 @@ function photographerFactory(data) {
         article.appendChild(pPrice);
         return (article);
     }
-    return { name, picture, getUserCardDOM }
-}
-
-function photographerPageFactory(data) {
-    const { name, portrait, city, country, tagline } = data;
-    const picture = `assets/photographers/${portrait}`;
-    const location = `${city}, ${country}`;
 
     function getUserPageHeaderDOM() {
         const headerDiv = document.createElement('div');
@@ -59,9 +52,9 @@ function photographerPageFactory(data) {
         
 
         //Crée les éléments du header de la page photographe
-        headerDiv.appendChild(h2);
-        headerDiv.appendChild(h3);
-        headerDiv.appendChild(pTagline);
+        headerDiv.append(h2);
+        headerDiv.append(h3);
+        headerDiv.append(pTagline);
         return (headerDiv);
     }
 
@@ -72,12 +65,12 @@ function photographerPageFactory(data) {
         img.setAttribute("src", picture)
         img.setAttribute("alt", `${name}`)
 
-        picDiv.appendChild(img);
+        picDiv.append(img);
         return (picDiv);
     }
-
-    return { getUserPageHeaderDOM, getUserPageHeaderPortraitDOM }
+    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM }
 }
+
 
 function photographerPageMainFactory(data, name) {
     const { date, id, image, video, likes, photographerId, price, title } = data;
@@ -85,25 +78,34 @@ function photographerPageMainFactory(data, name) {
     const videoMedia = `assets/images/${name}/${video}`;
 
     function getUserPageMainDOM() {
+
         const article = document.createElement( 'article' );
         article.setAttribute("class", "photograph__pics__pic");
+
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
+
         const vid = document.createElement( 'video' );
         vid.setAttribute("src", videoMedia);
+
         const divText = document.createElement( 'div' );
         divText.setAttribute("class", "photograph__pics__pic-text");
+
         const divLikes = document.createElement( 'div' );
         divLikes.setAttribute("class", "photograph__pics__pic-text-likes");
+
         const pTitle = document.createElement( 'p' );
         pTitle.textContent = title;
+
         const pLikes = document.createElement( 'p' );
         pLikes.textContent = likes;
+
         const heart = document.createElement( 'i' );
         heart.setAttribute("class", "fa-solid fa-heart");
 
         
         //Crée les éléments du header de la page photographe
+        
         if (image){
             article.append(img);
         } else if (video) {
