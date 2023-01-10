@@ -69,6 +69,7 @@ function photographerPageFactory(data) {
 
     function getUserPageHeaderPortraitDOM() {
         const picDiv = document.createElement( 'div');
+        picDiv.setAttribute('class', 'photograph-header_portrait');
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
         img.setAttribute("alt", `${name}`)

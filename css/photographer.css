@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
 #contact_modal {
     display: none;
 }
@@ -6,7 +13,30 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
+.photograph-header_portrait {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.photograph-header .photograph-header_portrait img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform .3s;
+    margin: auto;
+}
+
+.photograph-header .photograph-header_portrait img:hover {
+    transform: scale(1.2);
+}
+
 
 .contact_button {
     font-size: 20px;
