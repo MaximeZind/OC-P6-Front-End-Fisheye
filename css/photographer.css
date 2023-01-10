@@ -56,7 +56,6 @@
     transform: scale(1.2);
 }
 
-
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -68,6 +67,38 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/** SECTION PICTURES **/
+
+.photograph__pics {
+    padding: 100px;
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    grid-template-rows: auto;
+    gap: 95px;
+}
+
+.photograph__pics__pic img {
+    width: 350px;
+    max-width: 350px;
+    height: 300px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.photograph__pics__pic-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+}
+
+.photograph__pics__pic-text-likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .modal {

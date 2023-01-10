@@ -45,7 +45,6 @@ function photographerFactory(data) {
 
 function photographerPageFactory(data) {
     const { name, portrait, city, country, tagline } = data;
-    const contactButton = document.querySelector(".contact_button");
     const picture = `assets/photographers/${portrait}`;
     const location = `${city}, ${country}`;
 
@@ -78,4 +77,38 @@ function photographerPageFactory(data) {
     }
 
     return { getUserPageHeaderDOM, getUserPageHeaderPortraitDOM }
+}
+
+function photographerPageMainFactory(data, name) {
+    const { date, id, image, likes, photographerId, price, title } = data;
+    const picture = `assets/images/${name}/${image}`;
+
+    function getUserPageMainDOM() {
+        const article = document.createElement( 'article' );
+        article.setAttribute("class", "photograph__pics__pic");
+        const img = document.createElement ( 'img' );
+        img.setAttribute("src", picture);
+        const divText = document.createElement( 'div' );
+        divText.setAttribute("class", "photograph__pics__pic-text");
+        const divLikes = document.createElement( 'div' );
+        divLikes.setAttribute("class", "photograph__pics__pic-text-likes");
+        const pTitle = document.createElement( 'p' );
+        pTitle.textContent = title;
+        const pLikes = document.createElement( 'p' );
+        pLikes.textContent = likes;
+        const heart = document.createElement( 'i' );
+        heart.setAttribute("class", "fa-solid fa-heart");
+
+        
+        //Crée les éléments du header de la page photographe
+        article.append(img);
+        article.append(divText);
+        divText.append(pTitle);
+        divText.append(divLikes);
+        divLikes.append(pLikes);
+        divLikes.append(heart);
+        return (article);
+    }
+
+    return { getUserPageMainDOM }
 }
