@@ -44,7 +44,6 @@ function photographerFactory(data) {
 }
 
 function photographerPageFactory(data) {
-    console.log(data);
     const { name, portrait, city, country, tagline } = data;
     const contactButton = document.querySelector(".contact_button");
     const picture = `assets/photographers/${portrait}`;

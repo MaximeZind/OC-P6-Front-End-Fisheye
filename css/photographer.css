@@ -13,15 +13,34 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-header h2 {
+    font-size: 64px ;
+    color: #D3573C;
+}
+
+.photograph-header h3 {
+    font-size: 24px ;
+    color: #901C1C;
+}
+
+.photograph-header p {
+    font-size: 18px ;
+    color: #525252;
 }
 
 .photograph-header_portrait {
     border-radius: 50%;
     width: 200px;
+    min-width: 200px;
     height: 200px;
+    min-height: 200px;
     overflow: hidden;
 }
 
