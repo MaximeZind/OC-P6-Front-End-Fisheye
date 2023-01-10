@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
     const location = `${city}, ${country}`;
@@ -17,7 +17,7 @@ function photographerFactory(data) {
         const pPrice = document.createElement( 'p' );
         const a = document.createElement( 'a');
         const div = document.createElement ( 'div' );
-        a.setAttribute('href', 'photographer.html')
+        a.setAttribute('href', `photographer.html?id=${id}`)
         a.setAttribute('aria-label', `Cliquer pour accéder à la page de ${name}`)
         pTagline.setAttribute('class', 'card__tagline')
         pPrice.setAttribute('class', 'card__price')
