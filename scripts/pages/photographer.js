@@ -20,6 +20,11 @@ async function displayData(photographers, medias) {
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID) //filter renvoie une array 
     console.log(photograph);
     console.log(photographPics);
+    const photographerModel = photographerPageFactory(photograph);
+    const UserPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
+    const USerPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
+    photographHeader.prepend(UserPageHeaderDOM);
+    photographHeader.appendChild(USerPageHeaderPortraitDom);
 };
 
 async function init() {
