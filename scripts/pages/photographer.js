@@ -16,6 +16,8 @@ async function displayData(photographers, medias) {
     // Elément de la page dans lesquels on va afficher nos données
     const photographHeader = document.querySelector(".photograph-header");
     const photographPicSection = document.querySelector(".photograph__pics");
+    const photographMain = document.getElementById("main");
+
     // On récupère l'ID du photographe via l'URL
     let params = new URLSearchParams(document.location.search);
     let photographID = params.get("id");
@@ -23,24 +25,30 @@ async function displayData(photographers, medias) {
     //On trie les données pour obtenir celles qui correspondent au photographe de la page en question
     const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID) //filter renvoie une array 
-    
+
     //On récupère le prénom du photographe pour accéder au dossier des photos
     let photographerName = photograph.name; 
     photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
     photographerName = photographerName.replace(/-/g, " ");
 
-    const photographerModel = photographerFactory(photograph);
-    const UserPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
-    const UserPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
-
-    photographHeader.prepend(UserPageHeaderDOM);
-    photographHeader.append(UserPageHeaderPortraitDom);
-    photographPics.forEach((photographPic) => {
-        console.log(photographPic);
+    let totalLikes = 0;
+    photographPics.forEach((photographPic) => { //contenu de la page (images, vidéos, titres, likes)
+        totalLikes = totalLikes + photographPic.likes;
         const picModel = photographerPageMainFactory(photographPic, photographerName);
         const userPageMainDOM = picModel.getUserPageMainDOM();
         photographPicSection.append(userPageMainDOM);
     });
+
+    const photographerModel = photographerFactory(photograph, totalLikes);
+    const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
+    const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
+    const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
+
+
+    photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
+    photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
+    photographMain.append(userPagePriceTagDOM);
+    
 };
 
 async function init() {

@@ -91,6 +91,7 @@ body {
     height: 300px;
     max-height: 300px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .photograph__pics__pic video {
@@ -99,6 +100,7 @@ body {
     height: 300px;
     max-height: 300px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .photograph__pics__pic-text {
@@ -113,6 +115,30 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 6.5px;
+}
+
+.photograph__priceTag {
+    background: #DB8876;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+    z-index: 3;
+    font-size: 24px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.photograph__priceTag-likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .modal {

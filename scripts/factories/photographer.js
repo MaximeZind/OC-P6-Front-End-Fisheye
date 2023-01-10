@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+function photographerFactory(data, totalLikes) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
@@ -68,7 +68,35 @@ function photographerFactory(data) {
         picDiv.append(img);
         return (picDiv);
     }
-    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM }
+
+    function getUserPagePriceTagDOM() {
+
+        const priceTag = `${price}€ / jour`
+
+        const div = document.createElement( 'div');
+        div.setAttribute('class', 'photograph__priceTag');
+
+        const likesDiv = document.createElement( 'div');
+        likesDiv.setAttribute('class', 'photograph__priceTag-likes');
+
+        const p = document.createElement( 'p' );
+        p.textContent = totalLikes;
+
+        const heart = document.createElement( 'i' );
+        heart.setAttribute("class", "fa-solid fa-heart");
+
+        const pPriceTag = document.createElement( 'p' );
+        pPriceTag.textContent = priceTag;
+
+        div.append(likesDiv);
+        likesDiv.append(p);
+        likesDiv.append(heart);
+        div.append(pPriceTag);
+
+        return(div);
+    }
+
+    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM }
 }
 
 
