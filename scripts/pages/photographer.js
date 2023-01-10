@@ -33,21 +33,23 @@ async function displayData(photographers, medias) {
 
     let totalLikes = 0;
     photographPics.forEach((photographPic) => { //contenu de la page (images, vidéos, titres, likes)
-        totalLikes = totalLikes + photographPic.likes;
+        totalLikes = totalLikes + photographPic.likes; //Calcul du total des likes
         const picModel = photographerPageMainFactory(photographPic, photographerName);
         const userPageMainDOM = picModel.getUserPageMainDOM();
         photographPicSection.append(userPageMainDOM);
     });
 
-    const photographerModel = photographerFactory(photograph, totalLikes);
+    //fonction globale pour la factory utilisant la data photographer (et totalLikes)
+    const photographerModel = photographerFactory(photograph, totalLikes); 
+
+    //fonctions spécifique se trouvant dans photographerFactory()
     const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
     const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
     const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
 
-
     photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
     photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
-    photographMain.append(userPagePriceTagDOM);
+    photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
     
 };
 
