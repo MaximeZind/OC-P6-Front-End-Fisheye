@@ -87,6 +87,14 @@
     object-fit: cover;
 }
 
+.photograph__pics__pic video {
+    width: 350px;
+    max-width: 350px;
+    height: 300px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
 .photograph__pics__pic-text {
     display: flex;
     flex-direction: row;

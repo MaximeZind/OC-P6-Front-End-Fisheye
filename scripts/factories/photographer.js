@@ -80,14 +80,17 @@ function photographerPageFactory(data) {
 }
 
 function photographerPageMainFactory(data, name) {
-    const { date, id, image, likes, photographerId, price, title } = data;
+    const { date, id, image, video, likes, photographerId, price, title } = data;
     const picture = `assets/images/${name}/${image}`;
+    const videoMedia = `assets/images/${name}/${video}`;
 
     function getUserPageMainDOM() {
         const article = document.createElement( 'article' );
         article.setAttribute("class", "photograph__pics__pic");
-        const img = document.createElement ( 'img' );
+        const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
+        const vid = document.createElement( 'video' );
+        vid.setAttribute("src", videoMedia);
         const divText = document.createElement( 'div' );
         divText.setAttribute("class", "photograph__pics__pic-text");
         const divLikes = document.createElement( 'div' );
@@ -101,7 +104,11 @@ function photographerPageMainFactory(data, name) {
 
         
         //Crée les éléments du header de la page photographe
-        article.append(img);
+        if (image){
+            article.append(img);
+        } else if (video) {
+            article.append(vid);
+        }
         article.append(divText);
         divText.append(pTitle);
         divText.append(divLikes);
