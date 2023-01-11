@@ -60,6 +60,10 @@ async function init() {
     // Récupère les datas des photographes
     const { photographers, medias } = await getPhotographers();
     displayData(photographers, medias);
+
+    // DOM Elements
+    const form = document.querySelector("#contact_modal > div > form");
+    form.addEventListener("submit", validateForm);
 };
 
 init();

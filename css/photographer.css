@@ -13,12 +13,13 @@ body {
 
 #contact_modal {
     position: fixed;
-    width: 46%;
-    height: 88%;
+    height: 100vh;
+    width: 100vw;
     top: 0;
     left: 0;
-    margin: 6% 27%;
     display: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 4;
 }
 
 .photograph-header {
@@ -150,15 +151,18 @@ body {
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 100%;
-    height: 100%;
+    width: 669px;
+    max-width: 100%;
+    height: 900px;
+    max-height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 19px;
+    gap: auto;
     padding: 35px;
-    margin: auto;
+    margin: 5vh auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .modal header {
@@ -197,11 +201,15 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 50px;
     border: none;
     border-radius: 5px;
 }
 
-.modal__message {
-    height: 170px;
+#message {
+    width: 100%;
+    max-width: 100%;
+    height: 150px;
+    max-height: 150px;
+    border: none;
 }
