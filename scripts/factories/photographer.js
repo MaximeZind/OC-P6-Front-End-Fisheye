@@ -96,7 +96,7 @@ function photographerFactory(data, totalLikes) {
 
     function getUserPageModalName() {
         const h2 = document.createElement( 'h2' );
-        h2.innerHTML = `Contactez-moi <br>${name}`;
+        h2.innerHTML = `Contactez-moi<br>${name}`;
 
         return(h2);
     }
