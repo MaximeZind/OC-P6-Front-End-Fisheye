@@ -172,7 +172,7 @@ body {
 .modal header h2 {
     font-size: 45px;
     font-weight: normal;
-    text-align: center;
+    margin-bottom: 19px;
 }
 
 form {
@@ -184,7 +184,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 26px;
 }
 
 form div {
@@ -200,4 +200,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.modal__message {
+    height: 170px;
 }

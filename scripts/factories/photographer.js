@@ -71,8 +71,6 @@ function photographerFactory(data, totalLikes) {
 
     function getUserPagePriceTagDOM() {
 
-        const priceTag = `${price}€ / jour`
-
         const div = document.createElement( 'div');
         div.setAttribute('class', 'photograph__priceTag');
 
@@ -86,7 +84,7 @@ function photographerFactory(data, totalLikes) {
         heart.setAttribute("class", "fa-solid fa-heart");
 
         const pPriceTag = document.createElement( 'p' );
-        pPriceTag.textContent = priceTag;
+        pPriceTag.textContent = priceElement;
 
         div.append(likesDiv);
         likesDiv.append(p);
@@ -96,7 +94,14 @@ function photographerFactory(data, totalLikes) {
         return(div);
     }
 
-    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM }
+    function getUserPageModalName() {
+        const h2 = document.createElement( 'h2' );
+        h2.innerHTML = `Contactez-moi <br>${name}`;
+
+        return(h2);
+    }
+
+    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM, getUserPageModalName }
 }
 
 

@@ -17,6 +17,7 @@ async function displayData(photographers, medias) {
     const photographHeader = document.querySelector(".photograph-header");
     const photographPicSection = document.querySelector(".photograph__pics");
     const photographMain = document.getElementById("main");
+    const photographModalTitle = document.querySelector("#contact_modal > div > header > h2");
 
     // On récupère l'ID du photographe via l'URL
     let params = new URLSearchParams(document.location.search);
@@ -46,11 +47,13 @@ async function displayData(photographers, medias) {
     const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
     const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
     const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
-
+    const userPageModalName = photographerModel.getUserPageModalName();
+    
     photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
     photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
     photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
-    
+    photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle);
+  
 };
 
 async function init() {
