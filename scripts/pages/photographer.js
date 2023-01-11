@@ -63,7 +63,13 @@ async function init() {
 
     // DOM Elements
     const form = document.querySelector("#contact_modal > div > form");
+    const contactBtn = document.querySelector("#main > div.photograph-header > button");
+    const closeBtn = document.querySelector("#contact_modal > div > header > img");
+
+    //EventListeners
     form.addEventListener("submit", validateForm);
+    contactBtn.addEventListener("click", displayModal);
+    closeBtn.addEventListener("click", closeModal);
 };
 
 init();

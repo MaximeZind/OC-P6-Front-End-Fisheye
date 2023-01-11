@@ -175,7 +175,7 @@ body {
 }
 
 .modal header h2 {
-    font-size: 35px;
+    font-size: 40px;
     font-weight: normal;
 }
 
@@ -212,4 +212,5 @@ form input {
     height: 150px;
     max-height: 150px;
     border: none;
+    border-radius: 5px;
 }

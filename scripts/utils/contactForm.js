@@ -8,6 +8,8 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+
+//// VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {
     event.preventDefault();
 
@@ -31,11 +33,13 @@ function validateForm(event) {
   });
 
   if (isValid) {
+    //Envoie des données dans la console
     console.log('Prénom: ' + firstName.value.trim());
     console.log('Nom: ' + lastName.value.trim());
     console.log('Email: ' + email.value.trim());
     console.log('Message: ' + message.value.trim());
 
+    //Reset du formulaire de message
     form.reset();
     return true;
   } else if (!isValid) {
