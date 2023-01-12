@@ -9,8 +9,8 @@ function photographerFactory(data, totalLikes) {
         const article = document.createElement( 'article' );
         const headerArticle = document.createElement( 'header');
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        img.setAttribute("alt", `${name}`)
+        img.setAttribute('src', picture)
+        img.setAttribute('alt', `${name}`)
         const h2 = document.createElement( 'h2' );
         const h3 = document.createElement( 'h3' );
         const pTagline = document.createElement( 'p' );
@@ -62,8 +62,8 @@ function photographerFactory(data, totalLikes) {
         const picDiv = document.createElement( 'div');
         picDiv.setAttribute('class', 'photograph-header_portrait');
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        img.setAttribute("alt", `${name}`)
+        img.setAttribute('src', picture)
+        img.setAttribute('alt', `${name}`)
 
         picDiv.append(img);
         return (picDiv);
@@ -81,7 +81,7 @@ function photographerFactory(data, totalLikes) {
         p.textContent = totalLikes;
 
         const heart = document.createElement( 'i' );
-        heart.setAttribute("class", "fa-solid fa-heart");
+        heart.setAttribute('class', "fa-solid fa-heart");
 
         const pPriceTag = document.createElement( 'p' );
         pPriceTag.textContent = priceElement;
@@ -145,15 +145,16 @@ function photographerPageMainFactory(data, name) {
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
+        img.setAttribute('id', id);
 
         const vid = document.createElement( 'video' );
-        vid.setAttribute("src", videoMedia);
+        vid.setAttribute('src', videoMedia);
 
         const divText = document.createElement( 'div' );
-        divText.setAttribute("class", "photograph__pics__pic-text");
+        divText.setAttribute('class', 'photograph__pics__pic-text');
 
         const divLikes = document.createElement( 'div' );
-        divLikes.setAttribute("class", "photograph__pics__pic-text-likes");
+        divLikes.setAttribute('class', 'photograph__pics__pic-text-likes');
 
         const pTitle = document.createElement( 'p' );
         pTitle.textContent = title;
@@ -162,7 +163,7 @@ function photographerPageMainFactory(data, name) {
         pLikes.textContent = likes;
 
         const heart = document.createElement( 'i' );
-        heart.setAttribute("class", "fa-solid fa-heart");
+        heart.setAttribute('class', 'fa-solid fa-heart');
 
         
         //Crée les éléments du header de la page photographe
