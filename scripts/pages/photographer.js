@@ -18,6 +18,7 @@ async function displayData(photographers, medias) {
     const photographPicSection = document.querySelector(".photograph__pics");
     const photographMain = document.getElementById("main");
     const photographModalTitle = document.querySelector("#contact_modal > div > header > h2");
+    const modal = document.querySelector("#contact_modal");
 
     // On récupère l'ID du photographe via l'URL
     let params = new URLSearchParams(document.location.search);
@@ -48,12 +49,13 @@ async function displayData(photographers, medias) {
     const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
     const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
     const userPageModalName = photographerModel.getUserPageModalName();
+    const userPageModalLightbox = photographerModel.getUserPageModalLightbox();
     
     photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
     photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
     photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
-    photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle);
-  
+    photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale  
+    modal.append(userPageModalLightbox); //Lightbox modale
 };
 
 async function init() {
@@ -67,9 +69,9 @@ async function init() {
     const closeBtn = document.querySelector("#contact_modal > div > header > img");
 
     //EventListeners
-    form.addEventListener("submit", validateForm);
     contactBtn.addEventListener("click", displayModal);
     closeBtn.addEventListener("click", closeModal);
+    form.addEventListener("submit", validateForm);
 };
 
 init();

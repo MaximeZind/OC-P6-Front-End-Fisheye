@@ -8,6 +8,17 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+function displayLightbox() {
+    const modal = document.getElementById("contact_modal");
+    const form = document.querySelector("#contact_modal > div");
+	modal.style.display = "block";
+    form.style.display = "none";
+}
+
+function closeLightbox() {
+    const modal = document.getElementById("contact_modal");
+    modal.style.display = "none";
+}
 
 //// VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {

@@ -101,7 +101,35 @@ function photographerFactory(data, totalLikes) {
         return(h2);
     }
 
-    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM, getUserPageModalName }
+    function getUserPageModalLightbox() {
+        const div = document.createElement( 'div' );
+        div.setAttribute('class', 'lightbox_modal');
+
+        const iLeft = document.createElement( 'i' );
+        iLeft.setAttribute('class', 'fa-solid fa-angle-left');
+
+        const img = document.createElement( 'img' );
+        img.setAttribute('class', 'lightbox_modal-img');
+
+        const iRight = document.createElement( 'i' );
+        iRight.setAttribute('class', 'fa-solid fa-angle-right');
+
+        const pTitle = document.createElement( 'p' );
+        pTitle.setAttribute('class', 'lightbox_modal-title');
+
+        const close = document.createElement('i');
+        close.setAttribute('class', 'fa-solid fa-xmark lightbox_modal-close');
+
+        div.append(iLeft);
+        div.append(img);
+        div.append(iRight);
+        div.append(close);
+        div.append(pTitle);
+
+        return(div);
+    }
+
+    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox }
 }
 
 
