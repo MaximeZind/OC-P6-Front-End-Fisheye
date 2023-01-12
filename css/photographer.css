@@ -277,6 +277,8 @@ form input {
     width: 100%;
     height: 100%;
     padding: 20px;
+    object-fit: contain;
+    z-index: 35;
 }
 
 .lightbox_modal-title {

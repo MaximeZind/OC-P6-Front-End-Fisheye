@@ -33,8 +33,6 @@ async function displayData(photographers, medias) {
     photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
     photographerName = photographerName.replace(/-/g, " ");
 
-    console.log(photographPics);
-
     let totalLikes = 0;
     photographPics.forEach((photographPic) => { //contenu de la page (images, vidéos, titres, likes)
         totalLikes = totalLikes + photographPic.likes; //Calcul du total des likes
@@ -59,24 +57,22 @@ async function displayData(photographers, medias) {
     photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale  
     modal.append(userPageModalLightbox); //Lightbox modale
 
-    function displayLightboxMedia(event) {
-        console.log('hello');
-        displayLightbox();
-        const PicID = event.target.id;
-        const lightboxPic = document.querySelector(".lightbox_modal-img");
+    // function displayLightboxMedia(event) {
+    //     const PicID = event.target.id;
+    //     const lightboxPic = document.querySelector(".lightbox_modal-img");
 
-        for (i = 0; i < photographPics.length; i++) {
-            if (Photopics[i].id = PicID) {
-                if (Photopics[i].image) {
-                    lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
-                } else if (Photopics[i].video) {
-                    lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
-                }
-            }
-        }
-    }
+    //     for (i = 0; i < photographPics.length; i++) {
+    //         if (Photopics[i].id = PicID) {
+    //             if (Photopics[i].image) {
+    //                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
+    //             } else if (Photopics[i].video) {
+    //                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
+    //             }
+    //         }
+    //     }
+    // }
 
-    return { displayLightboxMedia }
+    // return { displayLightboxMedia }
 };
 
 
@@ -90,7 +86,7 @@ async function init() {
     const form = document.querySelector("#contact_modal > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
     const closeBtn = document.querySelector("#contact_modal > div > header > img");
-    const photographerPageMedia = document.querySelectorAll("#main > section > article > img");
+    const photographerPageMedia = document.querySelectorAll("#main > section > article > img, #main > section > article > video");
     const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close")
 
 

@@ -111,6 +111,9 @@ function photographerFactory(data, totalLikes) {
         const img = document.createElement( 'img' );
         img.setAttribute('class', 'lightbox_modal-img');
 
+        const vid = document.createElement( 'vid' );
+        vid.setAttribute('class', 'lightbox_modal-img');
+
         const iRight = document.createElement( 'i' );
         iRight.setAttribute('class', 'fa-solid fa-angle-right');
 
@@ -122,6 +125,7 @@ function photographerFactory(data, totalLikes) {
 
         div.append(iLeft);
         div.append(img);
+        div.append(vid);
         div.append(iRight);
         div.append(close);
         div.append(pTitle);

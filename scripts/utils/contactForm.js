@@ -8,10 +8,28 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function displayLightbox() {
+function displayLightbox(event) {
     const modal = document.getElementById("contact_modal");
     const form = document.querySelector("#contact_modal > div");
     const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
+
+    const PicSrc = event.target.src;
+    const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
+    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > vid");
+
+    if (PicSrc.includes('.jpg')) {
+
+    lightboxPic.setAttribute('src', PicSrc);
+    lightboxPic.style.display = 'block';
+    lightboxVid.style.display = 'none';
+
+    } else if (PicSrc.includes('.mp4')) {
+
+    lightboxVid.setAttribute('src', PicSrc);
+    lightboxPic.style.display = 'none';
+    lightboxVid.style.display = 'block';
+
+    }
 
 	  modal.style.display = "block";
     form.style.display = "none";
