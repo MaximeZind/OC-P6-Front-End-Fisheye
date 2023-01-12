@@ -18,7 +18,7 @@ body {
     top: 0;
     left: 0;
     display: none;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 4;
 }
 
@@ -221,15 +221,14 @@ form input {
 
 .lightbox_modal {
     display: none;
-    /* width: 1000px;
+    width: 1000px;
     max-width: 90%;
     height: 900px;
     max-height: 90%;
     margin: 5vh auto;
     padding: 18px 30px;
-    display: grid;
     grid-template-columns: 40px 1fr 40px;
-    grid-template-rows: calc(50% - 24px) 48px calc(50% - 54px) 30px; */
+    grid-template-rows: calc(50% - 24px) 48px calc(50% - 54px) 30px;
 }
 
 .fa-angle-left{

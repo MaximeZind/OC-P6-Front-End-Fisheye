@@ -29,9 +29,11 @@ async function displayData(photographers, medias) {
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID) //filter renvoie une array 
 
     //On récupère le prénom du photographe pour accéder au dossier des photos
-    let photographerName = photograph.name; 
+    let photographerName = photograph.name;
     photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
     photographerName = photographerName.replace(/-/g, " ");
+
+    console.log(photographPics);
 
     let totalLikes = 0;
     photographPics.forEach((photographPic) => { //contenu de la page (images, vidéos, titres, likes)
@@ -42,7 +44,7 @@ async function displayData(photographers, medias) {
     });
 
     //fonction globale pour la factory utilisant la data photographer (et totalLikes)
-    const photographerModel = photographerFactory(photograph, totalLikes); 
+    const photographerModel = photographerFactory(photograph, totalLikes);
 
     //fonctions spécifique se trouvant dans photographerFactory()
     const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
@@ -50,13 +52,34 @@ async function displayData(photographers, medias) {
     const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
     const userPageModalName = photographerModel.getUserPageModalName();
     const userPageModalLightbox = photographerModel.getUserPageModalLightbox();
-    
+
     photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
     photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
     photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
     photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale  
     modal.append(userPageModalLightbox); //Lightbox modale
+
+    function displayLightboxMedia(event) {
+        console.log('hello');
+        displayLightbox();
+        const PicID = event.target.id;
+        const lightboxPic = document.querySelector(".lightbox_modal-img");
+
+        for (i = 0; i < photographPics.length; i++) {
+            if (Photopics[i].id = PicID) {
+                if (Photopics[i].image) {
+                    lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
+                } else if (Photopics[i].video) {
+                    lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
+                }
+            }
+        }
+    }
+
+    return { displayLightboxMedia }
 };
+
+
 
 async function init() {
     // Récupère les datas des photographes
@@ -67,11 +90,19 @@ async function init() {
     const form = document.querySelector("#contact_modal > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
     const closeBtn = document.querySelector("#contact_modal > div > header > img");
+    const photographerPageMedia = document.querySelectorAll("#main > section > article > img");
+    const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close")
+
 
     //EventListeners
     contactBtn.addEventListener("click", displayModal);
     closeBtn.addEventListener("click", closeModal);
     form.addEventListener("submit", validateForm);
+    closeLightboxBtn.addEventListener("click", closeLightbox);
+    photographerPageMedia.forEach((media) => {
+        media.addEventListener("click", displayLightbox);
+    });
+
 };
 
 init();

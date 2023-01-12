@@ -141,14 +141,17 @@ function photographerPageMainFactory(data, name) {
     function getUserPageMainDOM() {
 
         const article = document.createElement( 'article' );
-        article.setAttribute("class", "photograph__pics__pic");
+        article.setAttribute('class', 'photograph__pics__pic');
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute('id', id);
+        img.setAttribute('class', 'photograph__pics__pic-media');
 
         const vid = document.createElement( 'video' );
         vid.setAttribute('src', videoMedia);
+        vid.setAttribute('id', id);
+        vid.setAttribute('class', 'photograph__pics__pic-media');
 
         const divText = document.createElement( 'div' );
         divText.setAttribute('class', 'photograph__pics__pic-text');
