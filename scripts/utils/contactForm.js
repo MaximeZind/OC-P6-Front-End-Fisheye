@@ -15,7 +15,7 @@ function displayLightbox(event) {
 
     const PicSrc = event.target.src;
     const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > vid");
+    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
 
     if (PicSrc.includes('.jpg')) {
 
@@ -26,6 +26,9 @@ function displayLightbox(event) {
     } else if (PicSrc.includes('.mp4')) {
 
     lightboxVid.setAttribute('src', PicSrc);
+    lightboxVid.setAttribute('type', 'video/mp4');
+    lightboxVid.setAttribute('controls', '');
+    lightboxVid.setAttribute('autoplay', '');
     lightboxPic.style.display = 'none';
     lightboxVid.style.display = 'block';
 

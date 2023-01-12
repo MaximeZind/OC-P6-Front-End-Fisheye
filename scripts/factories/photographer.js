@@ -111,7 +111,7 @@ function photographerFactory(data, totalLikes) {
         const img = document.createElement( 'img' );
         img.setAttribute('class', 'lightbox_modal-img');
 
-        const vid = document.createElement( 'vid' );
+        const vid = document.createElement( 'video' );
         vid.setAttribute('class', 'lightbox_modal-img');
 
         const iRight = document.createElement( 'i' );

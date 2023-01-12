@@ -92,7 +92,7 @@ body {
     gap: 95px;
 }
 
-.photograph__pics__pic img {
+.photograph__pics__pic-media {
     width: 100%;
     max-width: 100%;
     height: 300px;
@@ -101,13 +101,8 @@ body {
     border-radius: 5px;
 }
 
-.photograph__pics__pic video {
-    width: 100%;
-    max-width: 100%;
-    height: 300px;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
+.photograph__pics__pic-media:hover {
+    cursor: pointer;
 }
 
 .photograph__pics__pic-text {
@@ -277,7 +272,7 @@ form input {
     width: 100%;
     height: 100%;
     padding: 20px;
-    object-fit: contain;
+    object-fit: cover;
     z-index: 35;
 }
 
