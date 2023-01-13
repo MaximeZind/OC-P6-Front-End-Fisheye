@@ -8,26 +8,6 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function displayLightbox() {
-    const modal = document.getElementById("contact_modal");
-    const form = document.querySelector("#contact_modal > div");
-    const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
-
-	  modal.style.display = "block";
-    form.style.display = "none";
-    lightbox.style.display = "grid";
-}
-
-function closeLightbox() {
-    const modal = document.getElementById("contact_modal");
-    const form = document.querySelector("#contact_modal > div");
-    const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
-
-    modal.style.display = "none";
-    form.style.display = "block";
-    lightbox.style.display = "none";
-}
-
 //// VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {
     event.preventDefault();
