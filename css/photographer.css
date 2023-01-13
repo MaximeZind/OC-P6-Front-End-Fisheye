@@ -82,6 +82,73 @@ body {
     cursor: pointer;
 }
 
+/** Filtres **/
+
+section.filters {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 25px;
+}
+
+.filters__container {
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+    width:fit-content;
+    color: #FFFFFF;
+}
+
+.filters__container > a:nth-child(n + 3) {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.filters__container > a:nth-child(2)::before, .filters__container > a:nth-child(2)::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 1px;
+    background: #FFFFFF;
+}
+
+.filters__container > a:nth-child(2)::before {
+    transform: translatey(-12px);
+}
+
+.filters__container > a:nth-child(2)::after {
+    transform: translatey(12px);
+}
+
+.filters__container > a {
+    display: block;
+    padding: 12px 20px 12px 12px;
+    width: 130px;
+    text-align: center;
+    background: #901C1C;
+}
+
+.filters__container > span {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    height: 45px;
+    min-height: 45px;
+    text-align: end;
+    z-index: 4;
+    padding-top: 12px;
+    padding-right: 5px;
+}
+
+.filters__container > span > i {
+    rotate: 90deg;
+}
+
 /** SECTION PICTURES **/
 
 .photograph__pics {

@@ -133,7 +133,38 @@ function photographerFactory(data, totalLikes) {
         return(div);
     }
 
-    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox }
+    
+    function getUserPageDropdownMenu() {
+        const section = document.createElement( 'section' );
+        section.setAttribute('class', 'filters');
+
+        const p = document.createElement( 'p' );
+        const filterDiv = document.createElement( 'div' );
+        filterDiv.setAttribute('class', 'filters__container');
+        const popularityA = document.createElement( 'a' );
+        const dateA = document.createElement( 'a' );
+        const titleA = document.createElement( 'a' );
+        const span = document.createElement( 'span' );
+        const fleche = document.createElement( 'i' );
+        fleche.setAttribute('class', 'fa-solid fa-angle-down');
+
+        p.innerText = 'Trier par';
+        popularityA.innerText = 'Popularité';
+        dateA.innerText = 'Date';
+        titleA.innerText = 'Titre';
+
+        section.append(p);
+        section.append(filterDiv);
+        filterDiv.append(popularityA);
+        filterDiv.append(dateA);
+        filterDiv.append(titleA);
+        filterDiv.append(span);
+        span.append(fleche);
+
+        return(section);
+    }
+
+    return { name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox, getUserPageDropdownMenu }
 }
 
 
@@ -173,7 +204,7 @@ function photographerPageMainFactory(data, name) {
         heart.setAttribute('class', 'fa-solid fa-heart');
 
         
-        //Crée les éléments du header de la page photographe
+        //Crée les éléments medias de la page photographe
         
         if (image){
             article.append(img);
