@@ -120,6 +120,10 @@ body {
     gap: 6.5px;
 }
 
+.photograph__pics__pic-text-likes > .fa-heart:hover {
+    cursor: pointer;
+}
+
 .photograph__priceTag {
     background: #DB8876;
     display: flex;

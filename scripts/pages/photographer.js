@@ -26,7 +26,7 @@ async function displayData(photographers, medias) {
 
     //On trie les données pour obtenir celles qui correspondent au photographe de la page en question
     const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID) //filter renvoie une array 
+    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID); //filter renvoie une array 
 
     //On récupère le prénom du photographe pour accéder au dossier des photos
     let photographerName = photograph.name;
@@ -57,23 +57,49 @@ async function displayData(photographers, medias) {
     photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale  
     modal.append(userPageModalLightbox); //Lightbox modale
 
-    // function displayLightboxMedia(event) {
-    //     const PicID = event.target.id;
-    //     const lightboxPic = document.querySelector(".lightbox_modal-img");
-
-    //     for (i = 0; i < photographPics.length; i++) {
-    //         if (Photopics[i].id = PicID) {
-    //             if (Photopics[i].image) {
-    //                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
-    //             } else if (Photopics[i].video) {
-    //                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
-    //             }
-    //         }
-    //     }
-    // }
-
-    // return { displayLightboxMedia }
 };
+
+async function displayLightboxMedia(event) {
+    displayLightbox();
+    const { photographers, medias } = await getPhotographers();
+    const MediaID = event.target.id;
+
+    let params = new URLSearchParams(document.location.search);
+    let photographID = params.get("id");
+    const photograph = photographers.find(({ id }) => id == photographID);
+    let photographerName = photograph.name;
+    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
+    photographerName = photographerName.replace(/-/g, " ");
+
+    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID)
+    // console.log(medias);
+    // console.log(photograph);
+    // console.log(photographID);
+    // console.log(photographPics);
+
+    const lightboxPic = document.querySelector(".lightbox_modal-img");
+    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
+
+    for (i = 0; i < photographPics.length; i++) {
+        if (photographPics[i].id == MediaID) {
+            console.log(photographPics[i].id);
+            if (photographPics[i].image) {
+                lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
+                lightboxPic.style.display = 'block';
+                lightboxVid.style.display = 'none';
+                return
+            } else if (photographPics[i].video) {
+                lightboxVid.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
+                lightboxVid.setAttribute('type', 'video/mp4');
+                lightboxVid.setAttribute('controls', '');
+                lightboxVid.setAttribute('autoplay', '');
+                lightboxPic.style.display = 'none';
+                lightboxVid.style.display = 'block';
+                return
+            }
+        }
+    }
+}
 
 
 
@@ -96,7 +122,7 @@ async function init() {
     form.addEventListener("submit", validateForm);
     closeLightboxBtn.addEventListener("click", closeLightbox);
     photographerPageMedia.forEach((media) => {
-        media.addEventListener("click", displayLightbox);
+        media.addEventListener("click", displayLightboxMedia);
     });
 
 };
