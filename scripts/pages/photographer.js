@@ -69,8 +69,9 @@ async function init() {
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
     const closeBtn = document.querySelector("#contact_modal > div > header > img");
     const photographerPageMedia = document.querySelectorAll("#main > section > article > img, #main > section > article > video");
-    const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close")
-
+    const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
+    const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
+    const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
 
     //EventListeners
     contactBtn.addEventListener("click", displayModal);
@@ -80,6 +81,8 @@ async function init() {
     photographerPageMedia.forEach((media) => {
         media.addEventListener("click", displayLightboxMedia);
     });
+    lightBoxRight.addEventListener("click", displayLightboxNextRight);
+    lightBoxLeft.addEventListener("click", displayLightboxNextLeft);
 
 };
 

@@ -268,7 +268,7 @@ form input {
     cursor: pointer;
 }
 
-.lightbox_modal-img {
+#contact_modal > div.lightbox_modal > img, #contact_modal > div.lightbox_modal > video {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
