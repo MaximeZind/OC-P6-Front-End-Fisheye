@@ -85,20 +85,34 @@ body {
 /** Filtres **/
 
 section.filters {
+    margin-top: 10px;
     margin-left: 100px;
+    height: 44px;
     display: flex;
     flex-direction: row;
     justify-content: start;
     gap: 25px;
+    font-weight: bold;
+}
+
+section.filters p{
+padding-top: 12px;
 }
 
 .filters__container {
-    position: relative;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    position: absolute;
+    margin-left: 70px;
+    border-radius: 5px;
     overflow: hidden;
-    width:fit-content;
+    width: fit-content;
     color: #FFFFFF;
+    height: 44px;
+    transition: height .5s;
+}
+
+.filters__container:hover {
+    cursor: pointer;
+    height: 137px;
 }
 
 .filters__container > a:nth-child(n + 3) {
@@ -128,7 +142,13 @@ section.filters {
     width: 130px;
     text-align: center;
     background: #901C1C;
+    transition: background-color .3s ease;
 }
+
+.filters__container > a:hover {
+    background-color: #DB8876;
+}
+
 
 .filters__container > span {
     position: absolute;
@@ -146,13 +166,17 @@ section.filters {
 }
 
 .filters__container > span > i {
-    rotate: 90deg;
+    transition: rotate .4s;
+}
+
+.filters__container:hover > span > i{
+    rotate: 180deg;
 }
 
 /** SECTION PICTURES **/
 
 .photograph__pics {
-    padding: 100px;
+    padding: 50px 100px 100px 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
