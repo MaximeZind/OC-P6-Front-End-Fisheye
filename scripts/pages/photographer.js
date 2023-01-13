@@ -59,6 +59,25 @@ async function displayData(photographers, medias) {
 
 };
 
+function addLike(event){
+    let picLikes = +event.target.previousSibling.innerText;
+    let totalLikes = +document.querySelector("#main > div.photograph__priceTag > div > p").innerText;
+    heart = event.target;
+
+    if (heart.className.includes('clicked')){
+        heart.classList.remove('clicked');
+        picLikes--;
+        totalLikes--;
+    } else if (!heart.className.includes('clicked')){
+        heart.classList.add('clicked');
+        picLikes++;
+        totalLikes++;
+    }
+    
+    event.target.previousSibling.innerText = picLikes;
+    document.querySelector("#main > div.photograph__priceTag > div > p").innerText = totalLikes;
+}
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, medias } = await getPhotographers();
@@ -72,6 +91,7 @@ async function init() {
     const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
     const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
     const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
+    const hearts = document.querySelectorAll("#main > section > article > .photograph__pics__pic-text > .photograph__pics__pic-text-likes > i")
 
     //EventListeners
     contactBtn.addEventListener("click", displayModal);
@@ -83,6 +103,9 @@ async function init() {
     });
     lightBoxRight.addEventListener("click", displayLightboxNextRight);
     lightBoxLeft.addEventListener("click", displayLightboxNextLeft);
+    hearts.forEach((heart) => {
+        heart.addEventListener("click", addLike);
+    });
 
 };
 

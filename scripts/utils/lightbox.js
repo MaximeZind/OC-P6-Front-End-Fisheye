@@ -31,8 +31,6 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
 
     for (i = 0; i < photographPics.length; i++) {
         if (photographPics[i].id === mediaID) {
-            console.log(photographPics[i].id);
-            console.log(mediaID);
             if (photographPics[i].image) {
                 removeAttributes(lightboxVid);
                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
@@ -68,7 +66,6 @@ async function displayLightboxMedia(event) {
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
     const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
     const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
-    console.log(photographPics);
 
     const ids = [];
     
@@ -153,6 +150,6 @@ async function displayLightboxNextLeft() {
             break;
         }
     }
-    console.log('nextId ' + nextId);
+
     createLightboxMedia(photographPics, nextId, photographerName);
 }

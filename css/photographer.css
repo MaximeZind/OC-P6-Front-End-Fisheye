@@ -120,9 +120,21 @@ body {
     gap: 6.5px;
 }
 
+.photograph__pics__pic-text-likes > .fa-heart {
+    transition: color .3s, transform .3s;
+}
+
 .photograph__pics__pic-text-likes > .fa-heart:hover {
     cursor: pointer;
+    color: #D3573C;
+    transform: scale(1.1);
 }
+
+.clicked {
+    color: #D3573C;
+}
+
+/** Pricetag **/
 
 .photograph__priceTag {
     background: #DB8876;
@@ -145,6 +157,11 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+}
+
+.photograph__priceTag-likes > p {
+    width: 60px;
+    text-align: right;
 }
 
 /** Contact Modal **/
