@@ -22,6 +22,7 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
 
     const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
     const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
+    const lightboxTitle = document.querySelector("#contact_modal > div.lightbox_modal > p");
 
     const removeAttributes = (element) => {
         while (element.attributes.length > 0) {
@@ -35,6 +36,7 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
                 removeAttributes(lightboxVid);
                 lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
                 lightboxPic.setAttribute('id', mediaID);
+                lightboxTitle.innerText = photographPics[i].title;
                 lightboxPic.style.display = 'block';
                 lightboxVid.style.display = 'none';
                 break;
@@ -43,6 +45,7 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
                 lightboxVid.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
                 lightboxVid.setAttribute('type', 'video/mp4');
                 lightboxVid.setAttribute('id', mediaID);
+                lightboxTitle.innerText = photographPics[i].title;
                 lightboxVid.setAttribute('controls', '');
                 lightboxVid.setAttribute('autoplay', '');
                 lightboxVid.style.display = 'block';
