@@ -141,23 +141,26 @@ function photographerFactory(data, totalLikes) {
         const p = document.createElement( 'p' );
         const filterDiv = document.createElement( 'div' );
         filterDiv.setAttribute('class', 'filters__container');
-        const popularityA = document.createElement( 'button' );
-        const dateA = document.createElement( 'button' );
-        const titleA = document.createElement( 'button' );
+        const popularityBtn = document.createElement( 'button' );
+        popularityBtn.setAttribute('class', 'filter__popularity');
+        const dateBtn = document.createElement( 'button' );
+        dateBtn.setAttribute('class', 'filter__date');
+        const titleBtn = document.createElement( 'button' );
+        titleBtn.setAttribute('class', 'filter__title');
         const span = document.createElement( 'span' );
         const fleche = document.createElement( 'i' );
         fleche.setAttribute('class', 'fa-solid fa-angle-down');
 
         p.innerText = 'Trier par';
-        popularityA.innerText = 'Popularité';
-        dateA.innerText = 'Date';
-        titleA.innerText = 'Titre';
+        popularityBtn.innerText = 'Popularité';
+        dateBtn.innerText = 'Date';
+        titleBtn.innerText = 'Titre';
 
         section.append(p);
         section.append(filterDiv);
-        filterDiv.append(popularityA);
-        filterDiv.append(dateA);
-        filterDiv.append(titleA);
+        filterDiv.append(popularityBtn);
+        filterDiv.append(dateBtn);
+        filterDiv.append(titleBtn);
         filterDiv.append(span);
         span.append(fleche);
 

@@ -94,6 +94,7 @@ async function init() {
     const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
     const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
     const hearts = document.querySelectorAll("#main > section > article > .photograph__pics__pic-text > .photograph__pics__pic-text-likes > i")
+    const filterList = document.querySelector("#main > section.filters > div.filters__container");
 
     //EventListeners
     contactBtn.addEventListener("click", displayModal);
@@ -108,6 +109,7 @@ async function init() {
     hearts.forEach((heart) => {
         heart.addEventListener("click", addLike);
     });
+    filterList.addEventListener("click", (event) => {filters(photographers, medias, event)});
 
 };
 
