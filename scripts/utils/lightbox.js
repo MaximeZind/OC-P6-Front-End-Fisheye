@@ -3,7 +3,7 @@ function displayLightbox() {
     const form = document.querySelector("#contact_modal > div");
     const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
 
-	  modal.style.display = "block";
+    modal.style.display = "block";
     form.style.display = "none";
     lightbox.style.display = "grid";
 }
@@ -55,8 +55,8 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
     }
 }
 
-async function displayLightboxMedia(event) {
-    const { photographers, medias } = await getPhotographers();
+    function displayLightboxMedia(photographers, medias, event) {
+
     const mediaID = +event.target.id; // Renvoie l'id en type nombre
 
     let params = new URLSearchParams(document.location.search);
@@ -67,11 +67,8 @@ async function displayLightboxMedia(event) {
     photographerName = photographerName.replace(/-/g, " ");
 
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
-    const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
-
     const ids = [];
-    
+
     photographPics.forEach((photographPic) => {
         ids.push(photographPic.id);
     });
@@ -80,8 +77,7 @@ async function displayLightboxMedia(event) {
     displayLightbox();
 }
 
-async function displayLightboxNextRight() {
-    const { photographers, medias } = await getPhotographers();
+function displayLightboxNextRight(photographers, medias) {
 
     let params = new URLSearchParams(document.location.search);
     let photographID = params.get("id");
@@ -98,18 +94,18 @@ async function displayLightboxNextRight() {
     } else if (lightboxVid.getAttribute('id')) {
         mediaID = +lightboxVid.getAttribute('id');
     }
-    
+
     const picIds = [];
     photographPics.forEach((photographPic) => {
         picIds.push(photographPic.id);
     });
 
     let nextId = 0;
-    for(i=0; i < picIds.length; i++){
-        if (picIds[i] === mediaID){
-            if (picIds[i+1]){
-                nextId = picIds[i+1];
-            } else if (!picIds[i+1]) {
+    for (i = 0; i < picIds.length; i++) {
+        if (picIds[i] === mediaID) {
+            if (picIds[i + 1]) {
+                nextId = picIds[i + 1];
+            } else if (!picIds[i + 1]) {
                 nextId = picIds[0];
             }
             break;
@@ -118,8 +114,7 @@ async function displayLightboxNextRight() {
     createLightboxMedia(photographPics, nextId, photographerName);
 }
 
-async function displayLightboxNextLeft() {
-    const { photographers, medias } = await getPhotographers();
+function displayLightboxNextLeft(photographers, medias) {
 
     let params = new URLSearchParams(document.location.search);
     let photographID = params.get("id");
@@ -136,19 +131,19 @@ async function displayLightboxNextLeft() {
     } else if (lightboxVid.getAttribute('id')) {
         mediaID = +lightboxVid.getAttribute('id');
     }
-    
+
     const picIds = [];
     photographPics.forEach((photographPic) => {
         picIds.push(photographPic.id);
     });
     const iterations = picIds.length;
     let nextId = 0;
-    for(i=0; i < iterations; i++){
-        if (picIds[i] === mediaID){
-            if (picIds[i-1]){
-                nextId = picIds[i-1];
-            } else if (!picIds[i-1]) {
-                nextId = picIds[iterations-1];
+    for (i = 0; i < iterations; i++) {
+        if (picIds[i] === mediaID) {
+            if (picIds[i - 1]) {
+                nextId = picIds[i - 1];
+            } else if (!picIds[i - 1]) {
+                nextId = picIds[iterations - 1];
             }
             break;
         }

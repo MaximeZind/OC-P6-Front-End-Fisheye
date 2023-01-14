@@ -101,10 +101,10 @@ async function init() {
     form.addEventListener("submit", validateForm);
     closeLightboxBtn.addEventListener("click", closeLightbox);
     photographerPageMedia.forEach((media) => {
-        media.addEventListener("click", displayLightboxMedia);
+        media.addEventListener("click", (event) => {displayLightboxMedia(photographers, medias, event)});
     });
-    lightBoxRight.addEventListener("click", displayLightboxNextRight);
-    lightBoxLeft.addEventListener("click", displayLightboxNextLeft);
+    lightBoxRight.addEventListener("click", (event) => {displayLightboxNextRight(photographers, medias, event)});
+    lightBoxLeft.addEventListener("click", (event) => {displayLightboxNextLeft(photographers, medias, event)});
     hearts.forEach((heart) => {
         heart.addEventListener("click", addLike);
     });
