@@ -108,6 +108,7 @@ padding-top: 12px;
     color: #FFFFFF;
     height: 44px;
     transition: height .5s;
+    z-index: 3;
 }
 
 .filters__container:hover {
