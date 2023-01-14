@@ -141,9 +141,9 @@ function photographerFactory(data, totalLikes) {
         const p = document.createElement( 'p' );
         const filterDiv = document.createElement( 'div' );
         filterDiv.setAttribute('class', 'filters__container');
-        const popularityA = document.createElement( 'a' );
-        const dateA = document.createElement( 'a' );
-        const titleA = document.createElement( 'a' );
+        const popularityA = document.createElement( 'button' );
+        const dateA = document.createElement( 'button' );
+        const titleA = document.createElement( 'button' );
         const span = document.createElement( 'span' );
         const fleche = document.createElement( 'i' );
         fleche.setAttribute('class', 'fa-solid fa-angle-down');
