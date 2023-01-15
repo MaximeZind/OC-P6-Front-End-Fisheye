@@ -180,16 +180,18 @@ function photographerPageMainFactory(data, name) {
 
         const article = document.createElement( 'article' );
         article.setAttribute('class', 'photograph__pics__pic');
-
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
-        img.setAttribute('id', id);
-        img.setAttribute('class', 'photograph__pics__pic-media');
-
         const vid = document.createElement( 'video' );
-        vid.setAttribute('src', videoMedia);
-        vid.setAttribute('id', id);
-        vid.setAttribute('class', 'photograph__pics__pic-media');
+        const img = document.createElement( 'img' );
+
+        if (image === undefined){
+            vid.setAttribute('src', videoMedia);
+            vid.setAttribute('id', id);
+            vid.setAttribute('class', 'photograph__pics__pic-media');
+        } else if (video === undefined) {
+            img.setAttribute("src", picture);
+            img.setAttribute('id', id);
+            img.setAttribute('class', 'photograph__pics__pic-media');
+        }
 
         const divText = document.createElement( 'div' );
         divText.setAttribute('class', 'photograph__pics__pic-text');
@@ -221,5 +223,5 @@ function photographerPageMainFactory(data, name) {
         return (article);
     }
 
-    return { getUserPageMainDOM }
+    return {  id, image, video, likes, title, getUserPageMainDOM }
 }
