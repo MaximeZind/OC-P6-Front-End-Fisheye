@@ -172,7 +172,7 @@ function photographerFactory(data, totalLikes) {
 
 
 function photographerPageMainFactory(data, name) {
-    const { date, id, image, video, likes, photographerId, price, title } = data;
+    const { id, image, video, likes, title } = data;
     const picture = `assets/images/${name}/${image}`;
     const videoMedia = `assets/images/${name}/${video}`;
 
@@ -205,14 +205,13 @@ function photographerPageMainFactory(data, name) {
 
         const heart = document.createElement( 'i' );
         heart.setAttribute('class', 'fa-solid fa-heart');
-
         
         //Crée les éléments medias de la page photographe
         
-        if (data.image){
-            article.append(img);
-        } else if (data.video) {
+        if (image === undefined){
             article.append(vid);
+        } else if (video === undefined) {
+            article.append(img);
         }
         article.append(divText);
         divText.append(pTitle);
