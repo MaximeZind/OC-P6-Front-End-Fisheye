@@ -34,7 +34,8 @@ async function displayData(photographers, medias) {
     photographerName = photographerName.replace(/-/g, " ");
 
     let totalLikes = 0;
-    photographPics.forEach((photographPic) => { //contenu de la page (images, vidéos, titres, likes)
+     //contenu de la page (images, vidéos, titres, likes)
+    photographPics.forEach((photographPic) => {
         totalLikes = totalLikes + photographPic.likes; //Calcul du total des likes
         const picModel = photographerPageMainFactory(photographPic, photographerName);
         const userPageMainDOM = picModel.getUserPageMainDOM();
@@ -61,26 +62,26 @@ async function displayData(photographers, medias) {
 
 };
 
-function addLike(event){
+function addLike(event) {
     let picLikes = +event.target.previousSibling.innerText;
     let totalLikes = +document.querySelector("#main > div.photograph__priceTag > div > p").innerText;
     heart = event.target;
 
-    if (heart.className.includes('clicked')){
+    if (heart.className.includes('clicked')) {
         heart.classList.remove('clicked');
         picLikes--;
         totalLikes--;
-    } else if (!heart.className.includes('clicked')){
+    } else if (!heart.className.includes('clicked')) {
         heart.classList.add('clicked');
         picLikes++;
         totalLikes++;
     }
-    
+
     event.target.previousSibling.innerText = picLikes;
     document.querySelector("#main > div.photograph__priceTag > div > p").innerText = totalLikes;
 }
 
-function getEventListeners(photographers, medias){
+function getEventListeners(photographers, medias) {
     // DOM Elements
     const form = document.querySelector("#contact_modal > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
@@ -98,16 +99,16 @@ function getEventListeners(photographers, medias){
     form.addEventListener("submit", validateForm);
     closeLightboxBtn.addEventListener("click", closeLightbox);
     photographerPageMedia.forEach((media) => {
-        media.addEventListener("click", (event) => {displayLightboxMedia(photographers, medias, event)});
+        media.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
     });
-    lightBoxRight.addEventListener("click", (event) => {displayLightboxNextRight(photographers, medias, event)});
-    lightBoxLeft.addEventListener("click", (event) => {displayLightboxNextLeft(photographers, medias, event)});
+    lightBoxRight.addEventListener("click", (event) => { displayLightboxNextRight(photographers, medias, event) });
+    lightBoxLeft.addEventListener("click", (event) => { displayLightboxNextLeft(photographers, medias, event) });
     hearts.forEach((heart) => {
         heart.addEventListener("click", addLike);
     });
-    filterList.addEventListener("click", (event) => {filters(photographers, medias, event)});
-
+    filterList.addEventListener("click", (event) => { filters(photographers, medias, event) });
 }
+
 
 async function init() {
     // Récupère les datas des photographes

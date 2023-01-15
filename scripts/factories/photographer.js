@@ -141,12 +141,19 @@ function photographerFactory(data, totalLikes) {
         const p = document.createElement( 'p' );
         const filterDiv = document.createElement( 'div' );
         filterDiv.setAttribute('class', 'filters__container');
+
         const popularityBtn = document.createElement( 'button' );
         popularityBtn.setAttribute('class', 'filter__popularity');
+        popularityBtn.setAttribute('id', '1');
+
         const dateBtn = document.createElement( 'button' );
         dateBtn.setAttribute('class', 'filter__date');
+        dateBtn.setAttribute('id', '2');
+
         const titleBtn = document.createElement( 'button' );
         titleBtn.setAttribute('class', 'filter__title');
+        titleBtn.setAttribute('id', '3');
+
         const span = document.createElement( 'span' );
         const fleche = document.createElement( 'i' );
         fleche.setAttribute('class', 'fa-solid fa-angle-down');
@@ -223,5 +230,5 @@ function photographerPageMainFactory(data, name) {
         return (article);
     }
 
-    return {  id, image, video, likes, title, getUserPageMainDOM }
+    return { getUserPageMainDOM }
 }
