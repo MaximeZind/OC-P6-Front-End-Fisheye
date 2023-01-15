@@ -5,7 +5,7 @@ function filters(photographers, medias, event){
     let params = new URLSearchParams(document.location.search);
     let photographID = params.get("id");
     const photograph = photographers.find(({ id }) => id == photographID);
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID)
+    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
     const photographPicSection = document.querySelector(".photograph__pics");
 
     const mediasFilteredByPopularity = photographPics.sort((firstItem, secondItem) => secondItem.likes - firstItem.likes);
@@ -27,7 +27,7 @@ function filters(photographers, medias, event){
             const userPageMainDOM = picModel.getUserPageMainDOM();
             photographPicSection.append(userPageMainDOM);
         });
-        
+        return
     } else if (event.target.classList.contains('filter__date')){
 
         mediasFilteredByDate.forEach((mediaFilteredByDate) => {
@@ -39,7 +39,7 @@ function filters(photographers, medias, event){
             photographPicSection.append(userPageMainDOM);
             console.log(mediaFilteredByDate.date);
         });
-
+        return
     } else if (event.target.classList.contains('filter__title')){
 
         mediasFilteredByTitle.forEach((mediaFilteredByTitle) => {
@@ -51,5 +51,7 @@ function filters(photographers, medias, event){
             photographPicSection.append(userPageMainDOM);
             console.log(mediaFilteredByTitle.title);
         });
+        getEventListeners(photographers, medias);
+        return
     }
 }

@@ -80,11 +80,7 @@ function addLike(event){
     document.querySelector("#main > div.photograph__priceTag > div > p").innerText = totalLikes;
 }
 
-async function init() {
-    // Récupère les datas des photographes
-    const { photographers, medias } = await getPhotographers();
-    displayData(photographers, medias);
-
+function getEventListeners(photographers, medias){
     // DOM Elements
     const form = document.querySelector("#contact_modal > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
@@ -93,7 +89,7 @@ async function init() {
     const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
     const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
     const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
-    const hearts = document.querySelectorAll("#main > section > article > .photograph__pics__pic-text > .photograph__pics__pic-text-likes > i")
+    const hearts = document.querySelectorAll("#main > section > article > .photograph__pics__pic-text > .photograph__pics__pic-text-likes > i");
     const filterList = document.querySelector("#main > section.filters > div.filters__container");
 
     //EventListeners
@@ -110,6 +106,15 @@ async function init() {
         heart.addEventListener("click", addLike);
     });
     filterList.addEventListener("click", (event) => {filters(photographers, medias, event)});
+
+}
+
+async function init() {
+    // Récupère les datas des photographes
+    const { photographers, medias } = await getPhotographers();
+    displayData(photographers, medias);
+
+    getEventListeners(photographers, medias);
 
 };
 

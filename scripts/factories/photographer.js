@@ -209,9 +209,9 @@ function photographerPageMainFactory(data, name) {
         
         //Crée les éléments medias de la page photographe
         
-        if (image){
+        if (data.image){
             article.append(img);
-        } else if (video) {
+        } else if (data.video) {
             article.append(vid);
         }
         article.append(divText);
