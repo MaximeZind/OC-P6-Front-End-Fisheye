@@ -34,32 +34,32 @@ body {
 }
 
 .photograph-header h2 {
-    font-size: 64px ;
+    font-size: 4.44vw;
     color: #D3573C;
 }
 
 .photograph-header h3 {
-    font-size: 24px ;
+    font-size: 1.6vw;
     color: #901C1C;
 }
 
 .photograph-header p {
-    font-size: 18px ;
+    font-size: 1.25vw;
     color: #525252;
 }
 
 .photograph-header_portrait {
     border-radius: 50%;
-    width: 200px;
-    min-width: 200px;
-    height: 200px;
-    min-height: 200px;
+    width: 13.88vw;
+    min-width: 13.88vw;
+    height: 13.88vw;
+    min-height: 13.88vw;
     overflow: hidden;
 }
 
 .photograph-header .photograph-header_portrait img {
-    width: 200px;
-    height: 200px;
+    width: 13.88vw;
+    height: 13.88vw;
     object-fit: cover;
     transition: transform .3s;
     margin: auto;
@@ -70,16 +70,22 @@ body {
 }
 
 .contact_button {
-    font-size: 20px;
+    font-size: 1.4vw;
     font-weight: bold;
     color: white;
     padding: 11px;
-    width: 170px;
-    height: 70px;
+    width: 11.8vw;
+    height: 4.8vw;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color .2s, color .2s;
+}
+
+.contact_button:hover {
+    background-color: #DB8876;
+    color: #000000;
 }
 
 /** Filtres **/
@@ -106,7 +112,7 @@ padding-top: 12px;
     overflow: hidden;
     width: fit-content;
     color: #FFFFFF;
-    height: 44px;
+    height: 43px;
     transition: height .5s;
     z-index: 3;
 }
@@ -179,14 +185,69 @@ padding-top: 12px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    gap: 95px;
+    gap: 6.6vw;
+}
+
+.photograph__pics__pic {
+    animation-name: fade_slide_in;
+    animation-duration: 1.5s;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease;
+
+}
+
+.photograph__pics__pic:nth-child(0){
+    animation-delay: .2s;
+}
+
+.photograph__pics__pic:nth-child(1){
+    animation-delay: .4s;
+}
+.photograph__pics__pic:nth-child(2){
+    animation-delay: .6s;
+}
+.photograph__pics__pic:nth-child(3){
+    animation-delay: .8s;
+}
+.photograph__pics__pic:nth-child(4){
+    animation-delay: 1s;
+}
+.photograph__pics__pic:nth-child(5){
+    animation-delay: 1.2s;
+}
+.photograph__pics__pic:nth-child(6){
+    animation-delay: 1.4s;
+}
+.photograph__pics__pic:nth-child(7){
+    animation-delay: 1.6s;
+}
+.photograph__pics__pic:nth-child(8){
+    animation-delay: 1.8s;
+}
+.photograph__pics__pic:nth-child(9){
+    animation-delay: 2s;
+}
+.photograph__pics__pic:nth-child(10){
+    animation-delay: 2.2s;
+}
+
+@keyframes fade_slide_in {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
 
 .photograph__pics__pic-media {
     width: 100%;
     max-width: 100%;
-    height: 300px;
-    max-height: 300px;
+    height: 20.8vw;
+    max-height: 20.8vw;
     object-fit: cover;
     border-radius: 5px;
 }

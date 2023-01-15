@@ -20,18 +20,11 @@ async function displayData(photographers, medias) {
     const photographModalTitle = document.querySelector("#contact_modal > div > header > h2");
     const modal = document.querySelector("#contact_modal");
 
-    // On récupère l'ID du photographe via l'URL
-    let params = new URLSearchParams(document.location.search);
-    let photographID = params.get("id");
-
-    //On trie les données pour obtenir celles qui correspondent au photographe de la page en question
-    const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID); //filter renvoie une array 
-
-    //On récupère le prénom du photographe pour accéder au dossier des photos
-    let photographerName = photograph.name;
-    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-    photographerName = photographerName.replace(/-/g, " ");
+    // On récupère les medias et le nom du photographe
+    let nameAndMedias = getNameAndMedias(photographers, medias);
+    const photographerName = nameAndMedias[0];
+    const photograph = nameAndMedias[1];
+    const photographPics = nameAndMedias[2];
 
     let totalLikes = 0;
      //contenu de la page (images, vidéos, titres, likes)
@@ -61,6 +54,24 @@ async function displayData(photographers, medias) {
     modal.append(userPageModalLightbox); //Lightbox modale
 
 };
+
+function getNameAndMedias (photographers, medias) {
+
+        // On récupère l'ID du photographe via l'URL
+        let params = new URLSearchParams(document.location.search);
+        let photographID = params.get("id");
+    
+        //On trie les données pour obtenir celles qui correspondent au photographe de la page en question
+        const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
+        const photographPics = medias.filter(({ photographerId }) => photographerId == photographID); //filter renvoie une array 
+    
+        //On récupère le prénom du photographe pour accéder au dossier des photos
+        let photographerName = photograph.name;
+        photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
+        photographerName = photographerName.replace(/-/g, " ");
+
+        return [photographerName, photograph, photographPics];
+}
 
 function addLike(event) {
     let picLikes = +event.target.previousSibling.innerText;
@@ -114,9 +125,7 @@ async function init() {
     // Récupère les datas des photographes
     const { photographers, medias } = await getPhotographers();
     displayData(photographers, medias);
-
     getEventListeners(photographers, medias);
-
 };
 
 init();

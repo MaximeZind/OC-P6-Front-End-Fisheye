@@ -1,88 +1,80 @@
-function filters(photographers, medias, event){
+function filters(photographers, medias, event) {
 
+    // Elements du DOM
     const targetClasslist = event.target.classList;
     const photographArticles = document.querySelectorAll("#main > section.photograph__pics > article");
-    const photographPicSection = document.querySelector(".photograph__pics");
-    
-    
-    let params = new URLSearchParams(document.location.search);
-    let photographID = params.get("id");
-    //On trie les données pour obtenir celles qui correspondent au photographe de la page en question
-    const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID); //filter renvoie une array 
+    const photographerPageMedia = document.querySelectorAll("#main > section > article > img, #main > section > article > video");
 
+    // On récupère les medias et le nom du photographe
+    let nameAndMedias = getNameAndMedias(photographers, medias);
+    const photographerName = nameAndMedias[0];
+    const photograph = nameAndMedias[1];
+    const photographPics = nameAndMedias[2];
 
-    const mediasFilteredByPopularity = photographPics.sort((firstItem, secondItem) => secondItem.likes - firstItem.likes);
-    const mediasFilteredByDate = photographPics.sort(function(firstItem, secondItem){
-        return new Date(secondItem.date) - new Date(firstItem.date);
-      });
-    const mediasFilteredByTitle = photographPics.sort((firstItem, secondItem) => firstItem.title.localeCompare(secondItem.title));
-    let photographerName = photograph.name;
-    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-    photographerName = photographerName.replace(/-/g, " ");
-
+    // Nos 3 boutons du dropdown menu
     const firstBtn = document.getElementById('1');
     const secondBtn = document.getElementById('2');
     const thirdBtn = document.getElementById('3');
 
-    if (targetClasslist.contains('filter__popularity')){
-        mediasFilteredByPopularity.forEach((mediaFilteredByPopularity) => { //contenu de la page (images, vidéos, titres, likes)
-            photographArticles.forEach((photographArticle) => {
-                photographArticle.remove();
-            });
-            const picModel = photographerPageMainFactory(mediaFilteredByPopularity, photographerName);
-            const userPageMainDOM = picModel.getUserPageMainDOM();
-            photographPicSection.append(userPageMainDOM);
-            console.log(medias);
-            console.log(mediaFilteredByPopularity.likes);
-        });
-        return
-    } else if (targetClasslist.contains('filter__date')){
+    //tri des éléments
+        if (targetClasslist.contains('filter__popularity')) {
 
-        console.log('date');
-        mediasFilteredByDate.forEach((mediaFilteredByDate) => {
-            photographArticles.forEach((photographArticle) => {
-                photographArticle.remove();
-            });
-            const picModel = photographerPageMainFactory(mediaFilteredByDate, photographerName);
-            const userPageMainDOM = picModel.getUserPageMainDOM();
-            photographPicSection.append(userPageMainDOM);
-            console.log(mediaFilteredByDate.date);
-        });
-        return
-    } else if (targetClasslist.contains('filter__title')){
-        
-        console.log('titre');
-        mediasFilteredByTitle.forEach((mediaFilteredByTitle) => {
-            photographArticles.forEach((photographArticle) => {
-                photographArticle.remove();
-            });
-            const picModel = photographerPageMainFactory(mediaFilteredByTitle, photographerName);
-            const userPageMainDOM = picModel.getUserPageMainDOM();
-            photographPicSection.append(userPageMainDOM);
-            console.log(mediaFilteredByTitle.title);
-        });
+            function compareNumbers(a, b) {
+                return b.likes - a.likes;
+            }
+            const mediasFilteredByPopularity = photographPics.sort(compareNumbers);
 
-        getEventListeners(photographers, medias);
 
-        if (+event.target.id === 2) {
-            let swapText = firstBtn.innerText;
-            firstBtn.innerText = secondBtn.innerText;
-            secondBtn.innerText = swapText;
-    
-            let swapClass = firstBtn.className;
-            firstBtn.className = secondBtn.className;
-            secondBtn.className = swapClass;
-        } else if (+event.target.id === 3) {
-            let swapText = firstBtn.innerText;
-            firstBtn.innerText = thirdBtn.innerText;
-            thirdBtn.innerText = swapText;
-    
-            let swapClass = firstBtn.className;
-            firstBtn.className = thirdBtn.className;
-            thirdBtn.className = swapClass;
+            for (i = 0; i < photographArticles.length; i++) {
+                const picModel = photographerPageMainFactory(mediasFilteredByPopularity[i], photographerName);
+                const userPageMainDOM = picModel.getUserPageMainDOM();
+                photographArticles[i].replaceWith(userPageMainDOM);
+                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
+            }
+        }
+        else if (targetClasslist.contains('filter__date')) {
+
+            const mediasFilteredByDate = photographPics.sort((firstItem, secondItem) => {
+                return new Date(secondItem.date) - new Date(firstItem.date);
+            });
+
+            for (i = 0; i < photographArticles.length; i++) {
+                const picModel = photographerPageMainFactory(mediasFilteredByDate[i], photographerName);
+                const userPageMainDOM = picModel.getUserPageMainDOM();
+                photographArticles[i].replaceWith(userPageMainDOM);
+                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
+            }
+        } else if (targetClasslist.contains('filter__title')) {
+
+            const mediasFilteredByTitle = photographPics.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+
+            for (i = 0; i < photographArticles.length; i++) {
+                const picModel = photographerPageMainFactory(mediasFilteredByTitle[i], photographerName);
+                const userPageMainDOM = picModel.getUserPageMainDOM();
+                photographArticles[i].replaceWith(userPageMainDOM);
+                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
+            }
         }
 
-        return
+    // Swap les contenus des boutons du dropdown lorsqu'on clique
+    if (+event.target.id === 2) { // 2e bouton cliqué
+        //Swap le texte
+        let swapText = firstBtn.innerText;
+        firstBtn.innerText = secondBtn.innerText;
+        secondBtn.innerText = swapText; 
+        //Swap la classe
+        let swapClass = firstBtn.className;
+        firstBtn.className = secondBtn.className;
+        secondBtn.className = swapClass;
+
+    } else if (+event.target.id === 3) { // 3e bouton cliqué
+        // Swap le texte
+        let swapText = firstBtn.innerText;
+        firstBtn.innerText = thirdBtn.innerText;
+        thirdBtn.innerText = swapText;
+        // Swap la classe
+        let swapClass = firstBtn.className;
+        firstBtn.className = thirdBtn.className;
+        thirdBtn.className = swapClass;
     }
 }
