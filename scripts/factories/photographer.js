@@ -139,20 +139,32 @@ function photographerFactory(data, totalLikes) {
         section.setAttribute('class', 'filters');
 
         const p = document.createElement( 'p' );
+
         const filterDiv = document.createElement( 'div' );
         filterDiv.setAttribute('class', 'filters__container');
+        filterDiv.setAttribute('role', 'listbox');
+        filterDiv.setAttribute('aria-expanded', 'false');
+        filterDiv.setAttribute('aria-haspopup', 'listbox');
 
         const popularityBtn = document.createElement( 'button' );
         popularityBtn.setAttribute('class', 'filter__popularity');
         popularityBtn.setAttribute('id', '1');
+        popularityBtn.setAttribute('aria-selected', 'true');
+        popularityBtn.setAttribute('tabindex', '0');
 
         const dateBtn = document.createElement( 'button' );
         dateBtn.setAttribute('class', 'filter__date');
         dateBtn.setAttribute('id', '2');
+        dateBtn.setAttribute('role', 'option');
+        dateBtn.setAttribute('aria-selected', 'false');
+        dateBtn.setAttribute('tabindex', '-1');
 
         const titleBtn = document.createElement( 'button' );
         titleBtn.setAttribute('class', 'filter__title');
         titleBtn.setAttribute('id', '3');
+        titleBtn.setAttribute('role', 'option');
+        titleBtn.setAttribute('aria-selected', 'false');
+        titleBtn.setAttribute('tabindex', '-1');
 
         const span = document.createElement( 'span' );
         const fleche = document.createElement( 'i' );
@@ -194,10 +206,12 @@ function photographerPageMainFactory(data, name) {
             vid.setAttribute('src', videoMedia);
             vid.setAttribute('id', id);
             vid.setAttribute('class', 'photograph__pics__pic-media');
+            vid.setAttribute('aria-label', `${title}`);
         } else if (video === undefined) {
             img.setAttribute("src", picture);
             img.setAttribute('id', id);
             img.setAttribute('class', 'photograph__pics__pic-media');
+            img.setAttribute('aria-label', `${title}`);
         }
 
         const divText = document.createElement( 'div' );
@@ -214,6 +228,8 @@ function photographerPageMainFactory(data, name) {
 
         const heart = document.createElement( 'i' );
         heart.setAttribute('class', 'fa-solid fa-heart');
+        heart.setAttribute('aria-label', 'likes');
+
         
         //Crée les éléments medias de la page photographe
         
