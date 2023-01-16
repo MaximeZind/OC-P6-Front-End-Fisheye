@@ -3,6 +3,7 @@ function displayLightbox() {
     const form = document.querySelector("#contact_modal > div");
     const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
 
+    // Display le background modal et la lightbox, et cacher le formulaire de contact
     modal.style.display = "block";
     form.style.display = "none";
     lightbox.style.display = "grid";
@@ -13,6 +14,7 @@ function closeLightbox() {
     const form = document.querySelector("#contact_modal > div");
     const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
 
+    // Cache le background modal et la lightbox, et prépare le formulaire de contact
     modal.style.display = "none";
     form.style.display = "block";
     lightbox.style.display = "none";
