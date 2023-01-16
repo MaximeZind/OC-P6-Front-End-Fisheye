@@ -136,52 +136,65 @@ function photographerFactory(data, totalLikes) {
     
     function getUserPageDropdownMenu() {
         const section = document.createElement( 'section' );
-        section.setAttribute('class', 'filters');
+        section.setAttribute('class', 'dropdown__section');
 
-        const p = document.createElement( 'p' );
+        const h2 = document.createElement( 'h2' );
 
-        const filterDiv = document.createElement( 'div' );
-        filterDiv.setAttribute('class', 'filters__container');
-        filterDiv.setAttribute('role', 'listbox');
-        filterDiv.setAttribute('aria-expanded', 'false');
-        filterDiv.setAttribute('aria-haspopup', 'listbox');
+        const dropdownWrapperDiv = document.createElement( 'div' );
+        dropdownWrapperDiv.setAttribute('class', 'dropdown__wrapper');
+        dropdownWrapperDiv.setAttribute('role', 'listbox');
+        dropdownWrapperDiv.setAttribute('aria-expanded', 'false');
+        dropdownWrapperDiv.setAttribute('aria-haspopup', 'listbox');
+        dropdownWrapperDiv.setAttribute('tabindex', '0');
 
         const popularityBtn = document.createElement( 'button' );
         popularityBtn.setAttribute('class', 'filter__popularity');
         popularityBtn.setAttribute('id', '1');
         popularityBtn.setAttribute('aria-selected', 'true');
-        popularityBtn.setAttribute('tabindex', '0');
+        popularityBtn.setAttribute('tabindex', '-1');
+    
+        const spanFirst = document.createElement( 'span' );
+
+        const fleche = document.createElement( 'i' );
+        fleche.setAttribute('class', 'fa-solid fa-angle-down');
+
+        const dropdownButtonsDiv = document.createElement( 'div' );
+        dropdownButtonsDiv.setAttribute('class', 'dropdown__buttons');
 
         const dateBtn = document.createElement( 'button' );
         dateBtn.setAttribute('class', 'filter__date');
         dateBtn.setAttribute('id', '2');
         dateBtn.setAttribute('role', 'option');
         dateBtn.setAttribute('aria-selected', 'false');
-        dateBtn.setAttribute('tabindex', '-1');
+        dateBtn.setAttribute('tabindex', '0');
+
+        const spanSecond = document.createElement( 'span' );
 
         const titleBtn = document.createElement( 'button' );
         titleBtn.setAttribute('class', 'filter__title');
         titleBtn.setAttribute('id', '3');
         titleBtn.setAttribute('role', 'option');
         titleBtn.setAttribute('aria-selected', 'false');
-        titleBtn.setAttribute('tabindex', '-1');
+        titleBtn.setAttribute('tabindex', '0');
 
-        const span = document.createElement( 'span' );
-        const fleche = document.createElement( 'i' );
-        fleche.setAttribute('class', 'fa-solid fa-angle-down');
+        const spanThird = document.createElement( 'span' );
 
-        p.innerText = 'Trier par';
-        popularityBtn.innerText = 'Popularité';
-        dateBtn.innerText = 'Date';
-        titleBtn.innerText = 'Titre';
+        h2.innerText = 'Trier par';
+        spanFirst.innerText = 'Popularité';
+        spanSecond.innerText = 'Date';
+        spanThird.innerText = 'Titre';
 
-        section.append(p);
-        section.append(filterDiv);
-        filterDiv.append(popularityBtn);
-        filterDiv.append(dateBtn);
-        filterDiv.append(titleBtn);
-        filterDiv.append(span);
-        span.append(fleche);
+        section.append(h2);
+        section.append(dropdownWrapperDiv);
+        dropdownWrapperDiv.append(popularityBtn);
+        popularityBtn.append(spanFirst);
+        popularityBtn.append(fleche);
+        dropdownWrapperDiv.append(dropdownButtonsDiv);
+        dropdownButtonsDiv.append(dateBtn);
+        dateBtn.append(spanSecond);
+        dropdownButtonsDiv.append(titleBtn);
+        titleBtn.append(spanThird);
+
 
         return(section);
     }

@@ -1,3 +1,26 @@
+function openDropDownMenu() {
+    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div > div");
+    const wrapper = document.querySelector(".dropdown__wrapper");
+
+    wrapper.classList.add('active');
+    wrapper.setAttribute('aria-expanded', 'true');
+    dropdownBtns.style.height = '6.08vw';
+}
+
+async function closeDropDownMenu() {
+    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div > div");
+    const wrapper = document.querySelector(".dropdown__wrapper");
+
+    dropdownBtns.style.height = '0px';
+    setTimeout(() => {    
+        wrapper.classList.remove('active');
+        wrapper.setAttribute('aria-expanded', 'false');
+}, 400);
+
+}
+
+
+
 function filters(photographers, medias, event) {
 
     // Elements du DOM
@@ -15,6 +38,8 @@ function filters(photographers, medias, event) {
     const firstBtn = document.getElementById('1');
     const secondBtn = document.getElementById('2');
     const thirdBtn = document.getElementById('3');
+
+    console.log(firstBtn);
 
     //tri des éléments
         if (targetClasslist.contains('filter__popularity')) {
@@ -59,9 +84,9 @@ function filters(photographers, medias, event) {
     // Swap les contenus des boutons du dropdown lorsqu'on clique
     if (+event.target.id === 2) { // 2e bouton cliqué
         //Swap le texte
-        let swapText = firstBtn.innerText;
-        firstBtn.innerText = secondBtn.innerText;
-        secondBtn.innerText = swapText; 
+        let swapText = firstBtn.firstChild.innerText;
+        firstBtn.firstChild.innerText = secondBtn.firstChild.innerText;
+        secondBtn.firstChild.innerText = swapText; 
         //Swap la classe
         let swapClass = firstBtn.className;
         firstBtn.className = secondBtn.className;
@@ -69,12 +94,13 @@ function filters(photographers, medias, event) {
 
     } else if (+event.target.id === 3) { // 3e bouton cliqué
         // Swap le texte
-        let swapText = firstBtn.innerText;
-        firstBtn.innerText = thirdBtn.innerText;
-        thirdBtn.innerText = swapText;
+        let swapText = firstBtn.firstChild.innerText;
+        firstBtn.firstChild.innerText = thirdBtn.firstChild.innerText;
+        thirdBtn.firstChild.innerText = swapText;
         // Swap la classe
         let swapClass = firstBtn.className;
         firstBtn.className = thirdBtn.className;
         thirdBtn.className = swapClass;
     }
+    closeDropDownMenu();
 }

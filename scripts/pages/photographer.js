@@ -101,7 +101,7 @@ function getEventListeners(photographers, medias) {
     const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
     const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
     const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
-    const filterList = document.querySelector("#main > section.filters > div.filters__container");
+    const filterList = document.querySelector("#main > section.dropdown__section > .dropdown__wrapper");
 
     //EventListeners
     contactBtn.addEventListener("click", displayModal);
@@ -110,6 +110,10 @@ function getEventListeners(photographers, medias) {
     closeLightboxBtn.addEventListener("click", closeLightbox);
     lightBoxRight.addEventListener("click", (event) => { displayLightboxNextRight(photographers, medias, event) });
     lightBoxLeft.addEventListener("click", (event) => { displayLightboxNextLeft(photographers, medias, event) });
+    filterList.addEventListener("focusin", openDropDownMenu);
+    filterList.addEventListener("focusout", closeDropDownMenu);
+    filterList.addEventListener("mouseenter", openDropDownMenu);
+    filterList.addEventListener("mouseleave", closeDropDownMenu);
     filterList.addEventListener("click", (event) => { filters(photographers, medias, event) });
     photographerPageMedia.addEventListener("click", (event) => { photographPicsInteractions(photographers, medias, event)});
 }
