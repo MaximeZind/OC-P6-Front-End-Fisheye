@@ -97,11 +97,10 @@ function getEventListeners(photographers, medias) {
     const form = document.querySelector("#contact_modal > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
     const closeBtn = document.querySelector("#contact_modal > div > header > img");
-    const photographerPageMedia = document.querySelectorAll("#main > section > article > img, #main > section > article > video");
+    const photographerPageMedia = document.querySelector("#main > section.photograph__pics");
     const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
     const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
     const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
-    const hearts = document.querySelectorAll("#main > section > article > .photograph__pics__pic-text > .photograph__pics__pic-text-likes > i");
     const filterList = document.querySelector("#main > section.filters > div.filters__container");
 
     //EventListeners
@@ -109,15 +108,10 @@ function getEventListeners(photographers, medias) {
     closeBtn.addEventListener("click", closeModal);
     form.addEventListener("submit", validateForm);
     closeLightboxBtn.addEventListener("click", closeLightbox);
-    photographerPageMedia.forEach((media) => {
-        media.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
-    });
     lightBoxRight.addEventListener("click", (event) => { displayLightboxNextRight(photographers, medias, event) });
     lightBoxLeft.addEventListener("click", (event) => { displayLightboxNextLeft(photographers, medias, event) });
-    hearts.forEach((heart) => {
-        heart.addEventListener("click", addLike);
-    });
     filterList.addEventListener("click", (event) => { filters(photographers, medias, event) });
+    photographerPageMedia.addEventListener("click", (event) => { photographPicsInteractions(photographers, medias, event)});
 }
 
 

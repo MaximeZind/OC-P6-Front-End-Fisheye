@@ -151,3 +151,12 @@ function displayLightboxNextLeft(photographers, medias) {
 
     createLightboxMedia(photographPics, nextId, photographerName);
 }
+
+function photographPicsInteractions(photographers, medias, event){
+
+    if (event.target.className.includes('fa-heart')){
+        addLike(event);
+    } else if (event.target.className.includes('photograph__pics__pic-media')){
+        displayLightboxMedia(photographers, medias, event);
+    }
+}
