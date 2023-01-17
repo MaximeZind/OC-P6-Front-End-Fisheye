@@ -1,6 +1,6 @@
 function photographerPageMainFactory(data, name) {
   const {
-    id, image, video, likes, title,
+    id, image, video, likes, title, liked
   } = data;
   const picture = `assets/images/${name}/${image}`;
   const videoMedia = `assets/images/${name}/${video}`;
@@ -38,9 +38,13 @@ function photographerPageMainFactory(data, name) {
     pLikes.textContent = likes;
 
     const heartDiv = document.createElement('div');
-    heartDiv.setAttribute('class', 'hearts__icons');
     heartDiv.setAttribute('aria-label', 'likes');
     heartDiv.setAttribute('tabindex', '0');
+    if (liked){
+      heartDiv.setAttribute('class', 'hearts__icons clicked');
+    } else if (!liked){
+      heartDiv.setAttribute('class', 'hearts__icons');
+    }
 
     const heartEmpty = document.createElement('i');
     heartEmpty.setAttribute('class', 'fa-solid fa-heart heart__icon-full');

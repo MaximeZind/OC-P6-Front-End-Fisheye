@@ -138,7 +138,6 @@ function displayLightboxNext(photographers, medias, event) {
 //fonction qui va identifier la target de l'event (click ou keydown), et appeler
 //une fonction en conséquence
 function photographPicsInteractions(photographers, medias, event) {
-  console.log(event.target);
   if (event.type === 'click') {
     if (event.target.parentNode.className.includes('hearts__icons')) {
       addLike(event.target.parentNode);

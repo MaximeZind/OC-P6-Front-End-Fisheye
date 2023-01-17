@@ -191,7 +191,15 @@ header > a > .logo {
     animation-duration: 1.5s;
     animation-fill-mode: backwards;
     animation-timing-function: ease;
+    border-radius: 5px;
+}
+.photograph__pics__pic-media {
+    transition: transform .3s, box-shadow .3s;
+}
 
+.photograph__pics__pic-media:hover, .photograph__pics__pic-media:focus {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .photograph__pics__pic:nth-child(0){
