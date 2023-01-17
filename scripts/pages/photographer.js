@@ -5,8 +5,8 @@ async function getPhotographers() {
   const { photographers } = data;
   const medias = data.media;
 
-  return ({
-    photographers, medias,
+  return ({     
+    photographers, medias
   });
 }
 
@@ -72,9 +72,10 @@ function getNameAndMedias(photographers, medias) {
 
 // Fonction qui rajoute un like à la photo et au total des likes
 function addLike(event) {
-  let picLikes = +event.target.previousSibling.innerText;
+
+  let picLikes = +event.target.parentNode.previousSibling.innerText;
   let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
-  heart = event.target;
+  heart = event.target.parentNode;
 
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
@@ -86,7 +87,7 @@ function addLike(event) {
     totalLikes++;
   }
 
-  event.target.previousSibling.innerText = picLikes;
+  event.target.parentNode.previousSibling.innerText = picLikes;
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
 }
 

@@ -37,10 +37,20 @@ function photographerPageMainFactory(data, name) {
     const pLikes = document.createElement('p');
     pLikes.textContent = likes;
 
-    const heart = document.createElement('i');
-    heart.setAttribute('class', 'fa-solid fa-heart');
-    heart.setAttribute('aria-label', 'likes');
-    heart.setAttribute('tabindex', '0');
+    const heartDiv = document.createElement('div');
+    heartDiv.setAttribute('class', 'hearts__icons');
+    heartDiv.setAttribute('aria-label', 'likes');
+    heartDiv.setAttribute('tabindex', '0');
+
+    const heartEmpty = document.createElement('i');
+    heartEmpty.setAttribute('class', 'fa-solid fa-heart heart__icon-full');
+
+    const heartFull = document.createElement('i');
+    heartFull.setAttribute('class', 'fa-regular fa-heart heart__icon-empty');
+
+    const heartCracked = document.createElement('i');
+    heartCracked.setAttribute('class', 'fa-solid fa-heart-crack heart__icon-cracked');
+
 
     // Crée les éléments medias de la page photographe
 
@@ -53,7 +63,10 @@ function photographerPageMainFactory(data, name) {
     divText.append(pTitle);
     divText.append(divLikes);
     divLikes.append(pLikes);
-    divLikes.append(heart);
+    divLikes.append(heartDiv);
+    heartDiv.append(heartEmpty);
+    heartDiv.append(heartFull);
+    heartDiv.append(heartCracked);
     return (article);
   }
 

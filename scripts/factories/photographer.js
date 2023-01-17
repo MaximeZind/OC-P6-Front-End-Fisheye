@@ -1,3 +1,5 @@
+//Fonction Factory qui comprend toutes les fonctions qui vont créer nos éléments avec
+//nos datas Json
 function photographerFactory(data, totalLikes) {
   const {
     name, portrait, city, country, tagline, price, id,
@@ -157,6 +159,9 @@ function photographerFactory(data, totalLikes) {
     dropdownWrapperDiv.setAttribute('aria-haspopup', 'listbox');
     dropdownWrapperDiv.setAttribute('tabindex', '0');
 
+    const dropdownButtonsDiv = document.createElement('div');
+    dropdownButtonsDiv.setAttribute('class', 'dropdown__buttons');
+
     const popularityBtn = document.createElement('button');
     popularityBtn.setAttribute('class', 'filter__popularity');
     popularityBtn.setAttribute('id', '1');
@@ -167,9 +172,6 @@ function photographerFactory(data, totalLikes) {
 
     const fleche = document.createElement('i');
     fleche.setAttribute('class', 'fa-solid fa-angle-down');
-
-    const dropdownButtonsDiv = document.createElement('div');
-    dropdownButtonsDiv.setAttribute('class', 'dropdown__buttons');
 
     const dateBtn = document.createElement('button');
     dateBtn.setAttribute('class', 'filter__date');
@@ -196,10 +198,10 @@ function photographerFactory(data, totalLikes) {
 
     section.append(h2);
     section.append(dropdownWrapperDiv);
-    dropdownWrapperDiv.append(popularityBtn);
+    dropdownWrapperDiv.append(dropdownButtonsDiv);
+    dropdownButtonsDiv.append(popularityBtn);
     popularityBtn.append(spanFirst);
     popularityBtn.append(fleche);
-    dropdownWrapperDiv.append(dropdownButtonsDiv);
     dropdownButtonsDiv.append(dateBtn);
     dateBtn.append(spanSecond);
     dropdownButtonsDiv.append(titleBtn);
