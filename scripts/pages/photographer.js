@@ -17,8 +17,8 @@ async function displayData(photographers, medias) {
     const photographHeader = document.querySelector(".photograph-header");
     const photographPicSection = document.querySelector(".photograph__pics");
     const photographMain = document.getElementById("main");
-    const photographModalTitle = document.querySelector("#contact_modal > div > header > h2");
-    const modal = document.querySelector("#contact_modal");
+    const photographModalTitle = document.querySelector("#modal__bg > div > header > h2");
+    const modal = document.querySelector("#modal__bg");
 
     // On récupère les medias et le nom du photographe
     let nameAndMedias = getNameAndMedias(photographers, medias);
@@ -94,13 +94,12 @@ function addLike(event) {
 
 function getEventListeners(photographers, medias) {
     // DOM Elements
-    const form = document.querySelector("#contact_modal > div > form");
+    const form = document.querySelector("#modal__bg > div > form");
     const contactBtn = document.querySelector("#main > div.photograph-header > button");
-    const closeBtn = document.querySelector("#contact_modal > div > header > img");
+    const closeBtn = document.querySelector("#modal__bg > div > header > img");
     const photographerPageMedia = document.querySelector("#main > section.photograph__pics");
-    const closeLightboxBtn = document.querySelector("#contact_modal > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
-    const lightBoxRight = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-right");
-    const lightBoxLeft = document.querySelector("#contact_modal > div.lightbox_modal > .fa-angle-left");
+    const closeLightboxBtn = document.querySelector("#modal__bg > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close");
+    const lightBoxBtn = document.querySelectorAll("#modal__bg > div.lightbox_modal > .lightbox__btn");
     const filterList = document.querySelector("#main > section.dropdown__section > .dropdown__wrapper");
 
     //EventListeners
@@ -112,8 +111,7 @@ function getEventListeners(photographers, medias) {
 
     //Lightbox
     closeLightboxBtn.addEventListener("click", closeLightbox);
-    lightBoxRight.addEventListener("click", (event) => { displayLightboxNextRight(photographers, medias, event) });
-    lightBoxLeft.addEventListener("click", (event) => { displayLightboxNextLeft(photographers, medias, event) });
+    lightBoxBtn.forEach((btn) => btn.addEventListener("click", (event) => { displayLightboxNext(photographers, medias, event); }) );
     photographerPageMedia.addEventListener("click", (event) => { photographPicsInteractions(photographers, medias, event)});
     photographerPageMedia.addEventListener("keydown", (event) => { photographPicsInteractions(photographers, medias, event)});
 

@@ -1,10 +1,11 @@
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+    const modal = document.getElementById("modal__bg");
 	modal.style.display = "block";
+
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
+    const modal = document.getElementById("modal__bg");
     modal.style.display = "none";
 }
 
@@ -13,7 +14,7 @@ function validateForm(event) {
     event.preventDefault();
 
     console.log('validate!');
-    const form = document.querySelector("#contact_modal > div > form");
+    const form = document.querySelector("#modal__bg > div > form");
     const firstName = document.getElementById('first'); //champ du prénom
     const lastName = document.getElementById('last'); //champ du nom
     const email = document.getElementById('email'); //champ de l'email

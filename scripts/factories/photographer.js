@@ -5,6 +5,7 @@ function photographerFactory(data, totalLikes) {
     const location = `${city}, ${country}`;
     const priceElement = `${price}€/jour`;
 
+    //Cartes de la page d'accueil
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const headerArticle = document.createElement( 'header');
@@ -41,6 +42,7 @@ function photographerFactory(data, totalLikes) {
         return (article);
     }
 
+    //Header de la page photographe
     function getUserPageHeaderDOM() {
         const headerDiv = document.createElement('div');
         const h2 = document.createElement( 'h2' );
@@ -58,6 +60,7 @@ function photographerFactory(data, totalLikes) {
         return (headerDiv);
     }
 
+    //Portrait de la page photographe
     function getUserPageHeaderPortraitDOM() {
         const picDiv = document.createElement( 'div');
         picDiv.setAttribute('class', 'photograph-header_portrait');
@@ -69,6 +72,7 @@ function photographerFactory(data, totalLikes) {
         return (picDiv);
     }
 
+    //Onglet décompte des likes et prix
     function getUserPagePriceTagDOM() {
 
         const div = document.createElement( 'div');
@@ -94,6 +98,7 @@ function photographerFactory(data, totalLikes) {
         return(div);
     }
 
+    //Titre du formulaire
     function getUserPageModalName() {
         const h2 = document.createElement( 'h2' );
         h2.innerHTML = `Contactez-moi<br>${name}`;
@@ -101,12 +106,13 @@ function photographerFactory(data, totalLikes) {
         return(h2);
     }
 
+    //Lightbox
     function getUserPageModalLightbox() {
         const div = document.createElement( 'div' );
         div.setAttribute('class', 'lightbox_modal');
 
         const iLeft = document.createElement( 'i' );
-        iLeft.setAttribute('class', 'fa-solid fa-angle-left');
+        iLeft.setAttribute('class', 'fa-solid fa-angle-left lightbox__btn');
         iLeft.setAttribute('tabindex', '0');
 
 
@@ -117,7 +123,7 @@ function photographerFactory(data, totalLikes) {
         vid.setAttribute('class', 'lightbox_modal-img');
 
         const iRight = document.createElement( 'i' );
-        iRight.setAttribute('class', 'fa-solid fa-angle-right');
+        iRight.setAttribute('class', 'fa-solid fa-angle-right lightbox__btn');
         iRight.setAttribute('tabindex', '0');
 
 

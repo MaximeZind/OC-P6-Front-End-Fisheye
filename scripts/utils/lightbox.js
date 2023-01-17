@@ -1,7 +1,7 @@
 function displayLightbox() {
-    const modal = document.getElementById("contact_modal");
-    const form = document.querySelector("#contact_modal > div");
-    const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
+    const modal = document.getElementById("modal__bg");
+    const form = document.querySelector("#modal__bg > div");
+    const lightbox = document.querySelector("#modal__bg > div.lightbox_modal");
 
     // Display le background modal et la lightbox, et cacher le formulaire de contact
     modal.style.display = "block";
@@ -10,9 +10,9 @@ function displayLightbox() {
 }
 
 function closeLightbox() {
-    const modal = document.getElementById("contact_modal");
-    const form = document.querySelector("#contact_modal > div");
-    const lightbox = document.querySelector("#contact_modal > div.lightbox_modal");
+    const modal = document.getElementById("modal__bg");
+    const form = document.querySelector("#modal__bg > div");
+    const lightbox = document.querySelector("#modal__bg > div.lightbox_modal");
 
     // Cache le background modal et la lightbox, et prépare le formulaire de contact
     modal.style.display = "none";
@@ -22,9 +22,9 @@ function closeLightbox() {
 
 function createLightboxMedia(photographPics, mediaID, photographerName) {
 
-    const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
-    const lightboxTitle = document.querySelector("#contact_modal > div.lightbox_modal > p");
+    const lightboxPic = document.querySelector("#modal__bg > div.lightbox_modal > img");
+    const lightboxVid = document.querySelector("#modal__bg > div.lightbox_modal > video");
+    const lightboxTitle = document.querySelector("#modal__bg > div.lightbox_modal > p");
 
     const removeAttributes = (element) => {
         while (element.attributes.length > 0) {
@@ -79,7 +79,7 @@ function displayLightboxMedia(photographers, medias, event) {
     displayLightbox();
 }
 
-function displayLightboxNextRight(photographers, medias) {
+function displayLightboxNext(photographers, medias, event) {
 
     let params = new URLSearchParams(document.location.search);
     let photographID = params.get("id");
@@ -88,8 +88,8 @@ function displayLightboxNextRight(photographers, medias) {
     photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
     photographerName = photographerName.replace(/-/g, " ");
     const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
-    const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
+    const lightboxPic = document.querySelector("#modal__bg > div.lightbox_modal > img");
+    const lightboxVid = document.querySelector("#modal__bg > div.lightbox_modal > video");
     let mediaID = 0;
     if (lightboxPic.getAttribute('id')) {
         mediaID = +lightboxPic.getAttribute('id');
@@ -103,6 +103,8 @@ function displayLightboxNextRight(photographers, medias) {
     });
 
     let nextId = 0;
+    const iterations = picIds.length;
+    if (event.target.className.includes('right')){
     for (i = 0; i < picIds.length; i++) {
         if (picIds[i] === mediaID) {
             if (picIds[i + 1]) {
@@ -112,51 +114,22 @@ function displayLightboxNextRight(photographers, medias) {
             }
             break;
         }
-    }
-    createLightboxMedia(photographPics, nextId, photographerName);
-}
-
-function displayLightboxNextLeft(photographers, medias) {
-
-    let params = new URLSearchParams(document.location.search);
-    let photographID = params.get("id");
-    const photograph = photographers.find(({ id }) => id == photographID);
-    let photographerName = photograph.name;
-    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-    photographerName = photographerName.replace(/-/g, " ");
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
-    const lightboxPic = document.querySelector("#contact_modal > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#contact_modal > div.lightbox_modal > video");
-    let mediaID = 0;
-    if (lightboxPic.getAttribute('id')) {
-        mediaID = +lightboxPic.getAttribute('id');
-    } else if (lightboxVid.getAttribute('id')) {
-        mediaID = +lightboxVid.getAttribute('id');
-    }
-
-    const picIds = [];
-    photographPics.forEach((photographPic) => {
-        picIds.push(photographPic.id);
-    });
-    const iterations = picIds.length;
-    let nextId = 0;
-    for (i = 0; i < iterations; i++) {
-        if (picIds[i] === mediaID) {
-            if (picIds[i - 1]) {
-                nextId = picIds[i - 1];
-            } else if (!picIds[i - 1]) {
-                nextId = picIds[iterations - 1];
+    }} else if (event.target.className.includes('left')){
+        for (i = 0; i < iterations; i++) {
+            if (picIds[i] === mediaID) {
+                if (picIds[i - 1]) {
+                    nextId = picIds[i - 1];
+                } else if (!picIds[i - 1]) {
+                    nextId = picIds[iterations - 1];
+                }
+                break;
             }
-            break;
         }
     }
-
     createLightboxMedia(photographPics, nextId, photographerName);
 }
 
 function photographPicsInteractions(photographers, medias, event) {
-
-    console.log(event.keyCode);
 
     if (event.type === 'click') {
 
