@@ -62,6 +62,7 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
   }
 }
 
+
 function displayLightboxMedia(photographers, medias, event) {
   const mediaID = +event.target.id; // Renvoie l'id en type nombre
 
@@ -133,16 +134,20 @@ function displayLightboxNext(photographers, medias, event) {
   createLightboxMedia(photographPics, nextId, photographerName);
 }
 
+
+//fonction qui va identifier la target de l'event (click ou keydown), et appeler
+//une fonction en conséquence
 function photographPicsInteractions(photographers, medias, event) {
+  console.log(event.target);
   if (event.type === 'click') {
-    if (event.target.className.includes('fa-heart')) {
-      addLike(event);
+    if (event.target.parentNode.className.includes('hearts__icons')) {
+      addLike(event.target.parentNode);
     } else if (event.target.className.includes('photograph__pics__pic-media')) {
       displayLightboxMedia(photographers, medias, event);
     }
   } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
-    if (event.target.className.includes('fa-heart')) {
-      addLike(event);
+    if (event.target.className.includes('hearts__icon')) {
+      addLike(event.target);
     } else if (event.target.className.includes('photograph__pics__pic-media')) {
       displayLightboxMedia(photographers, medias, event);
     }

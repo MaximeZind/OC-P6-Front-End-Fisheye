@@ -1,27 +1,13 @@
 function openDropDownMenu() {
   const dropdownBtns = document.querySelector(".dropdown__buttons");
-  const wrapper = document.querySelector('.dropdown__wrapper');
 
-  // wrapper.classList.add('active');
-  // wrapper.setAttribute('aria-expanded', 'true');
   dropdownBtns.classList.add('activated');
 }
 
 async function closeDropDownMenu(event) {
   const dropdownBtns = document.querySelector(".dropdown__buttons");
-  const wrapper = document.querySelector('.dropdown__wrapper');
 
   dropdownBtns.classList.remove('activated');
-
-  // On vérifie que l'un des boutons n'est pas en focus
-
-  // if ((event !== undefined) && (event.relatedTarget !== null) && (dropdownBtns !== event.relatedTarget.parentNode)) {
-  //   dropdownBtns.style.height = '0px';
-  //   setTimeout(() => {
-  //     wrapper.classList.remove('active');
-  //     wrapper.setAttribute('aria-expanded', 'false');
-  //   }, 400);
-  // }
 }
 
 function filters(photographers, medias, event) {

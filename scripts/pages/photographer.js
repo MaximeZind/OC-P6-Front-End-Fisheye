@@ -1,3 +1,4 @@
+//Fonction asynchrone qui va fetch nos données du fichier .json
 async function getPhotographers() {
   const response = await fetch('data/photographers.json');
   const data = await response.json();
@@ -10,6 +11,7 @@ async function getPhotographers() {
   });
 }
 
+//fonction asynchrone
 async function displayData(photographers, medias) {
   // Elément de la page dans lesquels on va afficher nos données
   const photographHeader = document.querySelector('.photograph-header');
@@ -71,11 +73,13 @@ function getNameAndMedias(photographers, medias) {
 }
 
 // Fonction qui rajoute un like à la photo et au total des likes
-function addLike(event) {
+// Appelée par un event listener
+function addLike(heart) {
 
-  let picLikes = +event.target.parentNode.previousSibling.innerText;
+    console.log(heart);
+
+  let picLikes = heart.previousSibling.innerText;
   let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
-  heart = event.target.parentNode;
 
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
@@ -87,11 +91,11 @@ function addLike(event) {
     totalLikes++;
   }
 
-  event.target.parentNode.previousSibling.innerText = picLikes;
+  heart.previousSibling.innerText = picLikes;
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
 }
 
-function getEventListeners(photographers, medias) {
+async function getEventListeners(photographers, medias) {
   // DOM Elements
   const form = document.querySelector('#modal__bg > div > form');
   const contactBtn = document.querySelector('#main > div.photograph-header > button');
