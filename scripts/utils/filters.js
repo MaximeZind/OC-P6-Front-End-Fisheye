@@ -12,7 +12,8 @@ async function closeDropDownMenu(event) {
     const wrapper = document.querySelector(".dropdown__wrapper");
 
     //On vérifie que l'un des boutons n'est pas en focus
-    if (event && (dropdownBtns !== event.relatedTarget.parentNode)) {
+
+    if ((event !== undefined) && (event.relatedTarget !== null) && (dropdownBtns !== event.relatedTarget.parentNode)) {
         dropdownBtns.style.height = '0px';
         setTimeout(() => {
             wrapper.classList.remove('active');
@@ -29,20 +30,16 @@ function filters(photographers, medias, event) {
     // Elements du DOM
     const targetClasslist = event.target.classList;
     const photographArticles = document.querySelectorAll("#main > section.photograph__pics > article");
-    const photographerPageMedia = document.querySelectorAll("#main > section > article > img, #main > section > article > video");
 
     // On récupère les medias et le nom du photographe
     let nameAndMedias = getNameAndMedias(photographers, medias);
     const photographerName = nameAndMedias[0];
-    const photograph = nameAndMedias[1];
     const photographPics = nameAndMedias[2];
 
     // Nos 3 boutons du dropdown menu
     const firstBtn = document.getElementById('1');
     const secondBtn = document.getElementById('2');
     const thirdBtn = document.getElementById('3');
-
-    console.log(firstBtn);
 
     //tri des éléments
     if (targetClasslist.contains('filter__popularity')) {

@@ -6,7 +6,6 @@ async function getPhotographers() {
     let photographers = data.photographers;
     let medias = data.media;
 
-    // et bien retourner le tableau photographers seulement une fois récupéré
     return ({
         photographers, medias
     })
@@ -55,6 +54,7 @@ async function displayData(photographers, medias) {
 
 };
 
+//Fonction qui récupère l'id via l'URL et renvoie le prénom du photographe, ainsi qu'une array d'objets de ses médias
 function getNameAndMedias (photographers, medias) {
 
         // On récupère l'ID du photographe via l'URL
@@ -73,6 +73,7 @@ function getNameAndMedias (photographers, medias) {
         return [photographerName, photograph, photographPics];
 }
 
+//Fonction qui rajoute un like à la photo et au total des likes
 function addLike(event) {
     let picLikes = +event.target.previousSibling.innerText;
     let totalLikes = +document.querySelector("#main > div.photograph__priceTag > div > p").innerText;

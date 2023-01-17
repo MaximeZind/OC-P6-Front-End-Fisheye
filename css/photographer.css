@@ -150,10 +150,9 @@ header > a > .logo {
     font-weight: bold;
     font-size: 1.25vw;
     width: 11.80vw;
-    z-index: 3;
 }
 
-#main > section.dropdown__section > .active > button {
+#main > section.dropdown__section > .active > button, #main > section.dropdown__section > .active:focus > button {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
