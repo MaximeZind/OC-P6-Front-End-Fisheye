@@ -76,8 +76,6 @@ function getNameAndMedias(photographers, medias) {
 // Appelée par un event listener
 function addLike(heart) {
 
-    console.log(heart);
-
   let picLikes = heart.previousSibling.innerText;
   let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
 
