@@ -107,6 +107,8 @@ function photographerFactory(data, totalLikes) {
 
         const iLeft = document.createElement( 'i' );
         iLeft.setAttribute('class', 'fa-solid fa-angle-left');
+        iLeft.setAttribute('tabindex', '0');
+
 
         const img = document.createElement( 'img' );
         img.setAttribute('class', 'lightbox_modal-img');
@@ -116,12 +118,15 @@ function photographerFactory(data, totalLikes) {
 
         const iRight = document.createElement( 'i' );
         iRight.setAttribute('class', 'fa-solid fa-angle-right');
+        iRight.setAttribute('tabindex', '0');
+
 
         const pTitle = document.createElement( 'p' );
         pTitle.setAttribute('class', 'lightbox_modal-title');
 
         const close = document.createElement('i');
         close.setAttribute('class', 'fa-solid fa-xmark lightbox_modal-close');
+        close.setAttribute('tabindex', '0');
 
         div.append(iLeft);
         div.append(img);
@@ -220,11 +225,13 @@ function photographerPageMainFactory(data, name) {
             vid.setAttribute('id', id);
             vid.setAttribute('class', 'photograph__pics__pic-media');
             vid.setAttribute('aria-label', `${title}`);
+            vid.setAttribute('tabindex', '0');
         } else if (video === undefined) {
             img.setAttribute("src", picture);
             img.setAttribute('id', id);
             img.setAttribute('class', 'photograph__pics__pic-media');
             img.setAttribute('aria-label', `${title}`);
+            img.setAttribute('tabindex', '0');
         }
 
         const divText = document.createElement( 'div' );
@@ -242,6 +249,7 @@ function photographerPageMainFactory(data, name) {
         const heart = document.createElement( 'i' );
         heart.setAttribute('class', 'fa-solid fa-heart');
         heart.setAttribute('aria-label', 'likes');
+        heart.setAttribute('tabindex', '0');
 
         
         //Crée les éléments medias de la page photographe

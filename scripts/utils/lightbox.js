@@ -57,7 +57,7 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
     }
 }
 
-    function displayLightboxMedia(photographers, medias, event) {
+function displayLightboxMedia(photographers, medias, event) {
 
     const mediaID = +event.target.id; // Renvoie l'id en type nombre
 
@@ -154,11 +154,24 @@ function displayLightboxNextLeft(photographers, medias) {
     createLightboxMedia(photographPics, nextId, photographerName);
 }
 
-function photographPicsInteractions(photographers, medias, event){
+function photographPicsInteractions(photographers, medias, event) {
 
-    if (event.target.className.includes('fa-heart')){
-        addLike(event);
-    } else if (event.target.className.includes('photograph__pics__pic-media')){
-        displayLightboxMedia(photographers, medias, event);
+    console.log(event.keyCode);
+
+    if (event.type === 'click') {
+
+        if (event.target.className.includes('fa-heart')) {
+            addLike(event);
+        } else if (event.target.className.includes('photograph__pics__pic-media')) {
+            displayLightboxMedia(photographers, medias, event);
+        }
+
+    } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
+
+        if (event.target.className.includes('fa-heart')) {
+            addLike(event);
+        } else if (event.target.className.includes('photograph__pics__pic-media')) {
+            displayLightboxMedia(photographers, medias, event);
+        }
     }
 }

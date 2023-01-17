@@ -1,5 +1,5 @@
 function openDropDownMenu() {
-    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div > div");
+    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div.dropdown__wrapper > div.dropdown__buttons");
     const wrapper = document.querySelector(".dropdown__wrapper");
 
     wrapper.classList.add('active');
@@ -7,15 +7,18 @@ function openDropDownMenu() {
     dropdownBtns.style.height = '6.08vw';
 }
 
-async function closeDropDownMenu() {
-    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div > div");
+async function closeDropDownMenu(event) {
+    const dropdownBtns = document.querySelector("#main > section.dropdown__section > div.dropdown__wrapper > div.dropdown__buttons");
     const wrapper = document.querySelector(".dropdown__wrapper");
 
-    dropdownBtns.style.height = '0px';
-    setTimeout(() => {    
-        wrapper.classList.remove('active');
-        wrapper.setAttribute('aria-expanded', 'false');
-}, 400);
+    //On vérifie que l'un des boutons n'est pas en focus
+    if (event && (dropdownBtns !== event.relatedTarget.parentNode)) {
+        dropdownBtns.style.height = '0px';
+        setTimeout(() => {
+            wrapper.classList.remove('active');
+            wrapper.setAttribute('aria-expanded', 'false');
+        }, 400);
+    }
 
 }
 
@@ -42,51 +45,51 @@ function filters(photographers, medias, event) {
     console.log(firstBtn);
 
     //tri des éléments
-        if (targetClasslist.contains('filter__popularity')) {
+    if (targetClasslist.contains('filter__popularity')) {
 
-            function compareNumbers(a, b) {
-                return b.likes - a.likes;
-            }
-            const mediasFilteredByPopularity = photographPics.sort(compareNumbers);
-
-
-            for (i = 0; i < photographArticles.length; i++) {
-                const picModel = photographerPageMainFactory(mediasFilteredByPopularity[i], photographerName);
-                const userPageMainDOM = picModel.getUserPageMainDOM();
-                photographArticles[i].replaceWith(userPageMainDOM);
-                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
-            }
+        function compareNumbers(a, b) {
+            return b.likes - a.likes;
         }
-        else if (targetClasslist.contains('filter__date')) {
+        const mediasFilteredByPopularity = photographPics.sort(compareNumbers);
 
-            const mediasFilteredByDate = photographPics.sort((firstItem, secondItem) => {
-                return new Date(secondItem.date) - new Date(firstItem.date);
-            });
 
-            for (i = 0; i < photographArticles.length; i++) {
-                const picModel = photographerPageMainFactory(mediasFilteredByDate[i], photographerName);
-                const userPageMainDOM = picModel.getUserPageMainDOM();
-                photographArticles[i].replaceWith(userPageMainDOM);
-                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
-            }
-        } else if (targetClasslist.contains('filter__title')) {
-
-            const mediasFilteredByTitle = photographPics.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-
-            for (i = 0; i < photographArticles.length; i++) {
-                const picModel = photographerPageMainFactory(mediasFilteredByTitle[i], photographerName);
-                const userPageMainDOM = picModel.getUserPageMainDOM();
-                photographArticles[i].replaceWith(userPageMainDOM);
-                photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
-            }
+        for (i = 0; i < photographArticles.length; i++) {
+            const picModel = photographerPageMainFactory(mediasFilteredByPopularity[i], photographerName);
+            const userPageMainDOM = picModel.getUserPageMainDOM();
+            photographArticles[i].replaceWith(userPageMainDOM);
+            photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
         }
+    }
+    else if (targetClasslist.contains('filter__date')) {
+
+        const mediasFilteredByDate = photographPics.sort((firstItem, secondItem) => {
+            return new Date(secondItem.date) - new Date(firstItem.date);
+        });
+
+        for (i = 0; i < photographArticles.length; i++) {
+            const picModel = photographerPageMainFactory(mediasFilteredByDate[i], photographerName);
+            const userPageMainDOM = picModel.getUserPageMainDOM();
+            photographArticles[i].replaceWith(userPageMainDOM);
+            photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
+        }
+    } else if (targetClasslist.contains('filter__title')) {
+
+        const mediasFilteredByTitle = photographPics.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+
+        for (i = 0; i < photographArticles.length; i++) {
+            const picModel = photographerPageMainFactory(mediasFilteredByTitle[i], photographerName);
+            const userPageMainDOM = picModel.getUserPageMainDOM();
+            photographArticles[i].replaceWith(userPageMainDOM);
+            photographArticles[i].firstElementChild.addEventListener("click", (event) => { displayLightboxMedia(photographers, medias, event) });
+        }
+    }
 
     // Swap les contenus des boutons du dropdown lorsqu'on clique
     if (+event.target.id === 2) { // 2e bouton cliqué
         //Swap le texte
         let swapText = firstBtn.firstChild.innerText;
         firstBtn.firstChild.innerText = secondBtn.firstChild.innerText;
-        secondBtn.firstChild.innerText = swapText; 
+        secondBtn.firstChild.innerText = swapText;
         //Swap la classe
         let swapClass = firstBtn.className;
         firstBtn.className = secondBtn.className;

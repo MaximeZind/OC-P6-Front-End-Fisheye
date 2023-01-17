@@ -104,18 +104,27 @@ function getEventListeners(photographers, medias) {
     const filterList = document.querySelector("#main > section.dropdown__section > .dropdown__wrapper");
 
     //EventListeners
+
+    //Formulaire
     contactBtn.addEventListener("click", displayModal);
     closeBtn.addEventListener("click", closeModal);
     form.addEventListener("submit", validateForm);
+
+    //Lightbox
     closeLightboxBtn.addEventListener("click", closeLightbox);
     lightBoxRight.addEventListener("click", (event) => { displayLightboxNextRight(photographers, medias, event) });
     lightBoxLeft.addEventListener("click", (event) => { displayLightboxNextLeft(photographers, medias, event) });
+    photographerPageMedia.addEventListener("click", (event) => { photographPicsInteractions(photographers, medias, event)});
+    photographerPageMedia.addEventListener("keydown", (event) => { photographPicsInteractions(photographers, medias, event)});
+
+    //Menu déroulant
     filterList.addEventListener("focusin", openDropDownMenu);
     filterList.addEventListener("focusout", closeDropDownMenu);
     filterList.addEventListener("mouseenter", openDropDownMenu);
     filterList.addEventListener("mouseleave", closeDropDownMenu);
     filterList.addEventListener("click", (event) => { filters(photographers, medias, event) });
-    photographerPageMedia.addEventListener("click", (event) => { photographPicsInteractions(photographers, medias, event)});
+
+   
 }
 
 
