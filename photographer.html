@@ -29,13 +29,13 @@
 				<form role="form">
 					<div>
 						<label for="first">Prénom</label>
-						<input type="text" id="first" name="first" minlength="2">
+						<input type="text" id="first" name="first" minlength="2" aria-required="true">
             <label for="last">Nom</label>
-						<input type="text" id="last" name="last" minlength="2">
+						<input type="text" id="last" name="last" minlength="2" aria-required="true">
             <label for="email">Email</label>
-						<input type="text" id="email" name="email">
+						<input type="text" id="email" name="email" aria-required="true">
             <label for="message">Votre message</label>
-						<textarea class="modal__message" id="message" name="message" cols="100" rows="10"></textarea>
+						<textarea class="modal__message" id="message" name="message" cols="100" rows="10" aria-required="true"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

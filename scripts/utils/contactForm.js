@@ -1,28 +1,31 @@
 function displayModal() {
-    const modal = document.getElementById("modal__bg");
-	modal.style.display = "block";
-
+  const modal = document.getElementById("modal__bg");
+  const form = document.querySelector("#modal__bg > div");
+  modal.style.display = "block";
+  form.setAttribute('aria-hidden', 'false');
 }
 
 function closeModal() {
-    const modal = document.getElementById("modal__bg");
-    modal.style.display = "none";
+  const modal = document.getElementById("modal__bg");
+  const form = document.querySelector("#modal__bg > div");
+  modal.style.display = "none";
+  form.setAttribute('aria-hidden', 'true');
 }
 
 //// VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    console.log('validate!');
-    const form = document.querySelector("#modal__bg > div > form");
-    const firstName = document.getElementById('first'); //champ du prénom
-    const lastName = document.getElementById('last'); //champ du nom
-    const email = document.getElementById('email'); //champ de l'email
-    const message = document.getElementById('message'); // champ du message
-    // champs vérifiés par les fonctions
-    const validations = [ validateName(firstName, 'prénom'), validateName(lastName, 'nom'), validateEmail(email) ];
-   
-      // Loop
+  console.log('validate!');
+  const form = document.querySelector("#modal__bg > div > form");
+  const firstName = document.getElementById('first'); //champ du prénom
+  const lastName = document.getElementById('last'); //champ du nom
+  const email = document.getElementById('email'); //champ de l'email
+  const message = document.getElementById('message'); // champ du message
+  // champs vérifiés par les fonctions
+  const validations = [validateName(firstName, 'prénom'), validateName(lastName, 'nom'), validateEmail(email)];
+
+  // Loop
   let isValid = true;
   let returnValueIsValid = true;
 
@@ -50,34 +53,34 @@ function validateForm(event) {
 
 function validateName(string, option) {
 
-    nameValue = string.value.trim();
-    const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; //pattern
-    
-    if (nameValue.length >= 2) { // plus de 2 caractères
-      if ((regex.test(nameValue)) && (!nameValue.includes(",,")) && (!nameValue.includes("..")) && (!nameValue.includes("''")) && (!nameValue.includes("--")) && (!nameValue.trim().includes("  "))) {
-        string.parentNode.dataset.errorVisible = false;
-        return true;
-      } else if ((regex.test(nameValue) === false) || (nameValue.includes(",,")) || (nameValue.includes("..")) || (nameValue.includes("''")) || (nameValue.includes("--")) || nameValue.trim().includes("  ")) {
-        string.dataset.errorVisible = true;
-        string.dataset.error = `Vous devez entrer un ${option} valide.`;
-        return false;
-      }
-    } else if (nameValue.length < 2) {
-      string.parentNode.dataset.errorVisible = true;
-      string.parentNode.dataset.error = `Veuillez entrer 2 caractères ou plus pour le champ du ${option}`;
-      return false;
-    }
-  }
+  nameValue = string.value.trim();
+  const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; //pattern
 
-  function validateEmail(string) {
-    emailValue = string.value.trim();
-    const regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-    if (emailValue.match(regex) && !emailValue.includes(" ")) {
+  if (nameValue.length >= 2) { // plus de 2 caractères
+    if ((regex.test(nameValue)) && (!nameValue.includes(",,")) && (!nameValue.includes("..")) && (!nameValue.includes("''")) && (!nameValue.includes("--")) && (!nameValue.trim().includes("  "))) {
       string.parentNode.dataset.errorVisible = false;
       return true;
-    } else if (!emailValue.match(regex) || emailValue.includes(" ")) {
-      string.parentNode.dataset.errorVisible = true;
-      string.parentNode.dataset.error = 'Veuillez entrer une adresse email valide.';
+    } else if ((regex.test(nameValue) === false) || (nameValue.includes(",,")) || (nameValue.includes("..")) || (nameValue.includes("''")) || (nameValue.includes("--")) || nameValue.trim().includes("  ")) {
+      string.dataset.errorVisible = true;
+      string.dataset.error = `Vous devez entrer un ${option} valide.`;
       return false;
     }
+  } else if (nameValue.length < 2) {
+    string.parentNode.dataset.errorVisible = true;
+    string.parentNode.dataset.error = `Veuillez entrer 2 caractères ou plus pour le champ du ${option}`;
+    return false;
   }
+}
+
+function validateEmail(string) {
+  emailValue = string.value.trim();
+  const regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+  if (emailValue.match(regex) && !emailValue.includes(" ")) {
+    string.parentNode.dataset.errorVisible = false;
+    return true;
+  } else if (!emailValue.match(regex) || emailValue.includes(" ")) {
+    string.parentNode.dataset.errorVisible = true;
+    string.parentNode.dataset.error = 'Veuillez entrer une adresse email valide.';
+    return false;
+  }
+}

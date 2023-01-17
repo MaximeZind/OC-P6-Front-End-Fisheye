@@ -7,6 +7,7 @@ function displayLightbox() {
     modal.style.display = "block";
     form.style.display = "none";
     lightbox.style.display = "grid";
+    lightbox.setAttribute('aria-hidden', 'false');
 }
 
 function closeLightbox() {
@@ -18,6 +19,7 @@ function closeLightbox() {
     modal.style.display = "none";
     form.style.display = "block";
     lightbox.style.display = "none";
+    lightbox.setAttribute('aria-hidden', 'true');
 }
 
 function createLightboxMedia(photographPics, mediaID, photographerName) {

@@ -110,6 +110,7 @@ function photographerFactory(data, totalLikes) {
     function getUserPageModalLightbox() {
         const div = document.createElement( 'div' );
         div.setAttribute('class', 'lightbox_modal');
+        div.setAttribute('aria-hidden', 'true');
 
         const iLeft = document.createElement( 'i' );
         iLeft.setAttribute('class', 'fa-solid fa-angle-left lightbox__btn');
@@ -144,7 +145,7 @@ function photographerFactory(data, totalLikes) {
         return(div);
     }
 
-    
+    //Dropdown menu
     function getUserPageDropdownMenu() {
         const section = document.createElement( 'section' );
         section.setAttribute('class', 'dropdown__section');
