@@ -1,152 +1,150 @@
 function displayLightbox() {
-    const modal = document.getElementById("modal__bg");
-    const form = document.querySelector("#modal__bg > div");
-    const lightbox = document.querySelector("#modal__bg > div.lightbox_modal");
+  const modal = document.getElementById('modal__bg');
+  const form = document.querySelector('#modal__bg > div');
+  const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
+  const header = document.querySelector('body > header');
 
-    // Display le background modal et la lightbox, et cacher le formulaire de contact
-    modal.style.display = "block";
-    form.style.display = "none";
-    lightbox.style.display = "grid";
-    lightbox.setAttribute('aria-hidden', 'false');
+  // Display le background modal et la lightbox, et cacher le formulaire de contact
+  modal.style.display = 'block';
+  form.style.display = 'none';
+  lightbox.style.display = 'grid';
+  lightbox.setAttribute('aria-hidden', 'false');
+  header.setAttribute('aria-hidden', 'true');
 }
 
 function closeLightbox() {
-    const modal = document.getElementById("modal__bg");
-    const form = document.querySelector("#modal__bg > div");
-    const lightbox = document.querySelector("#modal__bg > div.lightbox_modal");
+  const modal = document.getElementById('modal__bg');
+  const form = document.querySelector('#modal__bg > div');
+  const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
+  const header = document.querySelector('body > header');
 
-    // Cache le background modal et la lightbox, et prépare le formulaire de contact
-    modal.style.display = "none";
-    form.style.display = "block";
-    lightbox.style.display = "none";
-    lightbox.setAttribute('aria-hidden', 'true');
+  // Cache le background modal et la lightbox, et prépare le formulaire de contact
+  modal.style.display = 'none';
+  form.style.display = 'block';
+  lightbox.style.display = 'none';
+  lightbox.setAttribute('aria-hidden', 'true');
+  header.setAttribute('aria-hidden', 'false');
 }
 
 function createLightboxMedia(photographPics, mediaID, photographerName) {
+  const lightboxPic = document.querySelector('#modal__bg > div.lightbox_modal > img');
+  const lightboxVid = document.querySelector('#modal__bg > div.lightbox_modal > video');
+  const lightboxTitle = document.querySelector('#modal__bg > div.lightbox_modal > p');
 
-    const lightboxPic = document.querySelector("#modal__bg > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#modal__bg > div.lightbox_modal > video");
-    const lightboxTitle = document.querySelector("#modal__bg > div.lightbox_modal > p");
-
-    const removeAttributes = (element) => {
-        while (element.attributes.length > 0) {
-            element.removeAttribute(element.attributes[0].name);
-        }
-    };
-
-    for (i = 0; i < photographPics.length; i++) {
-        if (photographPics[i].id === mediaID) {
-            if (photographPics[i].image) {
-                removeAttributes(lightboxVid);
-                lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
-                lightboxPic.setAttribute('id', mediaID);
-                lightboxTitle.innerText = photographPics[i].title;
-                lightboxPic.style.display = 'block';
-                lightboxVid.style.display = 'none';
-                break;
-            } else if (photographPics[i].video) {
-                removeAttributes(lightboxPic);
-                lightboxVid.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
-                lightboxVid.setAttribute('type', 'video/mp4');
-                lightboxVid.setAttribute('id', mediaID);
-                lightboxTitle.innerText = photographPics[i].title;
-                lightboxVid.setAttribute('controls', '');
-                lightboxVid.setAttribute('autoplay', '');
-                lightboxVid.style.display = 'block';
-                break;
-            }
-        }
+  const removeAttributes = (element) => {
+    while (element.attributes.length > 0) {
+      element.removeAttribute(element.attributes[0].name);
     }
+  };
+
+  for (i = 0; i < photographPics.length; i++) {
+    if (photographPics[i].id === mediaID) {
+      if (photographPics[i].image) {
+        removeAttributes(lightboxVid);
+        lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
+        lightboxPic.setAttribute('id', mediaID);
+        lightboxTitle.innerText = photographPics[i].title;
+        lightboxPic.style.display = 'block';
+        lightboxVid.style.display = 'none';
+        break;
+      } else if (photographPics[i].video) {
+        removeAttributes(lightboxPic);
+        lightboxVid.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
+        lightboxVid.setAttribute('type', 'video/mp4');
+        lightboxVid.setAttribute('id', mediaID);
+        lightboxTitle.innerText = photographPics[i].title;
+        lightboxVid.setAttribute('controls', '');
+        lightboxVid.setAttribute('autoplay', '');
+        lightboxVid.style.display = 'block';
+        break;
+      }
+    }
+  }
 }
 
 function displayLightboxMedia(photographers, medias, event) {
+  const mediaID = +event.target.id; // Renvoie l'id en type nombre
 
-    const mediaID = +event.target.id; // Renvoie l'id en type nombre
+  const params = new URLSearchParams(document.location.search);
+  const photographID = params.get('id');
+  const photograph = photographers.find(({ id }) => id == photographID);
+  let photographerName = photograph.name;
+  photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
+  photographerName = photographerName.replace(/-/g, ' ');
 
-    let params = new URLSearchParams(document.location.search);
-    let photographID = params.get("id");
-    const photograph = photographers.find(({ id }) => id == photographID);
-    let photographerName = photograph.name;
-    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-    photographerName = photographerName.replace(/-/g, " ");
+  const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
+  const ids = [];
 
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
-    const ids = [];
+  photographPics.forEach((photographPic) => {
+    ids.push(photographPic.id);
+  });
 
-    photographPics.forEach((photographPic) => {
-        ids.push(photographPic.id);
-    });
-
-    createLightboxMedia(photographPics, mediaID, photographerName);
-    displayLightbox();
+  createLightboxMedia(photographPics, mediaID, photographerName);
+  displayLightbox();
 }
 
 function displayLightboxNext(photographers, medias, event) {
+  const params = new URLSearchParams(document.location.search);
+  const photographID = params.get('id');
+  const photograph = photographers.find(({ id }) => id == photographID);
+  let photographerName = photograph.name;
+  photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
+  photographerName = photographerName.replace(/-/g, ' ');
+  const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
+  const lightboxPic = document.querySelector('#modal__bg > div.lightbox_modal > img');
+  const lightboxVid = document.querySelector('#modal__bg > div.lightbox_modal > video');
+  let mediaID = 0;
+  if (lightboxPic.getAttribute('id')) {
+    mediaID = +lightboxPic.getAttribute('id');
+  } else if (lightboxVid.getAttribute('id')) {
+    mediaID = +lightboxVid.getAttribute('id');
+  }
 
-    let params = new URLSearchParams(document.location.search);
-    let photographID = params.get("id");
-    const photograph = photographers.find(({ id }) => id == photographID);
-    let photographerName = photograph.name;
-    photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-    photographerName = photographerName.replace(/-/g, " ");
-    const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
-    const lightboxPic = document.querySelector("#modal__bg > div.lightbox_modal > img");
-    const lightboxVid = document.querySelector("#modal__bg > div.lightbox_modal > video");
-    let mediaID = 0;
-    if (lightboxPic.getAttribute('id')) {
-        mediaID = +lightboxPic.getAttribute('id');
-    } else if (lightboxVid.getAttribute('id')) {
-        mediaID = +lightboxVid.getAttribute('id');
-    }
+  const picIds = [];
+  photographPics.forEach((photographPic) => {
+    picIds.push(photographPic.id);
+  });
 
-    const picIds = [];
-    photographPics.forEach((photographPic) => {
-        picIds.push(photographPic.id);
-    });
-
-    let nextId = 0;
-    const iterations = picIds.length;
-    if (event.target.className.includes('right')){
+  let nextId = 0;
+  const iterations = picIds.length;
+  if (event.target.className.includes('right')) {
     for (i = 0; i < picIds.length; i++) {
-        if (picIds[i] === mediaID) {
-            if (picIds[i + 1]) {
-                nextId = picIds[i + 1];
-            } else if (!picIds[i + 1]) {
-                nextId = picIds[0];
-            }
-            break;
+      if (picIds[i] === mediaID) {
+        if (picIds[i + 1]) {
+          nextId = picIds[i + 1];
+        } else if (!picIds[i + 1]) {
+          nextId = picIds[0];
         }
-    }} else if (event.target.className.includes('left')){
-        for (i = 0; i < iterations; i++) {
-            if (picIds[i] === mediaID) {
-                if (picIds[i - 1]) {
-                    nextId = picIds[i - 1];
-                } else if (!picIds[i - 1]) {
-                    nextId = picIds[iterations - 1];
-                }
-                break;
-            }
-        }
+        break;
+      }
     }
-    createLightboxMedia(photographPics, nextId, photographerName);
+  } else if (event.target.className.includes('left')) {
+    for (i = 0; i < iterations; i++) {
+      if (picIds[i] === mediaID) {
+        if (picIds[i - 1]) {
+          nextId = picIds[i - 1];
+        } else if (!picIds[i - 1]) {
+          nextId = picIds[iterations - 1];
+        }
+        break;
+      }
+    }
+  }
+  createLightboxMedia(photographPics, nextId, photographerName);
 }
 
 function photographPicsInteractions(photographers, medias, event) {
-
-    if (event.type === 'click') {
-
-        if (event.target.className.includes('fa-heart')) {
-            addLike(event);
-        } else if (event.target.className.includes('photograph__pics__pic-media')) {
-            displayLightboxMedia(photographers, medias, event);
-        }
-
-    } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
-
-        if (event.target.className.includes('fa-heart')) {
-            addLike(event);
-        } else if (event.target.className.includes('photograph__pics__pic-media')) {
-            displayLightboxMedia(photographers, medias, event);
-        }
+  if (event.type === 'click') {
+    if (event.target.className.includes('fa-heart')) {
+      addLike(event);
+    } else if (event.target.className.includes('photograph__pics__pic-media')) {
+      displayLightboxMedia(photographers, medias, event);
     }
+  } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
+    if (event.target.className.includes('fa-heart')) {
+      addLike(event);
+    } else if (event.target.className.includes('photograph__pics__pic-media')) {
+      displayLightboxMedia(photographers, medias, event);
+    }
+  }
 }
