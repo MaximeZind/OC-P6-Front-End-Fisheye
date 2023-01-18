@@ -43,6 +43,9 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
         removeAttributes(lightboxVid);
         lightboxPic.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].image}`);
         lightboxPic.setAttribute('id', mediaID);
+        lightboxPic.setAttribute('aria-label', `${photographPics[i].title}`);
+        lightboxPic.setAttribute('tabindex', '0');
+        lightboxPic.setAttribute('data-date', `${photographPics[i].date}`);
         lightboxTitle.innerText = photographPics[i].title;
         lightboxPic.style.display = 'block';
         lightboxVid.style.display = 'none';
@@ -52,6 +55,9 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
         lightboxVid.setAttribute('src', `assets/images/${photographerName}/${photographPics[i].video}`);
         lightboxVid.setAttribute('type', 'video/mp4');
         lightboxVid.setAttribute('id', mediaID);
+        lightboxVid.setAttribute('aria-label', `${photographPics[i].title}`);
+        lightboxVid.setAttribute('tabindex', '0');
+        lightboxVid.setAttribute('data-date', `${photographPics[i].date}`);
         lightboxTitle.innerText = photographPics[i].title;
         lightboxVid.setAttribute('controls', '');
         lightboxVid.setAttribute('autoplay', '');
@@ -60,14 +66,13 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
       }
     }
   }
+  const photographerMedias = getPageElements();
+  console.log(photographerMedias);
 }
 
 
 function displayLightboxMedia(photographers, medias, event) {
   const mediaID = +event.target.id; // Renvoie l'id en type nombre
-
-  const photographerMedias = getPageElements();
-  console.log(photographerMedias);
 
   const params = new URLSearchParams(document.location.search);
   const photographID = params.get('id');
@@ -140,6 +145,24 @@ function displayLightboxNext(photographers, medias, event) {
 //fonction qui va identifier la target de l'event (click ou keydown), et appeler
 //une fonction en conséquence
 function photographPicsInteractions(photographers, medias, event) {
+  const photographerMedias = getPageElements();
+  console.log(photographerMedias);
+  // if (event.type === 'click') {
+  //   if (event.target.parentNode.className.includes('hearts__icons')) {
+  //     addLike(event.target.parentNode);
+  //   } else if (event.target.className.includes('photograph__pics__pic-media')) {
+  //     displayLightboxMedia(photographers, photographerMedias, event);
+  //   }
+  // } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
+  //   if (event.target.className.includes('hearts__icon')) {
+  //     addLike(event.target);
+  //   } else if (event.target.className.includes('photograph__pics__pic-media')) {
+  //     displayLightboxMedia(photographers, photographerMedias, event);
+  //   }
+  // }
+
+
+
   if (event.type === 'click') {
     if (event.target.parentNode.className.includes('hearts__icons')) {
       addLike(event.target.parentNode);

@@ -18,6 +18,7 @@ function photographerPageMainFactory(data, name) {
       vid.setAttribute('aria-label', `${title}`);
       vid.setAttribute('tabindex', '0');
       vid.setAttribute('data-date', `${date}`);
+      vid.setAttribute('data-firstname', `${name}`);
     } else if (video === undefined) {
       img.setAttribute('src', picture);
       img.setAttribute('id', id);
@@ -25,6 +26,7 @@ function photographerPageMainFactory(data, name) {
       img.setAttribute('aria-label', `${title}`);
       img.setAttribute('tabindex', '0');
       img.setAttribute('data-date', `${date}`);
+      img.setAttribute('data-firstname', `${name}`);
     }
 
     const divText = document.createElement('div');

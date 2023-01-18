@@ -110,7 +110,7 @@ async function getEventListeners(photographers, medias) {
   closeBtn.addEventListener('click', closeModal);
   form.addEventListener('submit', validateForm);
 
-  // Lightbox
+  // Lightbox et gestion des likes
   closeLightboxBtn.addEventListener('click', closeLightbox);
   lightBoxBtn.forEach((btn) => btn.addEventListener('click', (event) => { displayLightboxNext(photographers, medias, event); }));
   photographerPageMedia.addEventListener('click', (event) => { photographPicsInteractions(photographers, medias, event); });
