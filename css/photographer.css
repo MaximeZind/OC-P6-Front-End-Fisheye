@@ -19,7 +19,7 @@ body {
     left: 0;
     display: none;
     background-color: rgba(255, 255, 255, 0.8);
-    z-index: 4;
+    z-index: 9;
 }
 
 .photograph-header {
@@ -540,4 +540,88 @@ form input {
     padding-left: 20px;
     color: #901C1C;
     font-size: 20px;
+}
+
+/****** RESPONSIVE ******/
+
+@media screen and (max-width: 991.5px){
+
+    .photograph__pics{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .photograph-header h3 {
+        font-size: 20px;
+    }
+
+    .photograph-header p {
+        font-size: 15px;
+    }
+
+    .photograph__priceTag{
+        min-width: 200px;
+    }
+
+    .header{
+        top:0;
+        left:0;
+        position: fixed;
+        width: 100%;
+        height: 90px;
+        background-color: #FFF;
+        z-index: 5;
+    }
+
+    header > a > .logo {
+        height: 50px;
+    }
+    
+    body{
+        padding-top: 90px;
+    }
+
+    .photograph-header {
+        height: auto;
+    }
+
+    .photograph-header > .contact_button {
+        position: fixed;
+        top: 15px;
+        right: 100px;
+        z-index: 6;
+        width: 120px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .photograph-header .photograph-header_portrait {
+        min-height: 100px;
+        min-width: 100px;
+    }
+
+    .photograph-header .photograph-header_portrait img{
+        min-height: 100px;
+        min-width: 100px;
+    }
+    
+
+    .modal {
+        width: 600px;
+        min-width: 600px;
+    }
+}
+
+@media screen and (max-width: 767.5px){
+
+    .photograph__pics{
+        grid-template-columns: 1fr;
+    }
+
+    .photograph-header > .contact_button {
+        top: auto;
+        right: auto;
+        bottom: 20px;
+        left: calc(50% - 60px);
+    }
+
 }

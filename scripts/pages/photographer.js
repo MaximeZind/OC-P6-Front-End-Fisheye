@@ -11,7 +11,7 @@ async function getPhotographers() {
   });
 }
 
-//fonction asynchrone
+//fonction asynchrone qui récupère les données Json via init(), et les envoie vers nos fonctions factory
 async function displayData(photographers, medias) {
   // Elément de la page dans lesquels on va afficher nos données
   const photographHeader = document.querySelector('.photograph-header');
@@ -26,11 +26,12 @@ async function displayData(photographers, medias) {
   const photograph = nameAndMedias[1];
   const photographPics = nameAndMedias[2];
 
+  const mediasSortedByLikes = photographPics.sort(compareLikes);
   let totalLikes = 0;
   // contenu de la page (images, vidéos, titres, likes)
-  photographPics.forEach((photographPic) => {
-    totalLikes += photographPic.likes; // Calcul du total des likes
-    const picModel = photographerPageMainFactory(photographPic, photographerName);
+  mediasSortedByLikes.forEach((media) => {
+    totalLikes += media.likes; // Calcul du total des likes
+    const picModel = photographerPageMainFactory(media, photographerName);
     const userPageMainDOM = picModel.getUserPageMainDOM();
     photographPicSection.append(userPageMainDOM);
   });

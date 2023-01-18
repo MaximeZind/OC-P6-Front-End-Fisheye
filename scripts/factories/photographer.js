@@ -157,7 +157,6 @@ function photographerFactory(data, totalLikes) {
     dropdownWrapperDiv.setAttribute('role', 'listbox');
     dropdownWrapperDiv.setAttribute('aria-expanded', 'false');
     dropdownWrapperDiv.setAttribute('aria-haspopup', 'listbox');
-    dropdownWrapperDiv.setAttribute('tabindex', '0');
 
     const dropdownButtonsDiv = document.createElement('div');
     dropdownButtonsDiv.setAttribute('class', 'dropdown__buttons');
