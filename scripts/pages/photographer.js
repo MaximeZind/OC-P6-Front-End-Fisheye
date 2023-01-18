@@ -100,6 +100,7 @@ async function getEventListeners(photographers, medias) {
   const closeBtn = document.querySelector('#modal__bg > div > header > img');
   const photographerPageMedia = document.querySelector('#main > section.photograph__pics');
   const closeLightboxBtn = document.querySelector('#modal__bg > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close');
+  const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
   const lightBoxBtn = document.querySelectorAll('#modal__bg > div.lightbox_modal > .lightbox__btn');
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
   const modal = document.querySelector('.modal');
@@ -114,8 +115,9 @@ async function getEventListeners(photographers, medias) {
 
   // Lightbox et gestion des likes
   closeLightboxBtn.addEventListener('click', closeLightbox);
-  // modalHeader.addEventListener('keydown', closeLightbox);
+  lightbox.addEventListener('keydown', closeLightbox);
   lightBoxBtn.forEach((btn) => btn.addEventListener('click', (event) => { displayLightboxNext(event); }));
+  lightbox.addEventListener('keydown', (event) => { displayLightboxNext(event); });
   photographerPageMedia.addEventListener('click', (event) => { photographPicsInteractions(event); });
   photographerPageMedia.addEventListener('keydown', (event) => { photographPicsInteractions(event); });
 
