@@ -95,7 +95,7 @@ function getPageElements() {
   let photographerMedias = [];
   photographArticles.forEach((article) => {
     let media = {
-      'id': article.firstElementChild.id,
+      'id': +article.firstElementChild.id,
       'likes': +article.firstElementChild.nextSibling.lastChild.firstChild.innerText,
       'liked': article.firstElementChild.nextSibling.lastChild.lastChild.className.includes('clicked'),
       'title': article.firstElementChild.nextSibling.firstChild.innerText,
@@ -103,15 +103,14 @@ function getPageElements() {
       'photographerId': photographerID,
       'photographerFirstname': article.firstElementChild.dataset.firstname
     };
-
-
-
     if (article.firstElementChild.tagName.toLowerCase() === 'img') {
       media.image = article.firstElementChild.src.split('/').pop();
     } else if (article.firstElementChild.tagName.toLowerCase() === 'video') {
       media.video = article.firstElementChild.src.split('/').pop();
     }
     photographerMedias.unshift(media);
+
   });
+  photographerMedias = photographerMedias.reverse();
   return photographerMedias
 }
