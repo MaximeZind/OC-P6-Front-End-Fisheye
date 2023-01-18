@@ -1,28 +1,50 @@
+// Fonction appelée par plusieurs EventListeners, qui ouvre la modale de contact
 function displayModal() {
-  const modal = document.getElementById('modal__bg');
+  const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
+  const main = document.querySelector("#main");
+  const modal = document.querySelector('.modal');
+  const firstFocus = document.getElementById('first');
 
-  modal.style.display = 'block';
+  modalbg.style.display = 'block';
+  firstFocus.focus();
   form.setAttribute('aria-hidden', 'false');
   header.setAttribute('aria-hidden', 'true');
+  main.setAttribute('aria-hidden', 'true');
+
+  let focusableEls = modal.querySelectorAll('.modal__close, #first, #last, #email, #message, .contact_button');
+  trapFocus(modal, focusableEls);
 }
 
-function closeModal() {
-  const modal = document.getElementById('modal__bg');
+// Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact
+function closeModal(event) {
+  const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
+  const main = document.querySelector("#main");
+  const modal = document.querySelector('.modal');
 
-  modal.style.display = 'none';
-  form.setAttribute('aria-hidden', 'true');
-  header.setAttribute('aria-hidden', 'false');
+  function closing() {
+    modalbg.style.display = 'none'; //Le conteneur de la modale
+    form.setAttribute('aria-hidden', 'true');
+    header.setAttribute('aria-hidden', 'false');
+    main.setAttribute('aria-hidden', 'true');
+  }
+
+  if ((event.target.className.includes('modal__close') && (event.type === 'keydown') && (event.keyCode === (13 || 32)))) {
+    closing(); //Spacebar ou entrée sur la croix de fermeture de la modale
+  } else if ((event.target.className.includes('modal__close')) && (event.type === 'click')) {
+    closing(); // Simple "click" sur la croix de fermeture de la modale
+  } else if ((modal.ariaHidden === 'false') && (event.type === 'keydown') && (event.keyCode === 27)) {
+    closing(); // Escape lorsque la modale est ouverte
+  }
 }
 
 /// / VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {
   event.preventDefault();
 
-  console.log('validate!');
   const form = document.querySelector('#modal__bg > div > form');
   const firstName = document.getElementById('first'); // champ du prénom
   const lastName = document.getElementById('last'); // champ du nom
@@ -54,7 +76,7 @@ function validateForm(event) {
     return false;
   }
 }
-
+//Fonction de test et validation de l'input prénom ou nom
 function validateName(string, option) {
   nameValue = string.value.trim();
   const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; // pattern
@@ -74,7 +96,7 @@ function validateName(string, option) {
     return false;
   }
 }
-
+//Fonction de validation de l'input email
 function validateEmail(string) {
   emailValue = string.value.trim();
   const regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
@@ -87,16 +109,43 @@ function validateEmail(string) {
     return false;
   }
 }
-
+// Fonction de validation du message (minimum de 25 caractères)
 function validateMessage(string) {
   messageValue = string.value.trim();
- 
+
   if (messageValue.length >= 25) { // plus de 25 caractères
-      string.parentNode.dataset.errorVisible = false;
-      return true;
-    } else if (nameValue.length < 25) {
+    string.parentNode.dataset.errorVisible = false;
+    return true;
+  } else if (nameValue.length < 25) { //moins de 25 caractères
     string.parentNode.dataset.errorVisible = true;
     string.parentNode.dataset.error = `Veuillez entrer plus de 25 caractères dans ce champ`;
     return false;
   }
+}
+// Fonction pour "capturer" le focus dans notre modale lorsqu'elle est ouverte
+function trapFocus(modal, focusableEls) {
+
+  let firstFocusableEl = focusableEls[0];
+  let lastFocusableEl = focusableEls[focusableEls.length - 1];
+  let KEYCODE_TAB = 9;
+
+  modal.addEventListener('keydown', function (e) {
+    let isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) /* shift + tab */ {
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus();
+        e.preventDefault();
+      }
+    } else /* tab */ {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus();
+        e.preventDefault();
+      }
+    }
+  });
 }

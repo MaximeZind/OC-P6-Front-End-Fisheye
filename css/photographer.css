@@ -95,6 +95,7 @@ header > a > .logo {
 .contact_button:hover {
     background-color: #DB8876;
     color: #000000;
+    border: #000 2px solid;
 }
 
 /** Filtres **/

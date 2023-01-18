@@ -102,17 +102,19 @@ async function getEventListeners(photographers, medias) {
   const closeLightboxBtn = document.querySelector('#modal__bg > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close');
   const lightBoxBtn = document.querySelectorAll('#modal__bg > div.lightbox_modal > .lightbox__btn');
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
-  const photographerMedias = getPageElements();
+  const modal = document.querySelector('.modal');
 
-  // EventListeners
+  ////// EventListeners ///////
 
   // Formulaire
   contactBtn.addEventListener('click', displayModal);
   closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('keydown', closeModal);
   form.addEventListener('submit', validateForm);
 
   // Lightbox et gestion des likes
   closeLightboxBtn.addEventListener('click', closeLightbox);
+  // modalHeader.addEventListener('keydown', closeLightbox);
   lightBoxBtn.forEach((btn) => btn.addEventListener('click', (event) => { displayLightboxNext(event); }));
   photographerPageMedia.addEventListener('click', (event) => { photographPicsInteractions(event); });
   photographerPageMedia.addEventListener('keydown', (event) => { photographPicsInteractions(event); });
@@ -130,7 +132,6 @@ async function init() {
   const { photographers, medias } = await getPhotographers();
   displayData(photographers, medias);
   getEventListeners(photographers, medias);
- console.log(getPageElements());
 }
 
 init();

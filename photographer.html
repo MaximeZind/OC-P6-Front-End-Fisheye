@@ -18,35 +18,35 @@
   </header>
   <main id="main" arie-hidden="false">
     <div class="photograph-header">
-      <button aria-label="Contact Me" class="contact_button">Contactez-moi</button>
+      <button aria-label="Contact Me" class="contact_button" tabindex="0">Contactez-moi</button>
     </div>
     <section class="photograph__pics"></section>
   </main>
   <div id="modal__bg">
-    <div role="dialog" class="modal" aria-hidden="true">
+    <div role="dialog" class="modal" aria-hidden="true" aria-describedby="contact__modal__title">
       <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg">
+        <h2 id="contact__modal__title">Contactez-moi</h2>
+        <img class="modal__close" src="assets/icons/close.svg" tabindex="0">
       </header>
       <form role="form">
         <div class="formData">
           <label for="first">Prénom</label>
-          <input type="text" id="first" name="first" minlength="2" aria-required="true">
+          <input type="text" id="first" name="first" minlength="2" aria-required="true" tabindex="0">
         </div>
         <div class="formData">
           <label for="last">Nom</label>
-          <input type="text" id="last" name="last" minlength="2" aria-required="true">
+          <input type="text" id="last" name="last" minlength="2" aria-required="true" tabindex="0">
         </div>
         <div class="formData">
           <label for="email">Email</label>
-          <input type="text" id="email" name="email" aria-required="true">
+          <input type="text" id="email" name="email" aria-required="true" tabindex="0">
         </div>
         <div class="formData">
           <label for="message">Votre message</label>
           <textarea class="modal__message" id="message" name="message" cols="100" rows="10"
-            aria-required="true"></textarea>
+            aria-required="true" tabindex="0"></textarea>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" tabindex="0">Envoyer</button>
       </form>
     </div>
   </div>
