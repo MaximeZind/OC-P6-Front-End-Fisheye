@@ -1,6 +1,6 @@
 function photographerPageMainFactory(data, name) {
   const {
-    id, image, video, likes, title, liked
+    id, image, video, likes, title, liked, date
   } = data;
   const picture = `assets/images/${name}/${image}`;
   const videoMedia = `assets/images/${name}/${video}`;
@@ -17,12 +17,14 @@ function photographerPageMainFactory(data, name) {
       vid.setAttribute('class', 'photograph__pics__pic-media');
       vid.setAttribute('aria-label', `${title}`);
       vid.setAttribute('tabindex', '0');
+      vid.setAttribute('data-date', `${date}`);
     } else if (video === undefined) {
       img.setAttribute('src', picture);
       img.setAttribute('id', id);
       img.setAttribute('class', 'photograph__pics__pic-media');
       img.setAttribute('aria-label', `${title}`);
       img.setAttribute('tabindex', '0');
+      img.setAttribute('data-date', `${date}`);
     }
 
     const divText = document.createElement('div');

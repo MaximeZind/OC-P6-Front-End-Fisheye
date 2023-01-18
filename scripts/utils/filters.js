@@ -32,23 +32,7 @@ function filters(photographers, medias, event) {
 
   //On crée une nouvelle array d'objets avec les éléments disponibles sur la page
   //pour pouvoir recréer la gallerie, en gardant les likes en mémoire
-  let photographerMedias = [];
-    photographArticles.forEach((article) => {
-      let media = {
-        'id': article.firstElementChild.id,
-        'likes' : +article.firstElementChild.nextSibling.lastChild.firstChild.innerText,
-        'liked' : article.firstElementChild.nextSibling.lastChild.lastChild.className.includes('clicked'),
-        'title' : article.firstElementChild.nextSibling.firstChild.innerText
-      };
-    
-      if (article.firstElementChild.tagName.toLowerCase() === 'img'){
-        media.image = article.firstElementChild.src.split('/').pop();
-      } else if (article.firstElementChild.tagName.toLowerCase() === 'video'){
-        media.video = article.firstElementChild.src.split('/').pop();
-      }
-        photographerMedias.unshift(media); 
-    });
-  
+  let photographerMedias = getPageElements();
 
   let sortedMedias = {};
   // tri des éléments
@@ -96,4 +80,29 @@ function filters(photographers, medias, event) {
     thirdBtn.className = swapClass;
   }
   closeDropDownMenu();
+}
+
+function getPageElements() {
+  const photographArticles = document.querySelectorAll('#main > section.photograph__pics > article');
+
+    //On crée une nouvelle array d'objets avec les éléments disponibles sur la page
+  //pour pouvoir recréer la gallerie, en gardant les likes en mémoire
+  let photographerMedias = [];
+    photographArticles.forEach((article) => {
+      let media = {
+        'id': article.firstElementChild.id,
+        'likes' : +article.firstElementChild.nextSibling.lastChild.firstChild.innerText,
+        'liked' : article.firstElementChild.nextSibling.lastChild.lastChild.className.includes('clicked'),
+        'title' : article.firstElementChild.nextSibling.firstChild.innerText,
+        'date' : article.firstElementChild.dataset.date
+      };
+    
+      if (article.firstElementChild.tagName.toLowerCase() === 'img'){
+        media.image = article.firstElementChild.src.split('/').pop();
+      } else if (article.firstElementChild.tagName.toLowerCase() === 'video'){
+        media.video = article.firstElementChild.src.split('/').pop();
+      }
+        photographerMedias.unshift(media); 
+    });
+    return photographerMedias
 }

@@ -66,6 +66,9 @@ function createLightboxMedia(photographPics, mediaID, photographerName) {
 function displayLightboxMedia(photographers, medias, event) {
   const mediaID = +event.target.id; // Renvoie l'id en type nombre
 
+  const photographerMedias = getPageElements();
+  console.log(photographerMedias);
+
   const params = new URLSearchParams(document.location.search);
   const photographID = params.get('id');
   const photograph = photographers.find(({ id }) => id == photographID);
@@ -85,13 +88,12 @@ function displayLightboxMedia(photographers, medias, event) {
 }
 
 function displayLightboxNext(photographers, medias, event) {
-  const params = new URLSearchParams(document.location.search);
-  const photographID = params.get('id');
-  const photograph = photographers.find(({ id }) => id == photographID);
-  let photographerName = photograph.name;
-  photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-  photographerName = photographerName.replace(/-/g, ' ');
-  const photographPics = medias.filter(({ photographerId }) => photographerId == photographID);
+
+  // On récupère les medias et le nom du photographe
+  const nameAndMedias = getNameAndMedias(photographers, medias);
+  const photographerName = nameAndMedias[0];
+  const photographPics = nameAndMedias[2];
+
   const lightboxPic = document.querySelector('#modal__bg > div.lightbox_modal > img');
   const lightboxVid = document.querySelector('#modal__bg > div.lightbox_modal > video');
   let mediaID = 0;
