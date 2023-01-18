@@ -25,7 +25,7 @@ function closeLightbox(event) {
   const header = document.querySelector('body > header');
 
   // Cache le background modal et la lightbox, et prépare le formulaire de contact
-  function closing(){
+  function closing() {
     modal.style.display = 'none';
     form.style.display = 'block';
     lightbox.style.display = 'none';
@@ -92,17 +92,19 @@ function createLightboxMedia(mediaID) {
 //Fonction qui est appelée par des EventListeners, et qui gère les flèches de la Lightbox et la naviguation
 //d'un média à l'autre
 function displayLightboxNext(event) {
-  if(event.target.className.includes('lightbox__btn')){
-  if(event.type === 'keydown') { // Pour filtrer les key qui ne sont pas entrée / spacebar /flèches
-    if (event.keyCode === (!13 || !32 || !39 || !37)){ 
+  if (event.target.className.includes('lightbox__btn')) { // Sélectionne un des boutons
+    if (event.type === 'keydown') { // Pour filtrer les key qui ne sont pas entrée / spacebar / flèches
+      if ((event.keyCode !== 13) && (event.keyCode !== 32) && (event.keyCode !== 39) && (event.keyCode !== 37)){
       return
-    } 
-   } 
-  } else if (event.type === 'keydown'){
-    if(event.keyCode === (!39 || !37)){
-    return
+      }
+    }
+  } else if (!event.target.className.includes('lightbox__btn')) {
+    if (event.type === 'keydown') {
+      if ((event.keyCode !== 39) && (event.keyCode !== 37)){
+        return
+      }
+    }
   }
-  } 
   const photographerMedias = getPageElements();
   const lightboxPic = document.querySelector('#modal__bg > div.lightbox_modal > img');
   const lightboxVid = document.querySelector('#modal__bg > div.lightbox_modal > video');
@@ -118,9 +120,9 @@ function displayLightboxNext(event) {
     picIds.push(media.id);
   });
 
-  let nextId = 0;  
+  let nextId = 0;
   const iterations = picIds.length;
-  if (event.target.className.includes('right') || (event.keyCode === 39)) {
+  if (event.target.className.includes('right') && (+event.keyCode !== 37) || (+event.keyCode === 39)) {
     for (i = 0; i < picIds.length; i++) {
       if (picIds[i] === mediaID) {
         if (picIds[i + 1]) {
@@ -131,7 +133,7 @@ function displayLightboxNext(event) {
         break;
       }
     }
-  } else if (event.target.className.includes('left') || (event.keyCode === 37)) {
+  } else if (event.target.className.includes('left') && (+event.keyCode !== 39) || (+event.keyCode === 37)) {
     for (i = 0; i < iterations; i++) {
       if (picIds[i] === mediaID) {
         if (picIds[i - 1]) {
