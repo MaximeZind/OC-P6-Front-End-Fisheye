@@ -29,7 +29,7 @@ function validateForm(event) {
   const email = document.getElementById('email'); // champ de l'email
   const message = document.getElementById('message'); // champ du message
   // champs vérifiés par les fonctions
-  const validations = [validateName(firstName, 'prénom'), validateName(lastName, 'nom'), validateEmail(email)];
+  const validations = [validateName(firstName, 'prénom'), validateName(lastName, 'nom'), validateEmail(email), validateMessage(message)];
 
   // Loop
   let isValid = true;
@@ -64,8 +64,8 @@ function validateName(string, option) {
       string.parentNode.dataset.errorVisible = false;
       return true;
     } if ((regex.test(nameValue) === false) || (nameValue.includes(',,')) || (nameValue.includes('..')) || (nameValue.includes("''")) || (nameValue.includes('--')) || nameValue.trim().includes('  ')) {
-      string.dataset.errorVisible = true;
-      string.dataset.error = `Vous devez entrer un ${option} valide.`;
+      string.parentNode.dataset.errorVisible = true;
+      string.parentNode.dataset.error = `Vous devez entrer un ${option} valide.`;
       return false;
     }
   } else if (nameValue.length < 2) {
@@ -84,6 +84,19 @@ function validateEmail(string) {
   } if (!emailValue.match(regex) || emailValue.includes(' ')) {
     string.parentNode.dataset.errorVisible = true;
     string.parentNode.dataset.error = 'Veuillez entrer une adresse email valide.';
+    return false;
+  }
+}
+
+function validateMessage(string) {
+  messageValue = string.value.trim();
+ 
+  if (messageValue.length >= 25) { // plus de 25 caractères
+      string.parentNode.dataset.errorVisible = false;
+      return true;
+    } else if (nameValue.length < 25) {
+    string.parentNode.dataset.errorVisible = true;
+    string.parentNode.dataset.error = `Veuillez entrer plus de 25 caractères dans ce champ`;
     return false;
   }
 }
