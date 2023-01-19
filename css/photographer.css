@@ -679,10 +679,6 @@ form > button {
 
 @media screen and (max-width: 767.5px){
 
-    .photograph__pics{
-        grid-template-columns: 1fr;
-    }
-
     .photograph-header > .contact_button {
         top: auto;
         right: auto;
@@ -742,6 +738,11 @@ form > button {
 }
 
 @media screen and (max-width: 500px){
+
+    .photograph__pics{
+        grid-template-columns: 1fr;
+    }
+    
     .modal {
         width: 100%;
         max-width: 100%;
