@@ -17,20 +17,20 @@ function displayModal() {
   trapFocus(modal, focusableEls);
 }
 
-// Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact
-function closeModal(event) {
+function closing() {
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
   const main = document.querySelector("#main");
-  const modal = document.querySelector('.modal');
+  modalbg.style.display = 'none'; //Le conteneur de la modale
+  form.setAttribute('aria-hidden', 'true');
+  header.setAttribute('aria-hidden', 'false');
+  main.setAttribute('aria-hidden', 'true');
+}
 
-  function closing() {
-    modalbg.style.display = 'none'; //Le conteneur de la modale
-    form.setAttribute('aria-hidden', 'true');
-    header.setAttribute('aria-hidden', 'false');
-    main.setAttribute('aria-hidden', 'true');
-  }
+// Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact
+function closeModal(event) {
+  const modal = document.querySelector('.modal');
 
   if ((event.target.className.includes('modal__close') && (event.type === 'keydown') && (event.keyCode === (13 || 32)))) {
     closing(); //Spacebar ou entrée sur la croix de fermeture de la modale
@@ -71,6 +71,7 @@ function validateForm(event) {
 
     // Reset du formulaire de message
     form.reset();
+    closing();
     return true;
   } if (!isValid) {
     return false;
