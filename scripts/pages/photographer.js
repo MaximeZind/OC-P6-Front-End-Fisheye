@@ -20,6 +20,20 @@ async function displayData(photographers, medias) {
   const photographModalTitle = document.querySelector('#modal__bg > div > header > h2');
   const modal = document.querySelector('#modal__bg');
 
+  //Vérification que l'id correspond à un photographe...
+  const params = new URLSearchParams(document.location.search);
+  const photographID = params.get('id');
+  let idVerificator = 0;
+  photographers.forEach((photographer) => {
+    if (+photographer.id === +photographID){
+      idVerificator = idVerificator + 1;
+    }
+  });
+  // ... Sinon, renvoie vers index.html
+  if (idVerificator === 0){
+    location.replace("index.html");
+  }
+
   // On récupère les medias et le nom du photographe
   const nameAndMedias = getNameAndMedias(photographers, medias);
   const photographerName = nameAndMedias[0];
