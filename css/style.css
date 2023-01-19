@@ -62,7 +62,7 @@ main {
 
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 33px;
     margin-top: 25px;
 }
 
@@ -100,4 +100,53 @@ main {
     font-size: 10px;
     color: #757575;
 
+}
+
+@media screen and (max-width: 992px){
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header {
+        position: fixed;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 4674758493939;
+        top: 0px;
+    }
+
+    .header > a > .logo {
+        margin-left: 10px;
+    }
+
+    .header > h1 {
+        margin-right: 10px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+}
+
+@media screen and (max-width: 650px){
+
+    .header > a > .logo {
+        max-width: 85%;
+        object-fit: contain;
+    }
+
+    .header > h1 {
+    font-size: 14px;
+    }
+
+    .photographer_section{
+        grid-template-columns: 1fr;
+    }
+
+    .photographer_section article .card__img--wrapper{
+        width: 250px;
+        max-width: 250px;
+        height: 250px;
+        max-height: 250px;
+    }
 }
