@@ -452,7 +452,7 @@ form {
     opacity: 1;
 }
 
-.formData[data-error-visible="true"] input {
+.formData[data-error-visible="true"] input, .formData[data-error-visible="true"] #message {
     border: 2px solid #e54858;
 }
 
