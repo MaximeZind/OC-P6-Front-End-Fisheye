@@ -60,34 +60,61 @@ function createLightboxMedia(mediaID) {
       element.removeAttribute(element.attributes[0].name);
     }
   };
-  for (i = 0; i < photographerMedias.length; i++) {
-    if (photographerMedias[i].id === mediaID) {
-      if (photographerMedias[i].image) {
+
+  photographerMedias.forEach((media) => {
+    if (media.id === mediaID){
+      if (media.image){
         removeAttributes(lightboxVid);
-        lightboxPic.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].image}`);
+        lightboxPic.setAttribute('src', `assets/images/${media.photographerFirstname}/${media.image}`);
         lightboxPic.setAttribute('id', mediaID);
-        lightboxPic.setAttribute('aria-label', `${photographerMedias[i].title}`);
+        lightboxPic.setAttribute('aria-label', `${media.title}`);
         lightboxPic.setAttribute('tabindex', '0');
-        lightboxPic.setAttribute('data-date', `${photographerMedias[i].date}`);
-        lightboxTitle.innerText = photographerMedias[i].title;
+        lightboxPic.setAttribute('data-date', `${media.date}`);
+        lightboxTitle.innerText = media.title;
         lightboxPic.style.display = 'block';
         lightboxVid.style.display = 'none';
-        break;
-      } else if (photographerMedias[i].video) {
+      } else if (media.video) {
         removeAttributes(lightboxPic);
-        lightboxVid.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].video}`);
+        lightboxVid.setAttribute('src', `assets/images/${media.photographerFirstname}/${media.video}`);
         lightboxVid.setAttribute('type', 'video/mp4');
         lightboxVid.setAttribute('id', mediaID);
-        lightboxVid.setAttribute('aria-label', `${photographerMedias[i].title}`);
+        lightboxVid.setAttribute('aria-label', `${media.title}`);
         lightboxVid.setAttribute('tabindex', '0');
-        lightboxVid.setAttribute('data-date', `${photographerMedias[i].date}`);
-        lightboxTitle.innerText = photographerMedias[i].title;
+        lightboxVid.setAttribute('data-date', `${media.date}`);
+        lightboxTitle.innerText = media.title;
         lightboxVid.setAttribute('controls', '');
         lightboxVid.style.display = 'block';
-        break;
       }
     }
-  }
+  });
+  // for (i = 0; i < photographerMedias.length; i++) {
+  //   if (photographerMedias[i].id === mediaID) {
+  //     if (photographerMedias[i].image) {
+  //       removeAttributes(lightboxVid);
+  //       lightboxPic.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].image}`);
+  //       lightboxPic.setAttribute('id', mediaID);
+  //       lightboxPic.setAttribute('aria-label', `${photographerMedias[i].title}`);
+  //       lightboxPic.setAttribute('tabindex', '0');
+  //       lightboxPic.setAttribute('data-date', `${photographerMedias[i].date}`);
+  //       lightboxTitle.innerText = photographerMedias[i].title;
+  //       lightboxPic.style.display = 'block';
+  //       lightboxVid.style.display = 'none';
+  //       break;
+  //     } else if (photographerMedias[i].video) {
+  //       removeAttributes(lightboxPic);
+  //       lightboxVid.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].video}`);
+  //       lightboxVid.setAttribute('type', 'video/mp4');
+  //       lightboxVid.setAttribute('id', mediaID);
+  //       lightboxVid.setAttribute('aria-label', `${photographerMedias[i].title}`);
+  //       lightboxVid.setAttribute('tabindex', '0');
+  //       lightboxVid.setAttribute('data-date', `${photographerMedias[i].date}`);
+  //       lightboxTitle.innerText = photographerMedias[i].title;
+  //       lightboxVid.setAttribute('controls', '');
+  //       lightboxVid.style.display = 'block';
+  //       break;
+  //     }
+  //   }
+  // }
 }
 
 //Fonction qui est appelée par des EventListeners, et qui gère les flèches de la Lightbox et la naviguation
@@ -153,7 +180,6 @@ function displayLightboxNext(event) {
 //fonction qui va identifier la target de l'event (click ou keydown), et appeler
 //une fonction en conséquence
 function photographPicsInteractions(event) {
-      console.log(event);
   if (event.type === 'click') {
     if (event.target.parentNode.className.includes('hearts__icons')) {// Click prend en compte l'élément enfant, mais nous avons besoin du parent
       addLike(event.target.parentNode);
