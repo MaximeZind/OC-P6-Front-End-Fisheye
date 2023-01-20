@@ -12,6 +12,10 @@ body {
     justify-content: center;
 }
 
+img {
+    overflow-clip-margin: unset;
+}
+
 #modal__bg {
     position: fixed;
     height: 100vh;
