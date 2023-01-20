@@ -87,34 +87,6 @@ function createLightboxMedia(mediaID) {
       }
     }
   });
-  // for (i = 0; i < photographerMedias.length; i++) {
-  //   if (photographerMedias[i].id === mediaID) {
-  //     if (photographerMedias[i].image) {
-  //       removeAttributes(lightboxVid);
-  //       lightboxPic.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].image}`);
-  //       lightboxPic.setAttribute('id', mediaID);
-  //       lightboxPic.setAttribute('aria-label', `${photographerMedias[i].title}`);
-  //       lightboxPic.setAttribute('tabindex', '0');
-  //       lightboxPic.setAttribute('data-date', `${photographerMedias[i].date}`);
-  //       lightboxTitle.innerText = photographerMedias[i].title;
-  //       lightboxPic.style.display = 'block';
-  //       lightboxVid.style.display = 'none';
-  //       break;
-  //     } else if (photographerMedias[i].video) {
-  //       removeAttributes(lightboxPic);
-  //       lightboxVid.setAttribute('src', `assets/images/${photographerMedias[i].photographerFirstname}/${photographerMedias[i].video}`);
-  //       lightboxVid.setAttribute('type', 'video/mp4');
-  //       lightboxVid.setAttribute('id', mediaID);
-  //       lightboxVid.setAttribute('aria-label', `${photographerMedias[i].title}`);
-  //       lightboxVid.setAttribute('tabindex', '0');
-  //       lightboxVid.setAttribute('data-date', `${photographerMedias[i].date}`);
-  //       lightboxTitle.innerText = photographerMedias[i].title;
-  //       lightboxVid.setAttribute('controls', '');
-  //       lightboxVid.style.display = 'block';
-  //       break;
-  //     }
-  //   }
-  // }
 }
 
 //Fonction qui est appelée par des EventListeners, et qui gère les flèches de la Lightbox et la naviguation
