@@ -433,7 +433,7 @@ form {
 
 .formData[data-error]::after {
     content: attr(data-error);
-    font-size: 15px;
+    font-size: 11px;
     color: #000;
     display: block;
     margin-top: 7px;
@@ -742,7 +742,7 @@ form > button {
     .photograph__pics{
         grid-template-columns: 1fr;
     }
-    
+
     .modal {
         width: 100%;
         max-width: 100%;
@@ -758,6 +758,10 @@ form > button {
     
     form > button {
         margin-left: calc(50% - 60px);
+    }
+
+    form {
+        overflow: scroll;
     }
 
     .photograph-header{

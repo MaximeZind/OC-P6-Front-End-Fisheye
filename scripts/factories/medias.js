@@ -36,6 +36,7 @@ function photographerPageMainFactory(data, name) {
     divLikes.setAttribute('class', 'photograph__pics__pic-text-likes');
 
     const pTitle = document.createElement('p');
+    pTitle.setAttribute('lang', 'en');
     pTitle.textContent = title;
 
     const pLikes = document.createElement('p');
