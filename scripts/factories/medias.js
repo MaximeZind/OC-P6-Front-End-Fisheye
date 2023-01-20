@@ -1,3 +1,5 @@
+// Fonction factory, qui va utiliser les données reçues de notre fichier Json
+// Pour créer notre page photographe
 function photographerPageMainFactory(data, name) {
   const {
     id, image, video, likes, title, liked, date
@@ -5,6 +7,7 @@ function photographerPageMainFactory(data, name) {
   const picture = `assets/images/${name}/${image}`;
   const videoMedia = `assets/images/${name}/${video}`;
 
+  //Fonction factory pour créer la gallerie médias
   function getUserPageMainDOM() {
     const article = document.createElement('article');
     article.setAttribute('class', 'photograph__pics__pic');
@@ -34,7 +37,6 @@ function photographerPageMainFactory(data, name) {
 
     const divLikes = document.createElement('div');
     divLikes.setAttribute('class', 'photograph__pics__pic-text-likes');
-
     const pTitle = document.createElement('p');
     pTitle.setAttribute('lang', 'en');
     pTitle.textContent = title;

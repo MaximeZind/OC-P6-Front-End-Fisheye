@@ -13,7 +13,7 @@ function closeDropDownMenu() {
 }
 
 //Tri des photos une fois un bouton du dropdown cliqué
-function filters(photographers, medias, event) {
+function filters(event) {
 
   if ((+event.target.id === 1) || (+event.target.parentNode.id === 1)) {
     return
@@ -24,10 +24,6 @@ function filters(photographers, medias, event) {
   const targetParentClasslist = event.target.parentNode.classList;
   const photographArticles = document.querySelectorAll('#main > section.photograph__pics > article');
 
-  // On récupère les medias et le nom du photographe
-  const nameAndMedias = getNameAndMedias(photographers, medias);
-  const photographerName = nameAndMedias[0];
-
   // Nos 3 boutons du dropdown menu
   const firstBtn = document.getElementById('1');
   const secondBtn = document.getElementById('2');
@@ -36,6 +32,7 @@ function filters(photographers, medias, event) {
   //On crée une nouvelle array d'objets avec les éléments disponibles sur la page
   //pour pouvoir recréer la gallerie, en gardant les likes en mémoire
   let photographerMedias = getPageElements();
+  const photographerName = photographerMedias[1].photographerFirstname;
 
   let sortedMedias = {};
   // tri des éléments
@@ -80,6 +77,8 @@ function filters(photographers, medias, event) {
   closeDropDownMenu();
 }
 
+// Fonction utilitaire pour récupérer des données dans la page, et en faire une array d'objets 
+// (similaire aux données reçues du fichier Json)
 function getPageElements() {
   const photographArticles = document.querySelectorAll('#main > section.photograph__pics > article');
 
@@ -112,6 +111,7 @@ function getPageElements() {
   return photographerMedias
 }
 
+// Fonction utilitaire de triage
 function compareLikes(a, b) {
   return b.likes - a.likes;
 }

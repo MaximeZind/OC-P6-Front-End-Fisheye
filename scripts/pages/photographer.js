@@ -108,7 +108,8 @@ function addLike(heart) {
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
 }
 
-async function getEventListeners(photographers, medias) {
+  // Fonction contenant nos EventListeners
+  function getEventListeners() {
   // DOM Elements
   const form = document.querySelector('#modal__bg > div > form');
   const contactBtn = document.querySelector('#main > div.photograph-header > button');
@@ -131,17 +132,17 @@ async function getEventListeners(photographers, medias) {
   // Lightbox et gestion des likes
   closeLightboxBtn.addEventListener('click', closeLightbox);
   lightbox.addEventListener('keydown', closeLightbox);
-  lightBoxBtn.forEach((btn) => btn.addEventListener('click', (event) => { displayLightboxNext(event); }));
-  lightbox.addEventListener('keydown', (event) => { displayLightboxNext(event); });
-  photographerPageMedia.addEventListener('click', (event) => { photographPicsInteractions(event); });
-  photographerPageMedia.addEventListener('keydown', (event) => { photographPicsInteractions(event); });
+  lightBoxBtn.forEach((btn) => btn.addEventListener('click', displayLightboxNext));
+  lightbox.addEventListener('keydown', displayLightboxNext);
+  photographerPageMedia.addEventListener('click', photographPicsInteractions);
+  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);
 
   // Menu déroulant
   filterList.addEventListener('focusin', openDropDownMenu);
   filterList.addEventListener('focusout', closeDropDownMenu);
   filterList.addEventListener('mouseenter', openDropDownMenu);
   filterList.addEventListener('mouseleave', closeDropDownMenu);
-  filterList.addEventListener('click', (event) => { filters(photographers, medias, event); });
+  filterList.addEventListener('click', filters);
 }
 
 async function init() {

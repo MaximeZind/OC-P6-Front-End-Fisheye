@@ -42,6 +42,7 @@ function closeLightbox(event) {
   }
 }
 
+// Fonction qui met en place le media (photo ou video) de la lightbox
 function createLightboxMedia(mediaID) {
   const photographerMedias = getPageElements();
   const ids = [];
@@ -154,9 +155,9 @@ function displayLightboxNext(event) {
 function photographPicsInteractions(event) {
       console.log(event);
   if (event.type === 'click') {
-    if (event.target.parentNode.className.includes('hearts__icons')) {
+    if (event.target.parentNode.className.includes('hearts__icons')) {// Click prend en compte l'élément enfant, mais nous avons besoin du parent
       addLike(event.target.parentNode);
-    } else if (event.target.className.includes('hearts__icons')){
+    } else if (event.target.className.includes('hearts__icons')){ // NVDA compte les keyevents (entrée) comme des click events
       addLike(event.target);
     } else if (event.target.className.includes('photograph__pics__pic-media')) {
       createLightboxMedia(+event.target.id);
