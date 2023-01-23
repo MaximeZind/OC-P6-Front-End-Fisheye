@@ -45,7 +45,7 @@ function photographerPageMainFactory(data, name) {
     pLikes.textContent = likes;
 
     const heartDiv = document.createElement('div');
-    heartDiv.setAttribute('aria-label', 'likes');
+    heartDiv.setAttribute('aria-label', `like ${title}`);
     heartDiv.setAttribute('tabindex', '0');
     if (liked){
       heartDiv.setAttribute('class', 'hearts__icons clicked');
