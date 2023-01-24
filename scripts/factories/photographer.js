@@ -12,66 +12,41 @@ function photographerFactory(data, totalLikes) {
   // Cartes de la page d'accueil
   function getUserCardDOM() {
     const article = document.createElement('article');
-    const headerArticle = document.createElement('header');
-    const img = document.createElement('img');
-    img.setAttribute('src', picture);
-    img.setAttribute('alt', `${name}`);
-    const h2 = document.createElement('h2');
-    const h3 = document.createElement('h3');
-    const pTagline = document.createElement('p');
-    const pPrice = document.createElement('p');
-    const a = document.createElement('a');
-    const div = document.createElement('div');
-    a.setAttribute('href', `photographer.html?id=${id}`);
-    a.setAttribute('aria-label', `Cliquer pour accéder à la page de ${name}`);
-    pTagline.setAttribute('class', 'card__tagline');
-    pPrice.setAttribute('class', 'card__price');
-    div.setAttribute('class', 'card__img--wrapper');
-
-    // Set le contenu de chaque élément à créer
-    h2.textContent = name;
-    h3.textContent = location;
-    pTagline.textContent = tagline;
-    pPrice.textContent = priceElement;
-
-    // Crée les éléments de la page d'accueil
-    article.appendChild(headerArticle);
-    headerArticle.appendChild(a);
-    a.appendChild(div);
-    div.appendChild(img);
-    a.appendChild(h2);
-    article.appendChild(h3);
-    article.appendChild(pTagline);
-    article.appendChild(pPrice);
+    article.innerHTML = `
+  <header>
+    <a href="photographer.html?id=${id}" aria-label="Cliquer pour accéder à la page de ${name}">
+      <div class="card__img--wrapper">
+        <img src="${picture}" alt="${name}">
+      </div>
+      <h2>${name}</h2>
+    </a>
+  </header>
+  <h3>${location}</h3>
+  <p class="card__tagline">${tagline}</p>
+  <p class="card__price">${priceElement}</p>
+    `;
     return (article);
   }
 
   // Header de la page photographe
   function getUserPageHeaderDOM() {
     const headerDiv = document.createElement('div');
-    const h2 = document.createElement('h2');
-    const h3 = document.createElement('h3');
-    const pTagline = document.createElement('p');
-    h2.textContent = name;
-    h3.textContent = location;
-    pTagline.textContent = tagline;
+    headerDiv.innerHTML = `
+    <h2>${name}</h2>
+    <h3>${location}</h3>
+    <p>${tagline}</p>
+    `;
 
-    // Crée les éléments du header de la page photographe
-    headerDiv.append(h2);
-    headerDiv.append(h3);
-    headerDiv.append(pTagline);
-    return (headerDiv);
+    return headerDiv
   }
 
   // Portrait de la page photographe
   function getUserPageHeaderPortraitDOM() {
     const picDiv = document.createElement('div');
     picDiv.setAttribute('class', 'photograph-header_portrait');
-    const img = document.createElement('img');
-    img.setAttribute('src', picture);
-    img.setAttribute('alt', `${name}`);
-
-    picDiv.append(img);
+    picDiv.innerHTML = `
+    <img src="${picture}" alt ="${name}">
+    `;
     return (picDiv);
   }
 
@@ -80,22 +55,13 @@ function photographerFactory(data, totalLikes) {
     const div = document.createElement('div');
     div.setAttribute('class', 'photograph__priceTag');
 
-    const likesDiv = document.createElement('div');
-    likesDiv.setAttribute('class', 'photograph__priceTag-likes');
-
-    const p = document.createElement('p');
-    p.textContent = totalLikes;
-
-    const heart = document.createElement('i');
-    heart.setAttribute('class', 'fa-solid fa-heart');
-
-    const pPriceTag = document.createElement('p');
-    pPriceTag.textContent = priceElement;
-
-    div.append(likesDiv);
-    likesDiv.append(p);
-    likesDiv.append(heart);
-    div.append(pPriceTag);
+    div.innerHTML = `
+    <div class="photograph__priceTag-likes">
+      <p>${totalLikes}</p>
+      <i class="fa-solid fa-heart"></i>
+    </div>
+    <p>${priceElement}</p>
+    `;
 
     return (div);
   }
@@ -114,107 +80,21 @@ function photographerFactory(data, totalLikes) {
     div.setAttribute('class', 'lightbox_modal');
     div.setAttribute('aria-hidden', 'true');
 
-    const iLeft = document.createElement('i');
-    iLeft.setAttribute('class', 'fa-solid fa-angle-left lightbox__btn');
-    iLeft.setAttribute('tabindex', '0');
-    iLeft.setAttribute('aria-label', 'media précédent');
-
-    const img = document.createElement('img');
-    img.setAttribute('class', 'lightbox_modal-img');
-
-    const vid = document.createElement('video');
-    vid.setAttribute('class', 'lightbox_modal-img');
-
-    const iRight = document.createElement('i');
-    iRight.setAttribute('class', 'fa-solid fa-angle-right lightbox__btn');
-    iRight.setAttribute('tabindex', '0');
-    iRight.setAttribute('aria-label', 'media suivant');
-
-    const pTitle = document.createElement('p');
-    pTitle.setAttribute('class', 'lightbox_modal-title');
-
-    const close = document.createElement('i');
-    close.setAttribute('class', 'fa-solid fa-xmark lightbox_modal-close');
-    close.setAttribute('tabindex', '0');
-    close.setAttribute('aria-label', 'fermer lightbox');
-
-    div.append(iLeft);
-    div.append(img);
-    div.append(vid);
-    div.append(iRight);
-    div.append(close);
-    div.append(pTitle);
+    div.innerHTML = `
+      <i class="fa-solid fa-angle-left lightbox__btn" tabindex="0" aria-label="média précédent"></i>
+      <img class="lightbox_modal-img">
+      <video class="lightbox_modal-img"></video>
+      <i class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></i>
+      <i class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></i>
+      <p class="lightbox-modal-title"></p>
+    `;
 
     return (div);
   }
 
-  // Dropdown menu
-  function getUserPageDropdownMenu() {
-    const section = document.createElement('section');
-    section.setAttribute('class', 'dropdown__section');
-
-    const h2 = document.createElement('h2');
-
-    const dropdownWrapperDiv = document.createElement('div');
-    dropdownWrapperDiv.setAttribute('class', 'dropdown__wrapper');
-    dropdownWrapperDiv.setAttribute('role', 'listbox');
-    dropdownWrapperDiv.setAttribute('aria-expanded', 'false');
-    dropdownWrapperDiv.setAttribute('aria-haspopup', 'listbox');
-
-    const dropdownButtonsDiv = document.createElement('div');
-    dropdownButtonsDiv.setAttribute('class', 'dropdown__buttons');
-
-    const popularityBtn = document.createElement('button');
-    popularityBtn.setAttribute('class', 'filter__popularity');
-    popularityBtn.setAttribute('id', '1');
-    popularityBtn.setAttribute('aria-selected', 'true');
-    popularityBtn.setAttribute('tabindex', '-1');
-
-    const spanFirst = document.createElement('span');
-
-    const fleche = document.createElement('i');
-    fleche.setAttribute('class', 'fa-solid fa-angle-down');
-
-    const dateBtn = document.createElement('button');
-    dateBtn.setAttribute('class', 'filter__date');
-    dateBtn.setAttribute('id', '2');
-    dateBtn.setAttribute('role', 'option');
-    dateBtn.setAttribute('aria-selected', 'false');
-    dateBtn.setAttribute('tabindex', '0');
-
-    const spanSecond = document.createElement('span');
-
-    const titleBtn = document.createElement('button');
-    titleBtn.setAttribute('class', 'filter__title');
-    titleBtn.setAttribute('id', '3');
-    titleBtn.setAttribute('role', 'option');
-    titleBtn.setAttribute('aria-selected', 'false');
-    titleBtn.setAttribute('tabindex', '0');
-
-    const spanThird = document.createElement('span');
-
-    h2.innerText = 'Trier par';
-    spanFirst.innerText = 'Popularité';
-    spanSecond.innerText = 'Date';
-    spanThird.innerText = 'Titre';
-
-    section.append(h2);
-    section.append(dropdownWrapperDiv);
-    dropdownWrapperDiv.append(dropdownButtonsDiv);
-    dropdownButtonsDiv.append(popularityBtn);
-    popularityBtn.append(spanFirst);
-    popularityBtn.append(fleche);
-    dropdownButtonsDiv.append(dateBtn);
-    dateBtn.append(spanSecond);
-    dropdownButtonsDiv.append(titleBtn);
-    titleBtn.append(spanThird);
-
-    return (section);
-  }
-
   return {
     name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, 
-    getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox, getUserPageDropdownMenu
+    getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox
   };
 }
 

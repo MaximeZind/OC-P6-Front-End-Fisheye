@@ -26,7 +26,7 @@ function closing() {
   modalbg.style.display = 'none'; //Le conteneur de la modale
   form.setAttribute('aria-hidden', 'true');
   header.setAttribute('aria-hidden', 'false');
-  main.setAttribute('aria-hidden', 'true');
+  main.setAttribute('aria-hidden', 'false');
 }
 
 // Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact

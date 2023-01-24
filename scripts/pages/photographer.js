@@ -45,7 +45,7 @@ async function displayData(photographers, medias) {
   // contenu de la page (images, vidéos, titres, likes)
   mediasSortedByLikes.forEach((media) => {
     totalLikes += media.likes; // Calcul du total des likes
-    const picModel = photographerPageMainFactory(media, photographerName);
+    const picModel = mediaFactory(media, photographerName);
     const userPageMainDOM = picModel.getUserPageMainDOM();
     photographPicSection.append(userPageMainDOM);
   });
@@ -59,11 +59,9 @@ async function displayData(photographers, medias) {
   const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
   const userPageModalName = photographerModel.getUserPageModalName();
   const userPageModalLightbox = photographerModel.getUserPageModalLightbox();
-  const userPageDropdownMenu = photographerModel.getUserPageDropdownMenu();
 
   photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
   photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
-  photographHeader.after(userPageDropdownMenu); // dropdown menu filtres
   photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
   photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale
   modal.append(userPageModalLightbox); // Lightbox modale
@@ -97,7 +95,6 @@ function addLike(heart) {
 
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
-    console.log(heart);
     heart.ariaLabel = `like ${title}`;
     picLikes--;
     totalLikes--;

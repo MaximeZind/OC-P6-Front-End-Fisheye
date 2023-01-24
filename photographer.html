@@ -17,11 +17,29 @@
       <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
     </a>
   </header>
-  <main id="main" arie-hidden="false">
+  <main id="main" aria-hidden="false">
     <div class="photograph-header">
       <button aria-label="Contactez-moi" class="contact_button" tabindex="0">Contactez-moi</button>
     </div>
-    <section class="photograph__pics"></section>
+    <section class="dropdown__section">
+      <h2>Trier par</h2>
+      <div class="dropdown__wrapper" role="listbox" aria-expanded="false" aria-haspopup="listbox">
+        <div class="dropdown__buttons">
+          <button class="filter__popularity" id="1" aria-selected="true" tabindex="-1">
+            <span>Popularité</span>
+            <i class="fa-solid fa-angle-down"></i>
+          </button>
+          <button class="filter__date" id="2" role="option" aria-selected="false" tabindex="0">
+            <span>Date</span>
+          </button>
+          <button class="filter__title" id="3" role="option" aria-selected="false" tabindex="0">
+            <span>Titre</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="photograph__pics">
+    </section>
   </main>
   <div id="modal__bg">
     <div role="dialog" class="modal" aria-hidden="true" aria-describedby="contact__modal__title">
@@ -44,8 +62,8 @@
         </div>
         <div class="formData">
           <label for="message">Votre message</label>
-          <textarea class="modal__message" id="message" name="message" cols="100" rows="10"
-            aria-required="true" tabindex="0"></textarea>
+          <textarea class="modal__message" id="message" name="message" cols="100" rows="10" aria-required="true"
+            tabindex="0"></textarea>
         </div>
         <button class="contact_button" tabindex="0">Envoyer</button>
       </form>

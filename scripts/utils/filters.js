@@ -49,7 +49,7 @@ function filters(event) {
   }
   //On réarrange la page avec la nouvelle valeur de sortedMedias
   for (i = 0; i < photographArticles.length; i++) {
-    const picModel = photographerPageMainFactory(sortedMedias[i], photographerName);
+    const picModel = mediaFactory(sortedMedias[i], photographerName);
     const userPageMainDOM = picModel.getUserPageMainDOM();
     photographArticles[i].replaceWith(userPageMainDOM);
   }
@@ -57,18 +57,18 @@ function filters(event) {
   // Swap les contenus des boutons du dropdown lorsqu'on clique
   if ((+event.target.id === 2) || (+event.target.parentNode.id === 2)) { // 2e bouton cliqué
     // Swap le texte
-    const swapText = firstBtn.firstChild.innerText;
-    firstBtn.firstChild.innerText = secondBtn.firstChild.innerText;
-    secondBtn.firstChild.innerText = swapText;
+    const swapText = firstBtn.firstElementChild.innerText;
+    firstBtn.firstElementChild.innerText = secondBtn.firstElementChild.innerText;
+    secondBtn.firstElementChild.innerText = swapText;
     // Swap la classe
     const swapClass = firstBtn.className;
     firstBtn.className = secondBtn.className;
     secondBtn.className = swapClass;
   } else if ((+event.target.id === 3) || (+event.target.parentNode.id === 3)) { // 3e bouton cliqué
     // Swap le texte
-    const swapText = firstBtn.firstChild.innerText;
-    firstBtn.firstChild.innerText = thirdBtn.firstChild.innerText;
-    thirdBtn.firstChild.innerText = swapText;
+    const swapText = firstBtn.firstElementChild.innerText;
+    firstBtn.firstElementChild.innerText = thirdBtn.firstElementChild.innerText;
+    thirdBtn.firstElementChild.innerText = swapText;
     // Swap la classe
     const swapClass = firstBtn.className;
     firstBtn.className = thirdBtn.className;
