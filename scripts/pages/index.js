@@ -1,4 +1,4 @@
-//Fonction asynchrone qui fetche les données de notre fichier Json
+// Fonction asynchrone qui fetche les données de notre fichier Json
 async function getPhotographers() {
   const response = await fetch('data/photographers.json');
   const data = await response.json();
@@ -22,7 +22,7 @@ async function displayData(photographers) {
   });
 }
 
-//Fonction qui récupère les données fetchées par getPhotographers()
+// Fonction qui récupère les données fetchées par getPhotographers()
 // et les renvoie à la fonction displayData
 async function init() {
   // Récupère les datas des photographes

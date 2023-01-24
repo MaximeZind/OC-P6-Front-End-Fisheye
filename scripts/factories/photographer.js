@@ -1,5 +1,5 @@
-//Fonction Factory qui comprend toutes les fonctions qui vont créer nos éléments avec
-//nos datas Json
+// Fonction Factory qui comprend toutes les fonctions qui vont créer nos éléments avec
+// nos datas Json
 function photographerFactory(data, totalLikes) {
   const {
     name, portrait, city, country, tagline, price, id,
@@ -37,7 +37,7 @@ function photographerFactory(data, totalLikes) {
     <p>${tagline}</p>
     `;
 
-    return headerDiv
+    return headerDiv;
   }
 
   // Portrait de la page photographe
@@ -93,8 +93,13 @@ function photographerFactory(data, totalLikes) {
   }
 
   return {
-    name, picture, getUserCardDOM, getUserPageHeaderDOM, getUserPageHeaderPortraitDOM, 
-    getUserPagePriceTagDOM, getUserPageModalName, getUserPageModalLightbox
+    name,
+    picture,
+    getUserCardDOM,
+    getUserPageHeaderDOM,
+    getUserPageHeaderPortraitDOM,
+    getUserPagePriceTagDOM,
+    getUserPageModalName,
+    getUserPageModalLightbox,
   };
 }
-

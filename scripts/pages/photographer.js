@@ -1,4 +1,4 @@
-//Fonction asynchrone qui va fetch nos données du fichier .json
+// Fonction asynchrone qui va fetch nos données du fichier .json
 async function getPhotographers() {
   const response = await fetch('data/photographers.json');
   const data = await response.json();
@@ -6,12 +6,13 @@ async function getPhotographers() {
   const { photographers } = data;
   const medias = data.media;
 
-  return ({     
-    photographers, medias
+  return ({
+    photographers, medias,
   });
 }
 
-//fonction asynchrone qui récupère les données Json via init(), et les envoie vers nos fonctions factory
+// fonction asynchrone qui récupère les données Json via init(),
+// et les envoie vers nos fonctions factory
 async function displayData(photographers, medias) {
   // Elément de la page dans lesquels on va afficher nos données
   const photographHeader = document.querySelector('.photograph-header');
@@ -20,18 +21,18 @@ async function displayData(photographers, medias) {
   const photographModalTitle = document.querySelector('#modal__bg > div > header > h2');
   const modal = document.querySelector('#modal__bg');
 
-  //Vérification que l'id correspond à un photographe...
+  // Vérification que l'id correspond à un photographe...
   const params = new URLSearchParams(document.location.search);
   const photographID = params.get('id');
   let idVerificator = 0;
   photographers.forEach((photographer) => {
-    if (+photographer.id === +photographID){
-      idVerificator++
+    if (+photographer.id === +photographID) {
+      idVerificator += 1;
     }
   });
   // ... Sinon, renvoie vers index.html
-  if (idVerificator === 0){
-    location.replace("index.html");
+  if (idVerificator === 0) {
+    window.location.replace('index.html');
   }
 
   // On récupère les medias et le nom du photographe
@@ -63,19 +64,23 @@ async function displayData(photographers, medias) {
   photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
   photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
   photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
-  photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle); // ajouter le nom du photographe au titre de la modale
+  // ajouter le nom du photographe au titre de la modale
+  photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle);
   modal.append(userPageModalLightbox); // Lightbox modale
 }
 
-// Fonction qui récupère l'id via l'URL et renvoie le prénom du photographe, ainsi qu'une array d'objets de ses médias
+// Fonction qui récupère l'id via l'URL et renvoie le prénom du photographe,
+// ainsi qu'une array d'objets de ses médias
 function getNameAndMedias(photographers, medias) {
   // On récupère l'ID du photographe via l'URL
   const params = new URLSearchParams(document.location.search);
-  const photographID = params.get('id');
+  const photographID = +params.get('id');
 
   // On trie les données pour obtenir celles qui correspondent au photographe de la page en question
-  const photograph = photographers.find(({ id }) => id == photographID); // find() renvoie le premier élément
-  const photographPics = medias.filter(({ photographerId }) => photographerId == photographID); // filter renvoie une array
+  // find() renvoie le premier élément
+  const photograph = photographers.find(({ id }) => id === photographID);
+  // filter renvoie une array
+  const photographPics = medias.filter(({ photographerId }) => photographerId === photographID);
 
   // On récupère le prénom du photographe pour accéder au dossier des photos
   let photographerName = photograph.name;
@@ -88,29 +93,28 @@ function getNameAndMedias(photographers, medias) {
 // Fonction qui rajoute un like à la photo et au total des likes
 // Appelée par un event listener
 function addLike(heart) {
-
   let picLikes = heart.previousSibling.innerText;
   let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
-  let title = heart.parentNode.parentNode.firstChild.innerText;
+  const title = heart.parentNode.parentNode.firstChild.innerText;
 
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
     heart.ariaLabel = `like ${title}`;
-    picLikes--;
-    totalLikes--;
+    picLikes -= 1;
+    totalLikes -= 1;
   } else if (!heart.className.includes('clicked')) {
     heart.classList.add('clicked');
     heart.ariaLabel = `unlike ${title}`;
-    picLikes++;
-    totalLikes++;
+    picLikes += 1;
+    totalLikes += 1;
   }
 
   heart.previousSibling.innerText = picLikes;
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
 }
 
-  // Fonction contenant nos EventListeners
-  function getEventListeners() {
+// Fonction contenant nos EventListeners
+function getEventListeners() {
   // DOM Elements
   const form = document.querySelector('#modal__bg > div > form');
   const contactBtn = document.querySelector('#main > div.photograph-header > button');
@@ -122,7 +126,7 @@ function addLike(heart) {
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
   const modal = document.querySelector('.modal');
 
-  ////// EventListeners ///////
+  /// /// EventListeners ///////
 
   // Formulaire
   contactBtn.addEventListener('click', displayModal);
@@ -146,9 +150,8 @@ function addLike(heart) {
   filterList.addEventListener('click', filters);
 }
 
-
-//Fonction initiale qui renvoie les infos vers la fonction displayData,
-//et qui appelle la fonction getEventListeners
+// Fonction initiale qui renvoie les infos vers la fonction displayData,
+// et qui appelle la fonction getEventListeners
 async function init() {
   // Récupère les datas des photographes
   const { photographers, medias } = await getPhotographers();

@@ -3,32 +3,32 @@ function displayModal() {
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
-  const main = document.querySelector("#main");
+  const main = document.querySelector('#main');
   const modal = document.querySelector('.modal');
   const firstFocus = document.getElementById('first');
-  const body = document.querySelector("body");
+  const body = document.querySelector('body');
 
-  body.style.overflow = "hidden";
+  body.style.overflow = 'hidden';
   modalbg.style.display = 'block';
   firstFocus.focus();
   form.setAttribute('aria-hidden', 'false');
   header.setAttribute('aria-hidden', 'true');
   main.setAttribute('aria-hidden', 'true');
 
-  let focusableEls = modal.querySelectorAll('.modal__close, #first, #last, #email, #message, .contact_button');
+  const focusableEls = modal.querySelectorAll('.modal__close, #first, #last, #email, #message, .contact_button');
   trapFocus(modal, focusableEls);
 }
 
-//Fonction qui close la modale et réajuste les attributs aria-hidden
+// Fonction qui close la modale et réajuste les attributs aria-hidden
 function closing() {
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
-  const main = document.querySelector("#main");
-  const body = document.querySelector("body");
+  const main = document.querySelector('#main');
+  const body = document.querySelector('body');
 
-  body.style.overflow = "auto";
-  modalbg.style.display = 'none'; //Le conteneur de la modale
+  body.style.overflow = 'auto';
+  modalbg.style.display = 'none'; // Le conteneur de la modale
   form.setAttribute('aria-hidden', 'true');
   header.setAttribute('aria-hidden', 'false');
   main.setAttribute('aria-hidden', 'false');
@@ -39,7 +39,7 @@ function closeModal(event) {
   const modal = document.querySelector('.modal');
 
   if ((event.target.className.includes('modal__close') && (event.type === 'keydown') && (event.keyCode === (13 || 32)))) {
-    closing(); //Spacebar ou entrée sur la croix de fermeture de la modale
+    closing(); // Spacebar ou entrée sur la croix de fermeture de la modale
   } else if ((event.target.className.includes('modal__close')) && (event.type === 'click')) {
     closing(); // Simple "click" sur la croix de fermeture de la modale
   } else if ((modal.ariaHidden === 'false') && (event.type === 'keydown') && (event.keyCode === 27)) {
@@ -83,9 +83,9 @@ function validateForm(event) {
     return false;
   }
 }
-//Fonction de test et validation de l'input prénom ou nom
+// Fonction de test et validation de l'input prénom ou nom
 function validateName(string, option) {
-  nameValue = string.value.trim();
+  const nameValue = string.value.trim();
   const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; // pattern
 
   if (nameValue.length >= 2) { // plus de 2 caractères
@@ -102,11 +102,13 @@ function validateName(string, option) {
     string.parentNode.dataset.error = `Veuillez entrer 2 caractères ou plus pour le champ du ${option}`;
     return false;
   }
+  return true;
 }
-//Fonction de validation de l'input email
+// Fonction de validation de l'input email
 function validateEmail(string) {
-  emailValue = string.value.trim();
-  const regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+  const emailValue = string.value.trim();
+  const regex = 
+  "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
   if (emailValue.match(regex) && !emailValue.includes(' ')) {
     string.parentNode.dataset.errorVisible = false;
     return true;
@@ -118,26 +120,26 @@ function validateEmail(string) {
 }
 // Fonction de validation du message (minimum de 25 caractères)
 function validateMessage(string) {
-  messageValue = string.value.trim();
+  let messageValue = string.value.trim();
 
   if (messageValue.length >= 25) { // plus de 25 caractères
     string.parentNode.dataset.errorVisible = false;
     return true;
-  } else if (nameValue.length < 25) { //moins de 25 caractères
+  } if (nameValue.length < 25) { // moins de 25 caractères
     string.parentNode.dataset.errorVisible = true;
-    string.parentNode.dataset.error = `Veuillez entrer plus de 25 caractères dans ce champ`;
+    string.parentNode.dataset.error = 'Veuillez entrer plus de 25 caractères dans ce champ';
     return false;
   }
+  return true
 }
 // Fonction pour "capturer" le focus dans notre modale lorsqu'elle est ouverte
 function trapFocus(modal, focusableEls) {
+  const firstFocusableEl = focusableEls[0];
+  const lastFocusableEl = focusableEls[focusableEls.length - 1];
+  const KEYCODE_TAB = 9;
 
-  let firstFocusableEl = focusableEls[0];
-  let lastFocusableEl = focusableEls[focusableEls.length - 1];
-  let KEYCODE_TAB = 9;
-
-  modal.addEventListener('keydown', function (event) {
-    let isTabPressed = (event.key === 'Tab' || event.keyCode === KEYCODE_TAB);
+  modal.addEventListener('keydown', (event) => {
+    const isTabPressed = (event.key === 'Tab' || event.keyCode === KEYCODE_TAB);
 
     if (!isTabPressed) {
       return;
@@ -148,11 +150,9 @@ function trapFocus(modal, focusableEls) {
         lastFocusableEl.focus();
         event.preventDefault();
       }
-    } else /* tab */ {
-      if (document.activeElement === lastFocusableEl) {
-        firstFocusableEl.focus();
-        event.preventDefault();
-      }
+    } else /* tab */ if (document.activeElement === lastFocusableEl) {
+      firstFocusableEl.focus();
+      event.preventDefault();
     }
   });
 }
