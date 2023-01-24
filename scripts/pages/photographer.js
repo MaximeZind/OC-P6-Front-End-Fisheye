@@ -26,7 +26,7 @@ async function displayData(photographers, medias) {
   let idVerificator = 0;
   photographers.forEach((photographer) => {
     if (+photographer.id === +photographID){
-      idVerificator = idVerificator + 1;
+      idVerificator++
     }
   });
   // ... Sinon, renvoie vers index.html
@@ -149,6 +149,9 @@ function addLike(heart) {
   filterList.addEventListener('click', filters);
 }
 
+
+//Fonction initiale qui renvoie les infos vers la fonction displayData,
+//et qui appelle la fonction getEventListeners
 async function init() {
   // Récupère les datas des photographes
   const { photographers, medias } = await getPhotographers();

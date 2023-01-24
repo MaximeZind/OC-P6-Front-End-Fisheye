@@ -17,6 +17,7 @@ function displayModal() {
   trapFocus(modal, focusableEls);
 }
 
+//Fonction qui close la modale et réajuste les attributs aria-hidden
 function closing() {
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');

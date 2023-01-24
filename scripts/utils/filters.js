@@ -111,7 +111,7 @@ function getPageElements() {
   return photographerMedias
 }
 
-// Fonction utilitaire de triage
+// Fonction utilitaire de triage en fonction des likes
 function compareLikes(a, b) {
   return b.likes - a.likes;
 }
