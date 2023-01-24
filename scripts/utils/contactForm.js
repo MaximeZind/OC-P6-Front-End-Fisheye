@@ -6,7 +6,9 @@ function displayModal() {
   const main = document.querySelector("#main");
   const modal = document.querySelector('.modal');
   const firstFocus = document.getElementById('first');
+  const body = document.querySelector("body");
 
+  body.style.overflow = "hidden";
   modalbg.style.display = 'block';
   firstFocus.focus();
   form.setAttribute('aria-hidden', 'false');
@@ -23,6 +25,9 @@ function closing() {
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
   const main = document.querySelector("#main");
+  const body = document.querySelector("body");
+
+  body.style.overflow = "auto";
   modalbg.style.display = 'none'; //Le conteneur de la modale
   form.setAttribute('aria-hidden', 'true');
   header.setAttribute('aria-hidden', 'false');

@@ -92,9 +92,9 @@ function getPageElements() {
   photographArticles.forEach((article) => {
     let media = {
       'id': +article.firstElementChild.id,
-      'likes': +article.firstElementChild.nextSibling.lastChild.firstChild.innerText,
-      'liked': article.firstElementChild.nextSibling.lastChild.lastChild.className.includes('clicked'),
-      'title': article.firstElementChild.nextSibling.firstChild.innerText,
+      'likes': +article.firstElementChild.nextElementSibling.lastElementChild.firstElementChild.innerText,
+      'liked': article.firstElementChild.nextElementSibling.lastElementChild.lastElementChild.className.includes('clicked'),
+      'title': article.firstElementChild.nextElementSibling.firstElementChild.innerText,
       'date': article.firstElementChild.dataset.date,
       'photographerId': photographerID,
       'photographerFirstname': article.firstElementChild.dataset.firstname

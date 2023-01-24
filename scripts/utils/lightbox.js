@@ -6,8 +6,10 @@ function displayLightbox() {
   const header = document.querySelector('body > header');
   const focusableEls = document.querySelectorAll('.lightbox__btn, .lightbox_modal-close');
   const firstFocus = document.querySelector("#modal__bg > div.lightbox_modal > i.fa-solid.fa-angle-left.lightbox__btn")
+  const body = document.querySelector("body");
 
   // Display le background modal et la lightbox, et cacher le formulaire de contact
+  body.style.overflow = "hidden"; // Empêche le scrolling dans le background
   modal.style.display = 'block';
   form.style.display = 'none';
   lightbox.style.display = 'grid';
@@ -23,9 +25,11 @@ function closeLightbox(event) {
   const form = document.querySelector('#modal__bg > div');
   const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
   const header = document.querySelector('body > header');
+  const body = document.querySelector("body");
 
   // Cache le background modal et la lightbox, et prépare le formulaire de contact
   function closing() {
+    body.style.overflow = "auto";
     modal.style.display = 'none';
     form.style.display = 'block';
     lightbox.style.display = 'none';

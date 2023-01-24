@@ -86,7 +86,7 @@ function photographerFactory(data, totalLikes) {
       <video class="lightbox_modal-img"></video>
       <i class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></i>
       <i class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></i>
-      <p class="lightbox-modal-title"></p>
+      <p class="lightbox_modal-title"></p>
     `;
 
     return (div);
