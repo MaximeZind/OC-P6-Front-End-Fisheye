@@ -117,6 +117,7 @@ function photographerFactory(data, totalLikes) {
     const iLeft = document.createElement('i');
     iLeft.setAttribute('class', 'fa-solid fa-angle-left lightbox__btn');
     iLeft.setAttribute('tabindex', '0');
+    iLeft.setAttribute('aria-label', 'media précédent');
 
     const img = document.createElement('img');
     img.setAttribute('class', 'lightbox_modal-img');
@@ -127,6 +128,7 @@ function photographerFactory(data, totalLikes) {
     const iRight = document.createElement('i');
     iRight.setAttribute('class', 'fa-solid fa-angle-right lightbox__btn');
     iRight.setAttribute('tabindex', '0');
+    iRight.setAttribute('aria-label', 'media suivant');
 
     const pTitle = document.createElement('p');
     pTitle.setAttribute('class', 'lightbox_modal-title');
@@ -134,6 +136,7 @@ function photographerFactory(data, totalLikes) {
     const close = document.createElement('i');
     close.setAttribute('class', 'fa-solid fa-xmark lightbox_modal-close');
     close.setAttribute('tabindex', '0');
+    close.setAttribute('aria-label', 'fermer lightbox');
 
     div.append(iLeft);
     div.append(img);

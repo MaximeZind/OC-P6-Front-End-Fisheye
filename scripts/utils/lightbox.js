@@ -161,7 +161,7 @@ function photographPicsInteractions(event) {
       createLightboxMedia(+event.target.id);
       displayLightbox();
     }
-  } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) {
+  } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) { // Navgiation clavier hors NVDA
     if (event.target.className.includes('hearts__icon')) {
       addLike(event.target);
     } else if (event.target.className.includes('photograph__pics__pic-media')) {

@@ -93,13 +93,17 @@ function addLike(heart) {
 
   let picLikes = heart.previousSibling.innerText;
   let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
+  let title = heart.parentNode.parentNode.firstChild.innerText;
 
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
+    console.log(heart);
+    heart.ariaLabel = `like ${title}`;
     picLikes--;
     totalLikes--;
   } else if (!heart.className.includes('clicked')) {
     heart.classList.add('clicked');
+    heart.ariaLabel = `unlike ${title}`;
     picLikes++;
     totalLikes++;
   }

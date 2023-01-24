@@ -45,12 +45,14 @@ function photographerPageMainFactory(data, name) {
     pLikes.textContent = likes;
 
     const heartDiv = document.createElement('div');
-    heartDiv.setAttribute('aria-label', `like ${title}`);
     heartDiv.setAttribute('tabindex', '0');
+    
     if (liked){
       heartDiv.setAttribute('class', 'hearts__icons clicked');
+      heartDiv.setAttribute('aria-label', `unlike ${title}`)
     } else if (!liked){
       heartDiv.setAttribute('class', 'hearts__icons');
+      heartDiv.setAttribute('aria-label', `like ${title}`);
     }
 
     const heartEmpty = document.createElement('i');
