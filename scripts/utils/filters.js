@@ -81,39 +81,6 @@ function filters(event) {
   closeDropDownMenu();
 }
 
-// Fonction utilitaire pour récupérer des données dans la page, et en faire une array d'objets
-// (similaire aux données reçues du fichier Json)
-function getPageElements() {
-  const photographArticles = document.querySelectorAll('#main > section.photograph__pics > article');
-
-  // On récupère l'ID du photographe via l'URL
-  const params = new URLSearchParams(document.location.search);
-  const photographerID = params.get('id');
-
-  // On crée une nouvelle array d'objets avec les éléments disponibles sur la page
-  // pour pouvoir recréer la gallerie, en gardant les likes en mémoire
-  let photographerMedias = [];
-  photographArticles.forEach((article) => {
-    const media = {
-      id: +article.firstElementChild.id,
-      likes: +article.firstElementChild.nextElementSibling.lastElementChild.firstElementChild.innerText,
-      liked: article.firstElementChild.nextElementSibling.lastElementChild.lastElementChild.className.includes('clicked'),
-      title: article.firstElementChild.nextElementSibling.firstElementChild.innerText,
-      date: article.firstElementChild.dataset.date,
-      photographerId: photographerID,
-      photographerFirstname: article.firstElementChild.dataset.firstname,
-    };
-    if (article.firstElementChild.tagName.toLowerCase() === 'img') {
-      media.image = article.firstElementChild.src.split('/').pop();
-    } else if (article.firstElementChild.tagName.toLowerCase() === 'video') {
-      media.video = article.firstElementChild.src.split('/').pop();
-    }
-    photographerMedias.unshift(media);
-  });
-  photographerMedias = photographerMedias.reverse();
-  return photographerMedias;
-}
-
 // Fonction utilitaire de triage en fonction des likes
 function compareLikes(a, b) {
   return b.likes - a.likes;

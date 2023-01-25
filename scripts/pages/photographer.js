@@ -69,27 +69,6 @@ async function displayData(photographers, medias) {
   modal.append(userPageModalLightbox); // Lightbox modale
 }
 
-// Fonction qui récupère l'id via l'URL et renvoie le prénom du photographe,
-// ainsi qu'une array d'objets de ses médias
-function getNameAndMedias(photographers, medias) {
-  // On récupère l'ID du photographe via l'URL
-  const params = new URLSearchParams(document.location.search);
-  const photographID = +params.get('id');
-
-  // On trie les données pour obtenir celles qui correspondent au photographe de la page en question
-  // find() renvoie le premier élément
-  const photograph = photographers.find(({ id }) => id === photographID);
-  // filter renvoie une array
-  const photographPics = medias.filter(({ photographerId }) => photographerId === photographID);
-
-  // On récupère le prénom du photographe pour accéder au dossier des photos
-  let photographerName = photograph.name;
-  photographerName = photographerName.substring(0, photographerName.lastIndexOf(' '));
-  photographerName = photographerName.replace(/-/g, ' ');
-
-  return [photographerName, photograph, photographPics];
-}
-
 // Fonction qui rajoute un like à la photo et au total des likes
 // Appelée par un event listener
 function addLike(heart) {
@@ -111,43 +90,6 @@ function addLike(heart) {
 
   heart.previousSibling.innerText = picLikes;
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
-}
-
-// Fonction contenant nos EventListeners
-function getEventListeners() {
-  // DOM Elements
-  const form = document.querySelector('#modal__bg > div > form');
-  const contactBtn = document.querySelector('#main > div.photograph-header > button');
-  const closeBtn = document.querySelector('#modal__bg > div > header > img');
-  const photographerPageMedia = document.querySelector('#main > section.photograph__pics');
-  const closeLightboxBtn = document.querySelector('#modal__bg > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close');
-  const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
-  const lightBoxBtn = document.querySelectorAll('#modal__bg > div.lightbox_modal > .lightbox__btn');
-  const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
-  const modal = document.querySelector('.modal');
-
-  /// /// EventListeners ///////
-
-  // Formulaire
-  contactBtn.addEventListener('click', displayModal);
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('keydown', closeModal);
-  form.addEventListener('submit', validateForm);
-
-  // Lightbox et gestion des likes
-  closeLightboxBtn.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('keydown', closeLightbox);
-  lightBoxBtn.forEach((btn) => btn.addEventListener('click', displayLightboxNext));
-  lightbox.addEventListener('keydown', displayLightboxNext);
-  photographerPageMedia.addEventListener('click', photographPicsInteractions);
-  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);
-
-  // Menu déroulant
-  filterList.addEventListener('focusin', openDropDownMenu);
-  filterList.addEventListener('focusout', closeDropDownMenu);
-  filterList.addEventListener('mouseenter', openDropDownMenu);
-  filterList.addEventListener('mouseleave', closeDropDownMenu);
-  filterList.addEventListener('click', filters);
 }
 
 // Fonction initiale qui renvoie les infos vers la fonction displayData,

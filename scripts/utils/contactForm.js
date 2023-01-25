@@ -47,6 +47,59 @@ function closeModal(event) {
   }
 }
 
+// Fonction de test et validation de l'input prénom ou nom
+function validateName(string, option) {
+  const nameValue = string.value.trim();
+  const inputFieldDataset = string.parentNode.dataset;
+  const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; // pattern
+
+  if (nameValue.length >= 2) { // plus de 2 caractères
+    if ((regex.test(nameValue)) && (!nameValue.includes(',,')) && (!nameValue.includes('..')) && (!nameValue.includes("''")) && (!nameValue.includes('--')) && (!nameValue.trim().includes('  '))) {
+      inputFieldDataset.errorVisible = false;
+      return true;
+    } if ((regex.test(nameValue) === false) || (nameValue.includes(',,')) || (nameValue.includes('..')) || (nameValue.includes("''")) || (nameValue.includes('--')) || nameValue.trim().includes('  ')) {
+      inputFieldDataset.errorVisible = true;
+      inputFieldDataset.error = `Vous devez entrer un ${option} valide.`;
+      return false;
+    }
+  } else if (nameValue.length < 2) {
+    inputFieldDataset.errorVisible = true;
+    inputFieldDataset.error = `Veuillez entrer 2 caractères ou plus pour le champ du ${option}`;
+    return false;
+  }
+  return true;
+}
+// Fonction de validation de l'input email
+function validateEmail(string) {
+  const emailValue = string.value.trim();
+  const inputFieldDataset = string.parentNode.dataset;
+  const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+  if (emailValue.match(regex) && !emailValue.includes(' ')) {
+    inputFieldDataset.errorVisible = false;
+    return true;
+  } if (!emailValue.match(regex) || emailValue.includes(' ')) {
+    inputFieldDataset.errorVisible = true;
+    inputFieldDataset.error = 'Veuillez entrer une adresse email valide.';
+    return false;
+  }
+  return true;
+}
+// Fonction de validation du message (minimum de 25 caractères)
+function validateMessage(string) {
+  const messageValue = string.value.trim();
+  const inputFieldDataset = string.parentNode.dataset;
+
+  if (messageValue.length >= 25) { // plus de 25 caractères
+    inputFieldDataset.errorVisible = false;
+    return true;
+  } if (messageValue.length < 25) { // moins de 25 caractères
+    inputFieldDataset.errorVisible = true;
+    inputFieldDataset.error = 'Veuillez entrer plus de 25 caractères dans ce champ';
+    return false;
+  }
+  return true;
+}
+
 /// / VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
 function validateForm(event) {
   event.preventDefault();
@@ -78,81 +131,8 @@ function validateForm(event) {
     // Reset du formulaire de message
     form.reset();
     closing();
-    return true;
   } if (!isValid) {
     return false;
   }
-}
-// Fonction de test et validation de l'input prénom ou nom
-function validateName(string, option) {
-  const nameValue = string.value.trim();
-  const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; // pattern
-
-  if (nameValue.length >= 2) { // plus de 2 caractères
-    if ((regex.test(nameValue)) && (!nameValue.includes(',,')) && (!nameValue.includes('..')) && (!nameValue.includes("''")) && (!nameValue.includes('--')) && (!nameValue.trim().includes('  '))) {
-      string.parentNode.dataset.errorVisible = false;
-      return true;
-    } if ((regex.test(nameValue) === false) || (nameValue.includes(',,')) || (nameValue.includes('..')) || (nameValue.includes("''")) || (nameValue.includes('--')) || nameValue.trim().includes('  ')) {
-      string.parentNode.dataset.errorVisible = true;
-      string.parentNode.dataset.error = `Vous devez entrer un ${option} valide.`;
-      return false;
-    }
-  } else if (nameValue.length < 2) {
-    string.parentNode.dataset.errorVisible = true;
-    string.parentNode.dataset.error = `Veuillez entrer 2 caractères ou plus pour le champ du ${option}`;
-    return false;
-  }
   return true;
-}
-// Fonction de validation de l'input email
-function validateEmail(string) {
-  const emailValue = string.value.trim();
-  const regex = 
-  "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-  if (emailValue.match(regex) && !emailValue.includes(' ')) {
-    string.parentNode.dataset.errorVisible = false;
-    return true;
-  } if (!emailValue.match(regex) || emailValue.includes(' ')) {
-    string.parentNode.dataset.errorVisible = true;
-    string.parentNode.dataset.error = 'Veuillez entrer une adresse email valide.';
-    return false;
-  }
-}
-// Fonction de validation du message (minimum de 25 caractères)
-function validateMessage(string) {
-  let messageValue = string.value.trim();
-
-  if (messageValue.length >= 25) { // plus de 25 caractères
-    string.parentNode.dataset.errorVisible = false;
-    return true;
-  } if (nameValue.length < 25) { // moins de 25 caractères
-    string.parentNode.dataset.errorVisible = true;
-    string.parentNode.dataset.error = 'Veuillez entrer plus de 25 caractères dans ce champ';
-    return false;
-  }
-  return true
-}
-// Fonction pour "capturer" le focus dans notre modale lorsqu'elle est ouverte
-function trapFocus(modal, focusableEls) {
-  const firstFocusableEl = focusableEls[0];
-  const lastFocusableEl = focusableEls[focusableEls.length - 1];
-  const KEYCODE_TAB = 9;
-
-  modal.addEventListener('keydown', (event) => {
-    const isTabPressed = (event.key === 'Tab' || event.keyCode === KEYCODE_TAB);
-
-    if (!isTabPressed) {
-      return;
-    }
-
-    if (event.shiftKey) /* shift + tab */ {
-      if (document.activeElement === firstFocusableEl) {
-        lastFocusableEl.focus();
-        event.preventDefault();
-      }
-    } else /* tab */ if (document.activeElement === lastFocusableEl) {
-      firstFocusableEl.focus();
-      event.preventDefault();
-    }
-  });
 }
