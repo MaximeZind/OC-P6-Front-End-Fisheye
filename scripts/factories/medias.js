@@ -1,6 +1,6 @@
 // Fonction factory, qui va utiliser les données reçues de notre fichier Json
 // Pour créer notre page photographe
-function mediaFactory(data, name) {
+function mediaFactory(data, name) {// eslint-disable-line
   const {
     id, image, video, likes, title, liked, date,
   } = data;

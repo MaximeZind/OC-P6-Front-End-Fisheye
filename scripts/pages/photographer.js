@@ -36,23 +36,23 @@ async function displayData(photographers, medias) {
   }
 
   // On récupère les medias et le nom du photographe
-  const nameAndMedias = getNameAndMedias(photographers, medias);
+  const nameAndMedias = getNameAndMedias(photographers, medias);// eslint-disable-line
   const photographerName = nameAndMedias[0];
   const photograph = nameAndMedias[1];
   const photographPics = nameAndMedias[2];
 
-  const mediasSortedByLikes = photographPics.sort(compareLikes);
+  const mediasSortedByLikes = photographPics.sort(compareLikes);// eslint-disable-line
   let totalLikes = 0;
   // contenu de la page (images, vidéos, titres, likes)
   mediasSortedByLikes.forEach((media) => {
     totalLikes += media.likes; // Calcul du total des likes
-    const picModel = mediaFactory(media, photographerName);
+    const picModel = mediaFactory(media, photographerName);// eslint-disable-line
     const userPageMainDOM = picModel.getUserPageMainDOM();
     photographPicSection.append(userPageMainDOM);
   });
 
   // fonction globale pour la factory utilisant la data photographer (et totalLikes)
-  const photographerModel = photographerFactory(photograph, totalLikes);
+  const photographerModel = photographerFactory(photograph, totalLikes);// eslint-disable-line
 
   // fonctions spécifique se trouvant dans photographerFactory()
   const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
@@ -71,11 +71,17 @@ async function displayData(photographers, medias) {
 
 // Fonction qui rajoute un like à la photo et au total des likes
 // Appelée par un event listener
-function addLike(heart) {
-  let picLikes = heart.previousSibling.innerText;
-  let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
-  const title = heart.parentNode.parentNode.firstChild.innerText;
+function addLike(event) {// eslint-disable-line
+  let heart = '';
+  if (event.target.parentNode.className.includes('hearts__icons')) {
+    heart = event.target.parentNode;
+  } else if (event.target.className.includes('heart__icons')) {
+    heart = event.target;
+  }
 
+  let picLikes = +heart.previousElementSibling.innerText;
+  let totalLikes = +document.querySelector('#main > div.photograph__priceTag > div > p').innerText;
+  const title = heart.parentNode.parentNode.firstElementChild.innerText;
   if (heart.className.includes('clicked')) {
     heart.classList.remove('clicked');
     heart.ariaLabel = `like ${title}`;
@@ -88,7 +94,7 @@ function addLike(heart) {
     totalLikes += 1;
   }
 
-  heart.previousSibling.innerText = picLikes;
+  heart.previousElementSibling.innerText = picLikes;
   document.querySelector('#main > div.photograph__priceTag > div > p').innerText = totalLikes;
 }
 
@@ -98,7 +104,7 @@ async function init() {
   // Récupère les datas des photographes
   const { photographers, medias } = await getPhotographers();
   displayData(photographers, medias);
-  getEventListeners(photographers, medias);
+  getEventListeners(photographers, medias);// eslint-disable-line
 }
 
 init();

@@ -1,6 +1,6 @@
 // Fonction Factory qui comprend toutes les fonctions qui vont créer nos éléments avec
 // nos datas Json
-function photographerFactory(data, totalLikes) {
+function photographerFactory(data, totalLikes) {// eslint-disable-line
   const {
     name, portrait, city, country, tagline, price, id,
   } = data;

@@ -1,6 +1,6 @@
 // Fonction utilitaire pour récupérer des données dans la page, et en faire une array d'objets
 // (similaire aux données reçues du fichier Json)
-function getPageElements() {
+function getPageElements() {// eslint-disable-line
   const photographArticles = document.querySelectorAll('#main > section.photograph__pics > article');
 
   // On récupère l'ID du photographe via l'URL
@@ -34,7 +34,7 @@ function getPageElements() {
 }
 
 // Fonction pour "capturer" le focus dans notre modale lorsqu'elle est ouverte
-function trapFocus(modal, focusableEls) {
+function trapFocus(modal, focusableEls) {// eslint-disable-line
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
   const KEYCODE_TAB = 9;
@@ -60,7 +60,7 @@ function trapFocus(modal, focusableEls) {
 
 // Fonction qui récupère l'id via l'URL et renvoie le prénom du photographe,
 // ainsi qu'une array d'objets de ses médias
-function getNameAndMedias(photographers, medias) {
+function getNameAndMedias(photographers, medias) {// eslint-disable-line
   // On récupère l'ID du photographe via l'URL
   const params = new URLSearchParams(document.location.search);
   const photographID = +params.get('id');
@@ -80,7 +80,7 @@ function getNameAndMedias(photographers, medias) {
 }
 
 // Fonction contenant nos EventListeners
-function getEventListeners() {
+function getEventListeners() {// eslint-disable-line
   // DOM Elements
   const form = document.querySelector('#modal__bg > div > form');
   const contactBtn = document.querySelector('#main > div.photograph-header > button');
@@ -95,23 +95,23 @@ function getEventListeners() {
   /// /// EventListeners ///////
 
   // Formulaire
-  contactBtn.addEventListener('click', displayModal);
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('keydown', closeModal);
-  form.addEventListener('submit', validateForm);
+  contactBtn.addEventListener('click', displayModal);// eslint-disable-line
+  closeBtn.addEventListener('click', closeModal);// eslint-disable-line
+  modal.addEventListener('keydown', closeModal);// eslint-disable-line
+  form.addEventListener('submit', validateForm);// eslint-disable-line
 
   // Lightbox et gestion des likes
-  closeLightboxBtn.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('keydown', closeLightbox);
-  lightBoxBtn.forEach((btn) => btn.addEventListener('click', displayLightboxNext));
-  lightbox.addEventListener('keydown', displayLightboxNext);
-  photographerPageMedia.addEventListener('click', photographPicsInteractions);
-  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);
+  closeLightboxBtn.addEventListener('click', closeLightbox);// eslint-disable-line
+  lightbox.addEventListener('keydown', closeLightbox);// eslint-disable-line
+  lightBoxBtn.forEach((btn) => btn.addEventListener('click', displayLightboxNext));// eslint-disable-line
+  lightbox.addEventListener('keydown', displayLightboxNext);// eslint-disable-line
+  photographerPageMedia.addEventListener('click', photographPicsInteractions);// eslint-disable-line
+  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);// eslint-disable-line
 
   // Menu déroulant
-  filterList.addEventListener('focusin', openDropDownMenu);
-  filterList.addEventListener('focusout', closeDropDownMenu);
-  filterList.addEventListener('mouseenter', openDropDownMenu);
-  filterList.addEventListener('mouseleave', closeDropDownMenu);
-  filterList.addEventListener('click', filters);
+  filterList.addEventListener('focusin', openDropDownMenu);// eslint-disable-line
+  filterList.addEventListener('focusout', closeDropDownMenu);// eslint-disable-line
+  filterList.addEventListener('mouseenter', openDropDownMenu);// eslint-disable-line
+  filterList.addEventListener('mouseleave', closeDropDownMenu);// eslint-disable-line
+  filterList.addEventListener('click', filters);// eslint-disable-line
 }

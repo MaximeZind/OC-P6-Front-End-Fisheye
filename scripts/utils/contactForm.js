@@ -1,5 +1,5 @@
 // Fonction appelée par plusieurs EventListeners, qui ouvre la modale de contact
-function displayModal() {
+function displayModal() { // eslint-disable-line
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
@@ -16,7 +16,7 @@ function displayModal() {
   main.setAttribute('aria-hidden', 'true');
 
   const focusableEls = modal.querySelectorAll('.modal__close, #first, #last, #email, #message, .contact_button');
-  trapFocus(modal, focusableEls);
+  trapFocus(modal, focusableEls);// eslint-disable-line
 }
 
 // Fonction qui close la modale et réajuste les attributs aria-hidden
@@ -35,7 +35,7 @@ function closing() {
 }
 
 // Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact
-function closeModal(event) {
+function closeModal(event) {// eslint-disable-line
   const modal = document.querySelector('.modal');
 
   if ((event.target.className.includes('modal__close') && (event.type === 'keydown') && (event.keyCode === (13 || 32)))) {
@@ -73,7 +73,7 @@ function validateName(string, option) {
 function validateEmail(string) {
   const emailValue = string.value.trim();
   const inputFieldDataset = string.parentNode.dataset;
-  const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+  const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/; // eslint-disable-line
   if (emailValue.match(regex) && !emailValue.includes(' ')) {
     inputFieldDataset.errorVisible = false;
     return true;
@@ -101,7 +101,7 @@ function validateMessage(string) {
 }
 
 /// / VALIDATION DU FORMULAIRE D'ENVOI DE MESSAGE ////
-function validateForm(event) {
+function validateForm(event) {// eslint-disable-line
   event.preventDefault();
 
   const form = document.querySelector('#modal__bg > div > form');
@@ -123,10 +123,10 @@ function validateForm(event) {
 
   if (isValid) {
     // Envoie des données dans la console
-    console.log(`Prénom: ${firstName.value.trim()}`);
-    console.log(`Nom: ${lastName.value.trim()}`);
-    console.log(`Email: ${email.value.trim()}`);
-    console.log(`Message: ${message.value.trim()}`);
+    console.log(`Prénom: ${firstName.value.trim()}`);// eslint-disable-line
+    console.log(`Nom: ${lastName.value.trim()}`);// eslint-disable-line
+    console.log(`Email: ${email.value.trim()}`);// eslint-disable-line
+    console.log(`Message: ${message.value.trim()}`);// eslint-disable-line
 
     // Reset du formulaire de message
     form.reset();

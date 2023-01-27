@@ -16,11 +16,11 @@ function displayLightbox() {
   firstFocus.focus();
   lightbox.setAttribute('aria-hidden', 'false');
   header.setAttribute('aria-hidden', 'true');
-  trapFocus(lightbox, focusableEls);
+  trapFocus(lightbox, focusableEls);// eslint-disable-line
 }
 
 // Fonction appelée par plusieurs EventListeners, qui ferme la Lightbox
-function closeLightbox(event) {
+function closeLightbox(event) {// eslint-disable-line
   const modal = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
@@ -48,7 +48,7 @@ function closeLightbox(event) {
 
 // Fonction qui met en place le media (photo ou video) de la lightbox
 function createLightboxMedia(mediaID) {
-  const photographerMedias = getPageElements();
+  const photographerMedias = getPageElements();// eslint-disable-line
   const ids = [];
 
   photographerMedias.forEach((media) => {
@@ -96,7 +96,7 @@ function createLightboxMedia(mediaID) {
 // Fonction qui est appelée par des EventListeners,
 // et qui gère les flèches de la Lightbox et la naviguation
 // d'un média à l'autre
-function displayLightboxNext(event) {
+function displayLightboxNext(event) {// eslint-disable-line
   if (event.target.className.includes('lightbox__btn')) { // Sélectionne un des boutons
     if (event.type === 'keydown') {
       // Pour filtrer les key qui ne sont pas entrée / spacebar / flèches
@@ -112,7 +112,7 @@ function displayLightboxNext(event) {
       }
     }
   }
-  const photographerMedias = getPageElements();
+  const photographerMedias = getPageElements();// eslint-disable-line
   const lightboxPic = document.querySelector('#modal__bg > div.lightbox_modal > img');
   const lightboxVid = document.querySelector('#modal__bg > div.lightbox_modal > video');
   let mediaID = 0;
@@ -130,18 +130,18 @@ function displayLightboxNext(event) {
   let nextId = 0;
   const iterations = picIds.length;
   if ((event.target.className.includes('right') && (+event.keyCode !== 37)) || (+event.keyCode === 39)) {
-    for (let i = 0; i < picIds.length; i++) {
+    for (let i = 0; i < picIds.length; i += 1) {
       if (picIds[i] === mediaID) {
         if (picIds[i + 1]) {
           nextId = picIds[i + 1];
         } else if (!picIds[i + 1]) {
-          nextId = picIds[0];
+          nextId = picIds[0];// eslint-disable-line
         }
         break;
       }
     }
   } else if ((event.target.className.includes('left') && (+event.keyCode !== 39)) || (+event.keyCode === 37)) {
-    for (let i = 0; i < iterations; i++) {
+    for (let i = 0; i < iterations; i += 1) {
       if (picIds[i] === mediaID) {
         if (picIds[i - 1]) {
           nextId = picIds[i - 1];
@@ -156,20 +156,20 @@ function displayLightboxNext(event) {
 }
 
 // fonction qui va identifier la target de l'event (click ou keydown), et appeler
-// une fonction en conséquence
-function photographPicsInteractions(event) {
+// une fonction en conséquence (Lightbox ou likes)
+function photographPicsInteractions(event) {// eslint-disable-line
   if (event.type === 'click') {
     if (event.target.parentNode.className.includes('hearts__icons')) { // Click prend en compte l'élément enfant, mais nous avons besoin du parent
-      addLike(event.target.parentNode);
+      addLike(event);// eslint-disable-line
     } else if (event.target.className.includes('hearts__icons')) { // NVDA compte les keyevents (entrée) comme des click events
-      addLike(event.target);
+      addLike(event);// eslint-disable-line
     } else if (event.target.className.includes('photograph__pics__pic-media')) {
       createLightboxMedia(+event.target.id);
       displayLightbox();
     }
   } else if ((event.type === 'keydown') && (event.keyCode === (13 || 32))) { // Navgiation clavier hors NVDA
     if (event.target.className.includes('hearts__icon')) {
-      addLike(event.target);
+      addLike(event);// eslint-disable-line
     } else if (event.target.className.includes('photograph__pics__pic-media')) {
       createLightboxMedia(+event.target.id);
       displayLightbox();

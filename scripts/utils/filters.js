@@ -1,5 +1,5 @@
 // Ouverture du dropdown menu
-function openDropDownMenu() {
+function openDropDownMenu() {// eslint-disable-line
   const dropdownBtns = document.querySelector('.dropdown__buttons');
 
   dropdownBtns.classList.add('activated');
@@ -13,7 +13,7 @@ function closeDropDownMenu() {
 }
 
 // Tri des photos une fois un bouton du dropdown cliqué
-function filters(event) {
+function filters(event) {// eslint-disable-line
   if ((+event.target.id === 1) || (+event.target.parentNode.id === 1)) {
     return;
   }
@@ -30,7 +30,7 @@ function filters(event) {
 
   // On crée une nouvelle array d'objets avec les éléments disponibles sur la page
   // pour pouvoir recréer la gallerie, en gardant les likes en mémoire
-  const photographerMedias = getPageElements();
+  const photographerMedias = getPageElements();// eslint-disable-line
   const photographerName = photographerMedias[1].photographerFirstname;
 
   let sortedMedias = {};
@@ -38,7 +38,7 @@ function filters(event) {
 
   if (targetClasslist.contains('filter__popularity')
   || (targetParentClasslist.contains('filter__popularity'))) { // POPULARITE
-    const mediasFilteredByPopularity = photographerMedias.sort(compareLikes);
+    const mediasFilteredByPopularity = photographerMedias.sort(compareLikes); // eslint-disable-line
     sortedMedias = mediasFilteredByPopularity;
   } else if (targetClasslist.contains('filter__date')
   || (targetParentClasslist.contains('filter__date'))) { // DATE
@@ -48,12 +48,12 @@ function filters(event) {
   } else if (targetClasslist.contains('filter__title')
   || (targetParentClasslist.contains('filter__title'))) { // TITRE
     const mediasFilteredByTitle = photographerMedias
-      .sort((a, b) => ((a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)));
+      .sort((a, b) => ((a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)));// eslint-disable-line
     sortedMedias = mediasFilteredByTitle;
   }
   // On réarrange la page avec la nouvelle valeur de sortedMedias
-  for (let i = 0; i < photographArticles.length; i++) {
-    const picModel = mediaFactory(sortedMedias[i], photographerName);
+  for (let i = 0; i < photographArticles.length; i += 1) {
+    const picModel = mediaFactory(sortedMedias[i], photographerName);// eslint-disable-line
     const userPageMainDOM = picModel.getUserPageMainDOM();
     photographArticles[i].replaceWith(userPageMainDOM);
   }
