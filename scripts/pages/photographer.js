@@ -75,7 +75,7 @@ function addLike(event) {// eslint-disable-line
   let heart = '';
   if (event.target.parentNode.className.includes('hearts__icons')) {
     heart = event.target.parentNode;
-  } else if (event.target.className.includes('heart__icons')) {
+  } else if (event.target.className.includes('hearts__icons')) {
     heart = event.target;
   }
 

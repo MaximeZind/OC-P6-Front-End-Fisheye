@@ -114,4 +114,5 @@ function getEventListeners() {// eslint-disable-line
   filterList.addEventListener('mouseenter', openDropDownMenu);// eslint-disable-line
   filterList.addEventListener('mouseleave', closeDropDownMenu);// eslint-disable-line
   filterList.addEventListener('click', filters);// eslint-disable-line
+  filterList.addEventListener('keydown', filtersNavigation);// eslint-disable-line
 }

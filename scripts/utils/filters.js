@@ -81,6 +81,19 @@ function filters(event) {// eslint-disable-line
   closeDropDownMenu();
 }
 
+// Fonction qui va permettre la navigation du menu déroulant via
+// les flèches directionnelles
+function filtersNavigation(event) { // eslint-disable-line
+  event.preventDefault();
+  const secondBtn = document.getElementById('2');
+  const thirdBtn = document.getElementById('3');
+  if ((event.keyCode === 40) && (event.target === secondBtn)) {
+    thirdBtn.focus();
+  } else if ((event.keyCode === 38) && (event.target === thirdBtn)) {
+    secondBtn.focus();
+  }
+}
+
 // Fonction utilitaire de triage en fonction des likes
 function compareLikes(a, b) {
   return b.likes - a.likes;

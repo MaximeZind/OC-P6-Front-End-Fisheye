@@ -35,7 +35,7 @@ function mediaFactory(data, name) {// eslint-disable-line
       <p lang="en">${title}</p>
       <div class="photograph__pics__pic-text-likes">
         <p>${likes}</p>
-        <div tabindex="0" class="${heartClass}" aria-label="${heartAriaLabel}">
+        <div tabindex="0" class="${heartClass}" aria-label="${heartAriaLabel}" role="button">
           <i class="fa-solid fa-heart heart__icon-full"></i>
           <i class="fa-regular fa-heart heart__icon-empty"></i>
           <i class="fa-solid fa-heart-crack heart__icon-cracked"></i>
