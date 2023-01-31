@@ -7,7 +7,7 @@ async function getPhotographers() {
   const medias = data.media;
 
   return ({
-    photographers, medias
+    photographers, medias,
   });
 }
 
@@ -15,11 +15,9 @@ async function getPhotographers() {
 // et les envoie vers nos fonctions factory
 async function displayData(photographers, medias) {
   // Elément de la page dans lesquels on va afficher nos données
-  const photographHeader = document.querySelector('.photograph-header');
   const photographPicSection = document.querySelector('.photograph__pics');
   const photographMain = document.getElementById('main');
   const photographModalTitle = document.querySelector('#modal__bg > div > header > h2');
-  const modal = document.querySelector('#modal__bg');
 
   // Vérification que l'id correspond à un photographe...
   const params = new URLSearchParams(document.location.search);

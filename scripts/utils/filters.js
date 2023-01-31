@@ -85,7 +85,7 @@ function filters(event) {// eslint-disable-line
 // les flèches directionnelles
 function filtersNavigation(event) { // eslint-disable-line
 
-  if ((event.keyCode === (40 || 38))){
+  if ((event.keyCode === (40 || 38))) {
     event.preventDefault();
   }
   const secondBtn = document.getElementById('2');
