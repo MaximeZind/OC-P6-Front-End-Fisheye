@@ -86,7 +86,7 @@ function getEventListeners() {// eslint-disable-line
   const contactBtn = document.querySelector('#main > div.photograph-header > button');
   const closeBtn = document.querySelector('#modal__bg > div > header > img');
   const photographerPageMedia = document.querySelector('#main > section.photograph__pics');
-  const closeLightboxBtn = document.querySelector('#modal__bg > div.lightbox_modal > i.fa-solid.fa-xmark.lightbox_modal-close');
+  const closeLightboxBtn = document.querySelector('#modal__bg > div.lightbox_modal > .fa-solid.fa-xmark.lightbox_modal-close');
   const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
   const lightBoxBtn = document.querySelectorAll('#modal__bg > div.lightbox_modal > .lightbox__btn');
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');

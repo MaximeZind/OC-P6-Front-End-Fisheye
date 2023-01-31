@@ -78,11 +78,12 @@
     <!-- /Modale formulaire de contact -->
     <!-- Modale Lightbox -->
     <div class="lightbox_modal" aria-hidden="true">
-      <i class="fa-solid fa-angle-left lightbox__btn" tabindex="0" aria-label="média précédent"></i>
-      <img class="lightbox_modal-img" src="undefined" alt="">
-      <video class="lightbox_modal-img" src="undefined"></video>
-      <i class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></i>
-      <i class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></i>
+      <span class="fa-solid fa-angle-left lightbox__btn" tabindex="0" aria-label="média précédent"></span>
+      <!-- src définie juste pour éviter une erreur de validateur W3C -->
+      <img class="lightbox_modal-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+      <video class="lightbox_modal-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></video>
+      <span class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></span>
+      <span class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></span>
       <p class="lightbox_modal-title"></p>
     </div>
     <!-- /Modale Lightbox -->

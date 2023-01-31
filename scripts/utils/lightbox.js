@@ -5,7 +5,7 @@ function displayLightbox() {
   const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
   const header = document.querySelector('body > header');
   const focusableEls = document.querySelectorAll('.lightbox__btn, .lightbox_modal-close');
-  const firstFocus = document.querySelector('#modal__bg > div.lightbox_modal > i.fa-solid.fa-angle-left.lightbox__btn');
+  const firstFocus = document.querySelector('#modal__bg > div.lightbox_modal > .fa-solid.fa-angle-left.lightbox__btn');
   const body = document.querySelector('body');
 
   // Display le background modal et la lightbox, et cacher le formulaire de contact
