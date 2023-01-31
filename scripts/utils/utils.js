@@ -92,7 +92,7 @@ function getEventListeners() {// eslint-disable-line
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
   const modalElements = document.querySelector('.modal, .modal > form, .modal > form > input');
 
-  /// /// EventListeners ///////
+  ////// EventListeners ///////
 
   // Formulaire
   contactBtn.addEventListener('click', displayModal);// eslint-disable-line
@@ -101,12 +101,12 @@ function getEventListeners() {// eslint-disable-line
   form.addEventListener('submit', validateForm);// eslint-disable-line
 
   // Lightbox et gestion des likes
+  photographerPageMedia.addEventListener('click', photographPicsInteractions);// eslint-disable-line
+  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);// eslint-disable-line
   closeLightboxBtn.addEventListener('click', closeLightbox);// eslint-disable-line
   lightbox.addEventListener('keydown', closeLightbox);// eslint-disable-line
   lightBoxBtn.forEach((btn) => btn.addEventListener('click', displayLightboxNext));// eslint-disable-line
   lightbox.addEventListener('keydown', displayLightboxNext);// eslint-disable-line
-  photographerPageMedia.addEventListener('click', photographPicsInteractions);// eslint-disable-line
-  photographerPageMedia.addEventListener('keydown', photographPicsInteractions);// eslint-disable-line
 
   // Menu déroulant
   filterList.addEventListener('focusin', openDropDownMenu);// eslint-disable-line

@@ -129,6 +129,7 @@ function displayLightboxNext(event) {// eslint-disable-line
 
   let nextId = 0;
   const iterations = picIds.length;
+  // clique sur la flèche droite ou touche clavier droite
   if ((event.target.className.includes('right') && (+event.keyCode !== 37)) || (+event.keyCode === 39)) {
     for (let i = 0; i < picIds.length; i += 1) {
       if (picIds[i] === mediaID) {
@@ -140,6 +141,7 @@ function displayLightboxNext(event) {// eslint-disable-line
         break;
       }
     }
+  // clique sur la flèche gauche ou touche clavier gauche
   } else if ((event.target.className.includes('left') && (+event.keyCode !== 39)) || (+event.keyCode === 37)) {
     for (let i = 0; i < iterations; i += 1) {
       if (picIds[i] === mediaID) {

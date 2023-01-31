@@ -8,7 +8,7 @@ function displayModal() { // eslint-disable-line
   const firstFocus = document.getElementById('first');
   const body = document.querySelector('body');
 
-  body.style.overflow = 'hidden';
+  body.style.overflow = 'hidden'; // Empêche le scrolling en arrière plan
   modalbg.style.display = 'block';
   firstFocus.focus();
   form.setAttribute('aria-hidden', 'false');
@@ -28,7 +28,7 @@ function closing() {
   const body = document.querySelector('body');
   const contactFormBtn = document.querySelector('div.photograph-header > button');
 
-  body.style.overflow = 'auto';
+  body.style.overflow = 'auto'; // Rétablit le scrolling
   modalbg.style.display = 'none'; // Le conteneur de la modale
   form.setAttribute('aria-hidden', 'true');
   header.setAttribute('aria-hidden', 'false');
