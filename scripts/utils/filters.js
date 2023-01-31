@@ -84,7 +84,10 @@ function filters(event) {// eslint-disable-line
 // Fonction qui va permettre la navigation du menu déroulant via
 // les flèches directionnelles
 function filtersNavigation(event) { // eslint-disable-line
-  event.preventDefault();
+
+  if ((event.keyCode === (40 || 38))){
+    event.preventDefault();
+  }
   const secondBtn = document.getElementById('2');
   const thirdBtn = document.getElementById('3');
   if ((event.keyCode === 40) && (event.target === secondBtn)) {

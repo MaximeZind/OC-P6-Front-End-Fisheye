@@ -90,14 +90,14 @@ function getEventListeners() {// eslint-disable-line
   const lightbox = document.querySelector('#modal__bg > div.lightbox_modal');
   const lightBoxBtn = document.querySelectorAll('#modal__bg > div.lightbox_modal > .lightbox__btn');
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
-  const modal = document.querySelector('.modal');
+  const modalElements = document.querySelector('.modal, .modal > form, .modal > form > input');
 
   /// /// EventListeners ///////
 
   // Formulaire
   contactBtn.addEventListener('click', displayModal);// eslint-disable-line
   closeBtn.addEventListener('click', closeModal);// eslint-disable-line
-  modal.addEventListener('keydown', closeModal);// eslint-disable-line
+  modalElements.addEventListener('keydown', closeModal);// eslint-disable-line
   form.addEventListener('submit', validateForm);// eslint-disable-line
 
   // Lightbox et gestion des likes

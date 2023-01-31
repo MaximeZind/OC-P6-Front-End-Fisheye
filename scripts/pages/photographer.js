@@ -7,7 +7,7 @@ async function getPhotographers() {
   const medias = data.media;
 
   return ({
-    photographers, medias,
+    photographers, medias
   });
 }
 
@@ -35,7 +35,7 @@ async function displayData(photographers, medias) {
     window.location.replace('index.html');
   }
 
-  // On récupère les medias et le nom du photographe
+  // On récupère les medias et le prénom du photographe
   const nameAndMedias = getNameAndMedias(photographers, medias);// eslint-disable-line
   const photographerName = nameAndMedias[0];
   const photograph = nameAndMedias[1];
@@ -43,7 +43,7 @@ async function displayData(photographers, medias) {
 
   const mediasSortedByLikes = photographPics.sort(compareLikes);// eslint-disable-line
   let totalLikes = 0;
-  // contenu de la page (images, vidéos, titres, likes)
+  // Création du contenu de la page (images, vidéos, titres, likes)
   mediasSortedByLikes.forEach((media) => {
     totalLikes += media.likes; // Calcul du total des likes
     const picModel = mediaFactory(media, photographerName);// eslint-disable-line
@@ -56,17 +56,15 @@ async function displayData(photographers, medias) {
 
   // fonctions spécifique se trouvant dans photographerFactory()
   const userPageHeaderDOM = photographerModel.getUserPageHeaderDOM();
-  const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
+  // const userPageHeaderPortraitDom = photographerModel.getUserPageHeaderPortraitDOM();
   const userPagePriceTagDOM = photographerModel.getUserPagePriceTagDOM();
   const userPageModalName = photographerModel.getUserPageModalName();
-  const userPageModalLightbox = photographerModel.getUserPageModalLightbox();
 
-  photographHeader.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
-  photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
+  photographMain.prepend(userPageHeaderDOM); // Nom, localisation et tagline du header
+  // photographHeader.append(userPageHeaderPortraitDom); // Portrait du header
   photographMain.append(userPagePriceTagDOM); // pricetag dans la partie main
   // ajouter le nom du photographe au titre de la modale
   photographModalTitle.parentNode.replaceChild(userPageModalName, photographModalTitle);
-  modal.append(userPageModalLightbox); // Lightbox modale
 }
 
 // Fonction qui rajoute un like à la photo et au total des likes
@@ -104,7 +102,7 @@ async function init() {
   // Récupère les datas des photographes
   const { photographers, medias } = await getPhotographers();
   displayData(photographers, medias);
-  getEventListeners(photographers, medias);// eslint-disable-line
+  getEventListeners();// eslint-disable-line
 }
 
 init();

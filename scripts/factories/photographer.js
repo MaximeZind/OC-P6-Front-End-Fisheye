@@ -14,7 +14,7 @@ function photographerFactory(data, totalLikes) {// eslint-disable-line
     const article = document.createElement('article');
     article.innerHTML = `
   <header>
-    <a href="photographer.html?id=${id}" aria-label="Cliquer pour accéder à la page de ${name}">
+    <a href="photographer.html?id=${id}" aria-label="${name}">
       <div class="card__img--wrapper">
         <img src="${picture}" alt="${name}">
       </div>
@@ -30,24 +30,21 @@ function photographerFactory(data, totalLikes) {// eslint-disable-line
 
   // Header de la page photographe
   function getUserPageHeaderDOM() {
-    const headerDiv = document.createElement('div');
-    headerDiv.innerHTML = `
-    <h2>${name}</h2>
-    <h3>${location}</h3>
-    <p>${tagline}</p>
+    const photographerHeaderDiv = document.createElement('div');
+    photographerHeaderDiv.setAttribute('class', 'photograph-header');
+    photographerHeaderDiv.innerHTML = `
+    <div>
+      <h2>${name}</h2>
+      <h3>${location}</h3>
+      <p>${tagline}</p>
+    </div>
+    <button aria-label="Contactez-moi" class="contact_button" tabindex="0">Contactez-moi</button>
+    <div class="photograph-header_portrait">
+      <img src="${picture}" alt ="${name}">
+    </div>
     `;
 
-    return headerDiv;
-  }
-
-  // Portrait de la page photographe
-  function getUserPageHeaderPortraitDOM() {
-    const picDiv = document.createElement('div');
-    picDiv.setAttribute('class', 'photograph-header_portrait');
-    picDiv.innerHTML = `
-    <img src="${picture}" alt ="${name}">
-    `;
-    return (picDiv);
+    return photographerHeaderDiv;
   }
 
   // Onglet décompte des likes et prix
@@ -70,26 +67,7 @@ function photographerFactory(data, totalLikes) {// eslint-disable-line
   function getUserPageModalName() {
     const h2 = document.createElement('h2');
     h2.innerHTML = `Contactez-moi<br>${name}`;
-
     return (h2);
-  }
-
-  // Lightbox
-  function getUserPageModalLightbox() {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'lightbox_modal');
-    div.setAttribute('aria-hidden', 'true');
-
-    div.innerHTML = `
-      <i class="fa-solid fa-angle-left lightbox__btn" tabindex="0" aria-label="média précédent"></i>
-      <img class="lightbox_modal-img">
-      <video class="lightbox_modal-img"></video>
-      <i class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></i>
-      <i class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></i>
-      <p class="lightbox_modal-title"></p>
-    `;
-
-    return (div);
   }
 
   return {
@@ -97,9 +75,7 @@ function photographerFactory(data, totalLikes) {// eslint-disable-line
     picture,
     getUserCardDOM,
     getUserPageHeaderDOM,
-    getUserPageHeaderPortraitDOM,
     getUserPagePriceTagDOM,
     getUserPageModalName,
-    getUserPageModalLightbox,
   };
 }

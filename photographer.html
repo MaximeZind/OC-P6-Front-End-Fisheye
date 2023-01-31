@@ -17,13 +17,14 @@
       <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
     </a>
   </header>
+      <!-- MAIN -->
   <main id="main" aria-hidden="false">
-    <div class="photograph-header">
-      <button aria-label="Contactez-moi" class="contact_button" tabindex="0">Contactez-moi</button>
-    </div>
+    <!-- Bannière -->
+
+    <!-- Menu Déroulant -->
     <section class="dropdown__section">
-      <h2>Trier par</h2>
-      <div class="dropdown__wrapper" role="listbox" aria-expanded="false" aria-haspopup="listbox">
+      <label id="sort__label" for="sort">Trier par : </label>
+      <div id ="sort" class="dropdown__wrapper" role="listbox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="sort__label">
         <div class="dropdown__buttons">
           <button class="filter__popularity" id="1" aria-selected="true" tabindex="-1">
             <span>Popularité</span>
@@ -38,10 +39,16 @@
         </div>
       </div>
     </section>
+    <!-- /Menu Déroulant -->
+    <!-- Gallerie -->
     <section class="photograph__pics">
     </section>
+    <!-- /Gallerie -->
   </main>
+  <!-- /MAIN -->
+  <!-- Modales -->
   <div id="modal__bg">
+    <!-- Modale formulaire de contact -->
     <div role="dialog" class="modal" aria-hidden="true" aria-describedby="contact__modal__title">
       <header>
         <h2 id="contact__modal__title">Contactez-moi</h2>
@@ -68,7 +75,19 @@
         <button class="contact_button" tabindex="0">Envoyer</button>
       </form>
     </div>
+    <!-- /Modale formulaire de contact -->
+    <!-- Modale Lightbox -->
+    <div class="lightbox_modal" aria-hidden="true">
+      <i class="fa-solid fa-angle-left lightbox__btn" tabindex="0" aria-label="média précédent"></i>
+      <img class="lightbox_modal-img">
+      <video class="lightbox_modal-img"></video>
+      <i class="fa-solid fa-angle-right lightbox__btn" tabindex="0" aria-label="média suivant"></i>
+      <i class="fa-solid fa-xmark lightbox_modal-close" tabindex="0" aria-label="fermer lightbox"></i>
+      <p class="lightbox_modal-title"></p>
+    </div>
+    <!-- /Modale Lightbox -->
   </div>
+  <!-- /Modales -->
   <script src="scripts/utils/utils.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
   <script src="scripts/factories/photographer.js"></script>

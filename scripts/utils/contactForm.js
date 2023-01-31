@@ -20,23 +20,26 @@ function displayModal() { // eslint-disable-line
 }
 
 // Fonction qui close la modale et réajuste les attributs aria-hidden
-function closing() {
+function closing(event) {
   const modalbg = document.getElementById('modal__bg');
   const form = document.querySelector('#modal__bg > div');
   const header = document.querySelector('body > header');
   const main = document.querySelector('#main');
-  const body = document.querySelector('body');
+  const body = document.querySelector('body')
+  const contactFormBtn = document.querySelector("div.photograph-header > button");
 
   body.style.overflow = 'auto';
   modalbg.style.display = 'none'; // Le conteneur de la modale
   form.setAttribute('aria-hidden', 'true');
   header.setAttribute('aria-hidden', 'false');
   main.setAttribute('aria-hidden', 'false');
+  contactFormBtn.focus();
 }
 
 // Fonction appelée par plusieurs EventListeners, qui ferme la modale de contact
 function closeModal(event) {// eslint-disable-line
   const modal = document.querySelector('.modal');
+  console.log(event);
 
   if ((event.target.className.includes('modal__close') && (event.type === 'keydown') && (event.keyCode === (13 || 32)))) {
     closing(); // Spacebar ou entrée sur la croix de fermeture de la modale
