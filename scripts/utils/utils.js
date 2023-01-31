@@ -92,7 +92,7 @@ function getEventListeners() {// eslint-disable-line
   const filterList = document.querySelector('#main > section.dropdown__section > .dropdown__wrapper');
   const modalElements = document.querySelector('.modal, .modal > form, .modal > form > input');
 
-  ////// EventListeners ///////
+  /// /// EventListeners ///////
 
   // Formulaire
   contactBtn.addEventListener('click', displayModal);// eslint-disable-line
